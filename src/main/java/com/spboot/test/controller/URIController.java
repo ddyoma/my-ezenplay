@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class URIController {
 
 	@GetMapping("/views/**")
-	public void goPage() {
+	public void goView() {
+		
 	}
-
+	
 	@GetMapping("/")
 	public String goIndex() {
-		return "WEB-INF/views/index";
+		return "views/index";
 	}
 }
