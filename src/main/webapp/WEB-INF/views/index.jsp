@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-localhost 및 서버 작동 여부 확인
+무햐오
 </body>
 </html>
