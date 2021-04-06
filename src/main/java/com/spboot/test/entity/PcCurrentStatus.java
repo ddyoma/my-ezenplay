@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
@@ -14,15 +16,14 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Data;
 
+@Entity
+@Table(name="pc_current_status")
+@Data
+@DynamicInsert
+@DynamicUpdate
 public class PcCurrentStatus {
 
-	@Entity
-	@Table(name="pc_current_status")
-	@Data
-	@DynamicInsert
-	@DynamicUpdate
-	public class TrainerInfo {
-		
+
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="pc_status_num")
@@ -30,12 +31,6 @@ public class PcCurrentStatus {
 		
 		@Column(name="res_num")
 		private Integer resNum;
-		
-		@Column(name="ti_gender")
-		private String tiGender;
-		
-		@Column(name="user_id")
-		private String userId;
 
 		@Column(name="pc_start_time")
 		private Time pcStartTime;
@@ -44,8 +39,15 @@ public class PcCurrentStatus {
 		private Time pcEndTime;
 		
 		@Column(name="pc_seat_result")
-		private Byte pcSeatResult;
+		private Integer pcSeatResult;
+		
+		@ManyToOne
+		@JoinColumn(name = "user_num")
+		private UserInfo user;
+		
+		@ManyToOne
+		@JoinColumn(name = "pc_seat_num")
+		private PcInfo pc;
+		
 		
 	}
-
-}
