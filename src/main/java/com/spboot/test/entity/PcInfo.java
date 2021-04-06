@@ -15,7 +15,6 @@ import lombok.Data;
 public class PcInfo {
 
 	   @Id
-	   @GeneratedValue(strategy = GenerationType.IDENTITY)
 	   @Column(name="pc_seat_num")
 	   private Integer pcSeatNum;
 	   @Column(name="pc_spec")

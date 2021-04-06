@@ -45,9 +45,8 @@ public class PcCurrentStatus {
 		@JoinColumn(name = "user_num")
 		private UserInfo user;
 		
+
 		@ManyToOne
 		@JoinColumn(name = "pc_seat_num")
 		private PcInfo pc;
-		
-		
 	}

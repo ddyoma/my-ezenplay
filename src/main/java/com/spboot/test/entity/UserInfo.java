@@ -28,9 +28,9 @@ public class UserInfo {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="user_num")
-   private String userNum;
+   private Integer userNum;
    @Column(name="user_id")
-   private String userId;
+   private String userID;
    @Column(name="user_pwd")
    private String userPwd;
    @Column(name="user_name")
