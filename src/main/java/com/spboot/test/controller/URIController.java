@@ -15,16 +15,4 @@ public class URIController {
 	public String goIndex() {
 		return "views/index";
 	}
-	@GetMapping("/views/left")
-	public String goSideber1() {
-		return "views/left-sideber";
-	}
-	@GetMapping("/views/no")
-	public String goSideber2() {
-		return "views/no-sideber";
-	}
-	@GetMapping("/views/right")
-	public String goSideber3() {
-		return "views/right-sideber";
-	}
 }
