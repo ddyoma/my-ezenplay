@@ -1934,11 +1934,11 @@ input, select, textarea {
 /* Logo */
 
 	#logo {
-		display: inline-flex;
+		display: inline-block;
 	}
 
 		#logo h1 {
-			background: #FFB2D9;
+			background: #ff4486;
 			color: #fff;
 			border-radius: 6px;
 			font-family: 'Oleo Script', serif;

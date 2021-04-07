@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:if test="${UserInfo eq null }">
+<script>
+ alert('시간충전 권한이 없습니다.');
+location.href='/';
+</script>
+</c:if>
 <!DOCTYPE HTML>
 <!--
 	Verti by HTML5 UP
@@ -9,52 +16,9 @@
 <html>
 	<head>
 		<title>Verti by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="/resources/assets/css/main.css" />
+		<jsp:include page="/include/head.jsp"></jsp:include>
 	</head>
-	<body class="is-preload right-sidebar">
-		<div id="page-wrapper">
-
-			<!-- Header -->
-				<div id="header-wrapper">
-					<header id="header" class="container">
-
-						<!-- Logo -->
-							<div id="logo">
-								<h1><a href="index.html">Verti</a></h1>
-								<span>by HTML5 UP</span>
-							</div>
-
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li><a href="index.html">Welcome</a></li>
-									<li>
-										<a href="#">Dropdown</a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
-									</li>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li class="current"><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="no-sidebar.html">No Sidebar</a></li>
-								</ul>
-							</nav>
-
-					</header>
-				</div>
+	
 
 			<!-- Main -->
 				<div id="main-wrapper">
@@ -211,12 +175,12 @@
 
 		<!-- Scripts -->
 
-			<script src="/resources/assets/js/jquery.min.js"></script>
-			<script src="/resources/assets/js/jquery.dropotron.min.js"></script>
-			<script src="/resources/assets/js/browser.min.js"></script>
-			<script src="/resources/assets/js/breakpoints.min.js"></script>
-			<script src="/resources/assets/js/util.js"></script>
-			<script src="/resources/assets/js/main.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
