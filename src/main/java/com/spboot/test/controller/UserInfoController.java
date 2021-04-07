@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spboot.test.entity.UserInfo;
 import com.spboot.test.service.UserInfoService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 public class UserInfoController {
 
 	@Autowired
@@ -41,5 +45,12 @@ public class UserInfoController {
 	      HttpSession session = req.getSession();
 	      session.invalidate();  //세션초기화
 	      return true;
+	   }
+	   
+	   @PostMapping("/memeberjoin")
+	   public @ResponseBody Integer upload(@ModelAttribute UserInfo mf) {
+	      log.info("mf=>{}",mf);
+	      UserInfo ui = uService.saveUserInfo(mf);
+	      return ui.getUserNum();
 	   }
 }

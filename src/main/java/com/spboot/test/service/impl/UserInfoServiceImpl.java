@@ -1,9 +1,12 @@
 package com.spboot.test.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spboot.test.entity.UserInfo;
 import com.spboot.test.repository.UserInfoRepository;
@@ -28,6 +31,36 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public List<UserInfo> getList() {
 	   return uiRepo.findAllByOrderByUserNumDesc();
+
 	}
+	private final String ROOT = "C:\\Users\\sherl\\git\\aws-ezenplayteam\\src\\main\\webapp\\resources\\";
+
+	   
+	   
+	   @Override
+	   public UserInfo saveUserInfo(UserInfo ui) {
+	      
+	      MultipartFile mf = ui.getUserFile();
+	      log.info("Name=>{}",mf);
+	      int idx = mf.getOriginalFilename().lastIndexOf(".");
+	      log.info("Name=>{}",idx);
+	      String e = mf.getOriginalFilename().substring(idx);
+	      log.info("Name=>{}",e);
+	      String profilePath = System.nanoTime() + e;
+	      log.info("Name=>{}",profilePath);
+	      ui.setUserProfile(mf.getOriginalFilename());
+	      ui.setProfilePath(profilePath);
+	      File f = new File(ROOT + profilePath);
+	      
+	         try {
+	            mf.transferTo(f);
+	         } catch (IllegalStateException e1) {
+	            e1.printStackTrace();
+	         } catch (IOException e1) {
+	            e1.printStackTrace();
+	         }
+	      
+	      return uiRepo.save(ui);
+	   }
 
 }

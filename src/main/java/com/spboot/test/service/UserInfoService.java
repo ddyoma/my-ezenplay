@@ -2,10 +2,16 @@ package com.spboot.test.service;
 
 import java.util.List;
 
+
+import org.springframework.stereotype.Service;
+
 import com.spboot.test.entity.UserInfo;
 
-public interface UserInfoService{
+@Service
+public interface UserInfoService {
 
-	UserInfo login(UserInfo ui);
-	List<UserInfo> getList();
+	 public UserInfo login(UserInfo ui);
+	 public List<UserInfo> getList();
+	 UserInfo saveUserInfo(UserInfo ui);
+
 }
