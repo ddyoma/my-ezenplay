@@ -8,5 +8,7 @@ import com.spboot.test.entity.UserInfo;
 
 @Service
 public interface UserInfoService {
+	public UserInfo login(UserInfo ui);
+	public List<UserInfo> getList();
 	
 }
