@@ -24,4 +24,5 @@ public class ReviewInfoController {
 		log.info("review=>{}",reviewInfo);
 		return reviewInfo.getRevNum();
 	}
+	
 }

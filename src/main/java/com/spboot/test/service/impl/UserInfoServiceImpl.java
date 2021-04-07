@@ -20,7 +20,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Autowired
 	private UserInfoRepository uiRepo;
-	
+
 	@Override
 	public UserInfo login(UserInfo ui) {
 	   UserInfo userInfo = uiRepo.findByUserIdAndUserPwd(ui.getUserId(), ui.getUserPwd());
@@ -31,11 +31,25 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public List<UserInfo> getList() {
 	   return uiRepo.findAllByOrderByUserNumDesc();
-
 	}
+
+	@Override
+	public int insertUserInfo(UserInfo userInfo) {
+		return 0;
+	}
+
+	@Override
+	public int updateUserInfo(UserInfo userInfo) {
+		return 0;
+	}
+
+	@Override
+	public int deleteUserInfo(int uiNum) {
+		return 0;
+	}
+
 	private final String ROOT = "C:\\Users\\sherl\\git\\aws-ezenplayteam\\src\\main\\webapp\\resources\\";
 
-	   
 	   
 	   @Override
 	   public UserInfo saveUserInfo(UserInfo ui) {
