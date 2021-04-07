@@ -20,16 +20,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	
 	@Override
-	public UserInfo login(UserInfo ui) {
-		UserInfo userInfo = uiRepo.findByUserIdAndUserPwd(ui.getUserId(), ui.getUserPwd());
+	   public UserInfo login(UserInfo ui) {
+	      UserInfo userInfo = uiRepo.findByUserIdAndUserPwd(ui.getUserId(), ui.getUserPwd());
 	      log.info("tmp=>{}",userInfo);
 	      return uiRepo.findByUserIdAndUserPwd(ui.getUserId(), ui.getUserPwd());
-	}
+	   }
 
-	@Override
-	public List<UserInfo> getList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	   @Override
+	   public List<UserInfo> getList() {
+	      return uiRepo.findAll();
+	   }
 
 }
