@@ -26,7 +26,7 @@ public class UserInfo {
    @Column(name="user_num")
    private Integer userNum;
    @Column(name="user_id",unique = true)
-   private String userID;
+   private String userId;
    @Column(name="user_pwd")
    private String userPwd;
    @Column(name="user_name")
