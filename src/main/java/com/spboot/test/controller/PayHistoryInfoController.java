@@ -19,7 +19,7 @@ public class PayHistoryInfoController {
 	
 	@PostMapping("/pay/insert")
 	public Integer insertPay(@RequestBody PayHistoryInfo payInfo) {
-		payRepo.save(payInfo);
+		payRepo.save(payInfo); 
 		return payInfo.getPhNum();
 	}
 }
