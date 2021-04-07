@@ -30,23 +30,10 @@
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
-									<li class="current"><a href="index.html">Welcome</a></li>
+									<li class="current"><a href="index.jsp">홈화면</a></li>
 									<li>
 										<a href="#">Dropdown</a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
+										
 									</li>
 									<li><a href="left-sidebar.html">Left Sidebar</a></li>
 									<li><a href="right-sidebar.html">Right Sidebar</a></li>
@@ -60,21 +47,51 @@
 			<!-- Banner -->
 				<div id="banner-wrapper">
 					<div id="banner" class="box container">
+					
 						<div class="row">
 							<div class="col-7 col-12-medium">
-								<h2>Hi. This is Verti.</h2>
-								<p>It's a free responsive site template by HTML5 UP</p>
+								<h2>로그인로직</h2>
+								<p>로그인로직</p>
 							</div>
+							
+							<div class="container">
+						
+							<div><input type="text" placeholder="아이디"id="id"></div>
+							<div><input type="text" placeholder="비번"id="pwd"></div>
+							<div><button onclick="change()">로그인</button></div>
+							<a href="#">고객센터</a>
+							<a href="#">회원가입</a>
 							<div class="col-5 col-12-medium">
-								<ul>
-									<li><a href="#" class="button large icon solid fa-arrow-circle-right">Ok let's go</a></li>
-									<li><a href="#" class="button alt large icon solid fa-question-circle">More info</a></li>
-								</ul>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
+<script>
+function change(){
+	alert('로그인성공했습니다.')
+}
+function login(){
+	var pp = {
+			id : document.querySelector('#id').value,
+			pwd : document.querySelector('#pwd').value
+	}
+	p = JSON.stringify(pp);
+	var x = new XMLHttpRequest();
+	x.open('POST','left-sidebar.html');
+	x.onreadystatechange = function(){
+		if(x.readyState==4 && x.status==200){
+			var r = JSON.parse(x.responseText);
+			if(r.result==1){
+				alert('로그인성공했습니다.')
+			}else{
+				alert('로그인에실패했습니다.')
+			}
+		}
+	}
+	x.setRequestHeader('content-type','application/jason;charset=UTF-8');
+	x.send();
+}</script>
 			<!-- Features -->
 				<div id="features-wrapper">
 					<div class="container">
