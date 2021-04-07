@@ -9,6 +9,9 @@ import com.spboot.test.entity.UserInfo;
 @Service
 public interface UserInfoService {
 
-	public UserInfo login(UserInfo ui);
-	public List<UserInfo> getList();
+	List<UserInfo> getList();
+	UserInfo login(UserInfo ui);
+	int insertUserInfo(UserInfo userInfo);
+	int updateUserInfo(UserInfo userInfo);
+	int deleteUserInfo(int uiNum);
 }

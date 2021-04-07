@@ -48,9 +48,5 @@ public class UserInfoController {
 		session.invalidate(); // 세션초기화
 		return true;
 	}
-	@DeleteMapping("/delete")
-	public @ResponseBody UserInfo delete(@RequestBody UserInfo ui){
-		return ui;
-	}
 	
 }
