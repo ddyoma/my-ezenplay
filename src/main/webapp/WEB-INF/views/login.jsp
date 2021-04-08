@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
                 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+    <!-- 로그인페이지 사용할지 추후결정 -->
 <!DOCTYPE html>
 <html>
 <head>
