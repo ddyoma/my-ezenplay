@@ -2,9 +2,12 @@ package com.spboot.test.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.spboot.test.entity.PcInfo;
 import com.spboot.test.service.PcInfoService;
 
+@Service
 public class PcInfoServiceImpl implements PcInfoService {
 
 	@Override

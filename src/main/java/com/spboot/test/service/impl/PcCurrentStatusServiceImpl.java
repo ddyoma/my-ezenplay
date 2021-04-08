@@ -2,9 +2,12 @@ package com.spboot.test.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.spboot.test.entity.PcCurrentStatus;
 import com.spboot.test.service.PcCurrentStatusService;
 
+@Service
 public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 
 	@Override

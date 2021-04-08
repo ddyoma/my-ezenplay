@@ -2,9 +2,12 @@ package com.spboot.test.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.spboot.test.entity.FoodInfo;
 import com.spboot.test.service.FoodInfoService;
 
+@Service
 public class FoodInfoServiceImpl implements FoodInfoService {
 
 	@Override
