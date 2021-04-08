@@ -8,6 +8,6 @@ import com.spboot.test.entity.UserInfo;
 
 public interface UserInfoRepository extends JpaRepository<UserInfo, Integer> {
 
-	List<UserInfo> findAllByOrderByUserNumDesc();
-	UserInfo findByUserIdAndUserPwd(String userId, String userPwd);
+	public List<UserInfo> findAllByOrderByUserNumDesc();
+	public UserInfo findByUserIdAndUserPwd(String userId, String userPwd);
 }

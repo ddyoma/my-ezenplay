@@ -10,8 +10,8 @@ import com.spboot.test.entity.ReviewInfo;
 public interface ReviewInfoService {
 
 	List<ReviewInfo> getReviewList();
-	ReviewInfo getReviewInfo(int riNum);
-	int insertReviewInfo(ReviewInfo review);
-	int updateReviewInfo(ReviewInfo review);
-	int deleteReviewInfo(int riNum);
+	ReviewInfo getReviewInfo(int revNum);
+	ReviewInfo insertReviewInfo(ReviewInfo review);
+	ReviewInfo updateReviewInfo(ReviewInfo review);
+	int deleteReviewInfo(int revNum);
 }

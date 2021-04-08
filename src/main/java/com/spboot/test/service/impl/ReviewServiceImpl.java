@@ -1,39 +1,48 @@
 package com.spboot.test.service.impl;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.spboot.test.entity.ReviewInfo;
+import com.spboot.test.repository.ReviewInfoRepository;
 import com.spboot.test.service.ReviewInfoService;
 
 public class ReviewServiceImpl implements ReviewInfoService {
 
+	@Autowired
+	private ReviewInfoRepository revRepo;
+	
 	@Override
 	public List<ReviewInfo> getReviewList() {
+		return revRepo.findAllByOrderByRevNumDesc();
+	}
+
+	@Override
+	public ReviewInfo getReviewInfo(int revNum) {
+		Optional<ReviewInfo> opRe = revRepo.findById(revNum);
+		if(opRe.isEmpty()) return null;
+		return opRe.get();
+	}
+
+	@Override
+	public ReviewInfo insertReviewInfo(ReviewInfo review) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ReviewInfo getReviewInfo(int riNum) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReviewInfo updateReviewInfo(ReviewInfo review) {
+		return revRepo.save(review);
 	}
 
 	@Override
-	public int insertReviewInfo(ReviewInfo review) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateReviewInfo(ReviewInfo review) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteReviewInfo(int riNum) {
-		// TODO Auto-generated method stub
+	public int deleteReviewInfo(int revNum) {
+		revRepo.deleteById(revNum);
+		if(getReviewInfo(revNum)==null) {
+			return 1;
+		}
 		return 0;
 	}
 

@@ -52,7 +52,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public UserInfo saveUserInfo(UserInfo ui) {
-
 		MultipartFile mf = ui.getUserFile();
 		log.info("Name=>{}", mf);
 		int idx = mf.getOriginalFilename().lastIndexOf(".");

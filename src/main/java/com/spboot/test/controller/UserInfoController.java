@@ -49,11 +49,15 @@ public class UserInfoController {
 		return true;
 	}
 
-	@PostMapping("/memeberjoin")
+	@PostMapping("/memberjoin")
 	public @ResponseBody Integer upload(@ModelAttribute UserInfo mf) {
 		log.info("mf=>{}", mf);
 		UserInfo ui = uService.saveUserInfo(mf);
 		return ui.getUserNum();
 	}
-
+	@PostMapping("/delete")
+	public @ResponseBody Integer deleteUser(@RequestBody UserInfo userInfo) {
+		return uService.deleteUserInfo(userInfo.getUserNum());
+	}
+	
 }
