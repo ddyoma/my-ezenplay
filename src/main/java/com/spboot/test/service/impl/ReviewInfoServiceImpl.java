@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.spboot.test.entity.ReviewInfo;
 import com.spboot.test.repository.ReviewInfoRepository;
 import com.spboot.test.service.ReviewInfoService;
 
-public class ReviewServiceImpl implements ReviewInfoService {
+@Service
+public class ReviewInfoServiceImpl implements ReviewInfoService {
 
 	@Autowired
 	private ReviewInfoRepository revRepo;
@@ -28,7 +30,6 @@ public class ReviewServiceImpl implements ReviewInfoService {
 
 	@Override
 	public ReviewInfo insertReviewInfo(ReviewInfo review) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
