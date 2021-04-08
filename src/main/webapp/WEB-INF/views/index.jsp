@@ -6,10 +6,29 @@
 <title>ezen</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="/resources/assets/css/main.css" />
 </head>
+<style>
+.btn {
+  background: #fff;
+  padding: 5px;
+  width: 150px;
+  height: 35px;
+  border: 1px solid #0080ff;
+  margin-top: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 50px #0080ff inset;
+  color: #fff;
+}
+.btn:hover {
+  box-shadow: 0 0 rgb(0, 0, 0) inset;
+  color: rgb(0, 0, 0);
+}
+.btn:focus {
+  outline: none;
+}</style>
 <jsp:include page="/include/head.jsp"></jsp:include>
-
+<link rel="stylesheet" href="/resources/css/panda.css" />
 
 
 <!-- Banner -->
@@ -45,22 +64,26 @@
 <form>
 			  <div class="hand"></div>
 			  <div class="hand rgt"></div>
+	<c:if test="${UserInfo ne null }">
+		${UserInfo.userNum }
+	
+	</c:if>
 	<c:if test="${UserInfo eq null }">
 		<h1 style="font-style: inherit;">Log in</h1>
 			<div class="form-group">
-				<input required="required" id="userId" class="form-control"/>
+				<input required="required" id="userId" class="form-control" value="admin"/>
 			    <label class="form-label">Username    </label>
 			</div>
 			    <div class="form-group">
-			    <input type="password" id="userPwd" required="required" class="form-control"/>
+			    <input type="password" id="userPwd" required="required" class="form-control" value="test"/>
 			    <label class="form-label">Password</label>
+			    <button type ="button" class="btn" onclick="login()"style="width: 70%">Login </button>
+			    <br> <a href="#">아이디/비번찾기</a> <a href="/views/join">회원가입</a>
 			    <p class="alert">아이디 비밀번호를 다시확인해주세요</p>
-			    <button type ="button" class="btn" onclick="login()">Login </button>
-			     <br> <a href="#">아이디/비번찾기</a> <a href="/views/join">회원가입</a>
 			      <div class="col-5 col-12-medium"></div>
 			  	</div></c:if>
 			  	<c:if test="${UserInfo ne null }">
-			     <button onclick="logout()">로그아웃</button>
+			     <button onclick="logout()" type="button">로그아웃</button>
 	 </c:if>
   	<script>  //눈굴러가는 판다
   		$('#password').focusin(function(){
@@ -98,8 +121,7 @@
 				
 				<c:if test="${UserInfo ne null }">
 					<!-- 간이정보셀렉트조직과 연결되는디자인 추후추가 -->
-			
-					<table><!-- 전체list실험용  -->
+			<table><!-- 전체list실험용  -->
 					<tr>
 					 <th>아이디</th>
 					 <th>비번</th>
@@ -107,33 +129,15 @@
 					<tbody id="tBody">
 					</tbody>
 					</table>
+		
 					
 					
+					<script>window.onload = function(){
 					
+					
+					</script>
 						
 						
-						<script>window.onload = function(){ //전체리스트
-							
-							var xhr = new XMLHttpRequest();
-							xhr.open('GET', '/user');
-							xhr.onreadystatechange = function(){
-								if(xhr.readyState==4 && xhr.status==200){
-									console.log(xhr.responseText);
-									var res = JSON.parse(xhr.responseText);
-									var h = '';
-									for(var user of res){
-										
-										h += '<tr>'; 
-										h += '<td>' + user.userId + '</td>'; 
-										h += '<td>'+ user.userPwd + '</td>';  
-										h += '</tr>';
-										
-									}
-									document.querySelector('#tBody').innerHTML = h;
-								}
-							}
-							xhr.send();
-						}</script>
 						
 				</c:if>
 
@@ -162,8 +166,7 @@
 			}
 			xhr.send();
 		}
-	</script>
-<script>//로그인로직
+	//로그인로직
 	function login() {
 		var p = {
 				userId : document.querySelector('#userId').value,
@@ -175,8 +178,8 @@
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				if (xhr.responseText) {
 					var res = JSON.parse(xhr.responseText);
-					alert(res.userId + '반갑습니다.');
-					alert(res.userNum + '반갑습니다.');
+					//alert(res.userId + '반갑습니다.');
+					//alert(res.userNum + '반갑습니다.');
 					location.href = '/';
 					return;
 				}

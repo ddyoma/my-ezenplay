@@ -4,8 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport"content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/resources/assets/css/main.css" />
-<link rel="stylesheet" href="/resources/css/logindi.css" />
-<link rel="stylesheet" href="/resources/js/logindi.js" />
+
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
+
+<script src="/resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/jquery-3.5.1.slim.min.js"></script>
+<script src="/resources/js/jquery.min.js"></script>
 <body class="is-preload homepage">
 
 	<!--
