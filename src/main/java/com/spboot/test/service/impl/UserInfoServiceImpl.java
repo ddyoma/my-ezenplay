@@ -23,14 +23,14 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public UserInfo login(UserInfo ui) {
-	   UserInfo userInfo = uiRepo.findByUserIdAndUserPwd(ui.getUserId(), ui.getUserPwd());
-	   log.info("tmp=>{}",userInfo);
-	   return userInfo;
+		UserInfo userInfo = uiRepo.findByUserIdAndUserPwd(ui.getUserId(), ui.getUserPwd());
+		log.info("tmp=>{}", userInfo);
+		return userInfo;
 	}
 
 	@Override
 	public List<UserInfo> getList() {
-	   return uiRepo.findAllByOrderByUserNumDesc();
+		return uiRepo.findAllByOrderByUserNumDesc();
 	}
 
 	@Override
@@ -50,31 +50,30 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	private final String ROOT = "C:\\Users\\sherl\\git\\aws-ezenplayteam\\src\\main\\webapp\\resources\\";
 
-	   
-	   @Override
-	   public UserInfo saveUserInfo(UserInfo ui) {
-	      
-	      MultipartFile mf = ui.getUserFile();
-	      log.info("Name=>{}",mf);
-	      int idx = mf.getOriginalFilename().lastIndexOf(".");
-	      log.info("Name=>{}",idx);
-	      String e = mf.getOriginalFilename().substring(idx);
-	      log.info("Name=>{}",e);
-	      String profilePath = System.nanoTime() + e;
-	      log.info("Name=>{}",profilePath);
-	      ui.setUserProfile(mf.getOriginalFilename());
-	      ui.setProfilePath(profilePath);
-	      File f = new File(ROOT + profilePath);
-	      
-	         try {
-	            mf.transferTo(f);
-	         } catch (IllegalStateException e1) {
-	            e1.printStackTrace();
-	         } catch (IOException e1) {
-	            e1.printStackTrace();
-	         }
-	      
-	      return uiRepo.save(ui);
-	   }
+	@Override
+	public UserInfo saveUserInfo(UserInfo ui) {
+
+		MultipartFile mf = ui.getUserFile();
+		log.info("Name=>{}", mf);
+		int idx = mf.getOriginalFilename().lastIndexOf(".");
+		log.info("Name=>{}", idx);
+		String e = mf.getOriginalFilename().substring(idx);
+		log.info("Name=>{}", e);
+		String profilePath = System.nanoTime() + e;
+		log.info("Name=>{}", profilePath);
+		ui.setUserProfile(mf.getOriginalFilename());
+		ui.setProfilePath(profilePath);
+		File f = new File(ROOT + profilePath);
+
+		try {
+			mf.transferTo(f);
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		return uiRepo.save(ui);
+	}
 
 }
