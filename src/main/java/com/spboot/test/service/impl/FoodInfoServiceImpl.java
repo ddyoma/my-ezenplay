@@ -42,7 +42,7 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 			food.setFoodImgPath(foodImgPath);
 			File file = new File(ROOT+foodImgPath);
 			try {
-				mf.transferTo(file);
+				mf.transferTo(file);   
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
