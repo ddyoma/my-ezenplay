@@ -50,22 +50,25 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 		FoodInfo fi = foodRepo.save(food);
 		return fi.getFoodNum();
 	}
+		
+
 
 	@Override
 	public FoodInfo getFoodInfo(int fiNum) {
-		// TODO Auto-generated method stub
-		return null;
+		return foodRepo.findByFoodNum(fiNum);
 	}
 
 	@Override
 	public int updateFoodInfo(FoodInfo food) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int deleteFoodInfo(int fiNum) {
-		// TODO Auto-generated method stub
+		foodRepo.deleteById(fiNum);
+		if(getFoodInfo(fiNum)==null) {
+			return 1;
+		}
 		return 0;
 	}
 

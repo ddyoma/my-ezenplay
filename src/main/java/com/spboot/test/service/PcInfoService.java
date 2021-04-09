@@ -12,6 +12,6 @@ public interface PcInfoService {
 	List<PcInfo> getPcInfoList();
 	PcInfo getPcInfo(int pcSeatNum);
 	int insertPcInfo(PcInfo pc);
-	int updatePcInfo(PcInfo pc);
+	PcInfo updatePcInfo(PcInfo pc);
 	int deletePcInfo(int pcSeatNum);
 }
