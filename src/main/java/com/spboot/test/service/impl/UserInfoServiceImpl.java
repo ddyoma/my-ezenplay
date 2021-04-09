@@ -34,13 +34,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public int insertUserInfo(UserInfo userInfo) {
-		return 0;
-	}
-
-	@Override
-	public int updateUserInfo(UserInfo userInfo) {
-		return 0;
+	public UserInfo updateUserInfo(UserInfo ui) {
+		return uiRepo.save(ui);
 	}
 
 	@Override

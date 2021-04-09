@@ -59,5 +59,11 @@ public class UserInfoController {
 	public @ResponseBody Integer deleteUser(@RequestBody UserInfo userInfo) {
 		return uService.deleteUserInfo(userInfo.getUserNum());
 	}
+	@PostMapping("/update")
+	public @ResponseBody Integer updateUser(@ModelAttribute UserInfo userInfo) {
+		userInfo = uService.updateUserInfo(userInfo);
+		return userInfo.getUserNum();
+	}
+	
 	
 }

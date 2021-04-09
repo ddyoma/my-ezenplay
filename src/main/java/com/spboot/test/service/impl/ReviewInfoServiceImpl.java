@@ -30,7 +30,7 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 
 	@Override
 	public ReviewInfo insertReviewInfo(ReviewInfo review) {
-		return null;
+		return revRepo.save(review);
 	}
 
 	@Override

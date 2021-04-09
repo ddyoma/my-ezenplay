@@ -9,7 +9,7 @@ import com.spboot.test.entity.FoodInfo;
 @Service
 public interface FoodInfoService {
 	
-	List<FoodInfo> getFoodInfoList();
+	List<FoodInfo> getFoodInfoList(FoodInfo food);
 	FoodInfo getFoodInfo(int fiNum);
 	int insertFoodInfo(FoodInfo food);
 	int updateFoodInfo(FoodInfo food);

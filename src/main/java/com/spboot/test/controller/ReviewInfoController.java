@@ -1,5 +1,7 @@
 package com.spboot.test.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,26 +22,30 @@ import lombok.extern.slf4j.Slf4j;
 public class ReviewInfoController {
 
 	@Autowired
-	private ReviewInfoService reviewservice;
+	private ReviewInfoService reviewService;
 	
 	@PostMapping("/review/insert")
 	public Integer insertReview(@RequestBody ReviewInfo reviewInfo) {
-		reviewInfo =reviewservice.insertReviewInfo(reviewInfo);
+		reviewInfo =reviewService.insertReviewInfo(reviewInfo);
 		log.info("review=>{}",reviewInfo);
 		return reviewInfo.getRevNum();
 	}
 	@PostMapping("/review/update")
 	public @ResponseBody Integer update(@ModelAttribute ReviewInfo reviewInfo) {
-		reviewInfo = reviewservice.updateReviewInfo(reviewInfo);
+		reviewInfo = reviewService.updateReviewInfo(reviewInfo);
 		return reviewInfo.getRevNum();
 	}
 	@DeleteMapping("/review/delete")
 	public @ResponseBody int deleteReviewInfo(@RequestParam int revNum) {
-		return reviewservice.deleteReviewInfo(revNum);
+		return reviewService.deleteReviewInfo(revNum);
 	}
 	@GetMapping("review/view")
-	public @ResponseBody ReviewInfo getReviewInfos(@RequestParam int revNum) {
-		return reviewservice.getReviewInfo(revNum);
+	public @ResponseBody ReviewInfo getReviewInfo(@RequestParam int revNum) {
+		return reviewService.getReviewInfo(revNum);
+	}
+	@GetMapping("review/views")
+	public List<ReviewInfo> getReviewInfos(){
+		return reviewService.getReviewList();
 	}
 	
 }
