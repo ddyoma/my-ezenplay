@@ -12,13 +12,11 @@ public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 
 	@Override
 	public List<PcCurrentStatus> getPcStatusList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public PcCurrentStatus getPcCurrentStatus(int pcStatusNum) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
