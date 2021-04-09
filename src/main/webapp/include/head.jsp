@@ -4,12 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport"content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/resources/assets/css/main.css" />
-
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
-
-<script src="/resources/js/bootstrap.min.js"></script>
 <script src="/resources/js/jquery-3.5.1.slim.min.js"></script>
+
 <script src="/resources/js/jquery.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
+
 <body class="is-preload homepage">
 
 	<!--
@@ -39,7 +39,7 @@
 							<ul>
 								<li class="current"><a href="/">홈</a></li>
 								<li><a href="/views/seatlist" id ="c" >좌석현황</a></li>
-								<li><a href="/views/foodlist" id ="d">메뉴</a></li>
+								<li><a href="/views/food/food-list" id ="d">메뉴</a></li>
 								<li><a href="/views/timecharge" id ="e">시간충전</a></li>
 								<li><a href="/views/voccenter">고객센터</a></li>
 							</ul>
@@ -68,3 +68,4 @@
 			</c:if> -->
 		</div>
 	</div>
+	

@@ -15,7 +15,6 @@
 
 								<!-- Box -->
 									<section class="box feature">
-										<a href="#" class="image featured"><img src="/images/pic01.jpg" alt="" /></a>
 										<div class="inner">
 											<header>
 												<h2>Put something here</h2>
@@ -181,7 +180,6 @@
 					</footer>
 				</div>
 
-			</div>
 
 		<!-- Scripts -->
 
