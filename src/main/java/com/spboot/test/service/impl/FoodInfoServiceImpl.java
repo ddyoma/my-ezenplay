@@ -21,26 +21,26 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 	}
 
 	@Override
-	public int insertFoodInfo(FoodInfo food) {
-		// TODO Auto-generated method stub
-		return 0;
+	public FoodInfo insertFoodInfo(FoodInfo food) {
+		return foodRepo.save(food);
 	}
 
 	@Override
 	public FoodInfo getFoodInfo(int fiNum) {
-		// TODO Auto-generated method stub
-		return null;
+		return foodRepo.findByFoodNum(fiNum);
 	}
 
 	@Override
-	public int updateFoodInfo(FoodInfo food) {
-		// TODO Auto-generated method stub
-		return 0;
+	public FoodInfo updateFoodInfo(FoodInfo food) {
+		return foodRepo.save(food);
 	}
 
 	@Override
 	public int deleteFoodInfo(int fiNum) {
-		// TODO Auto-generated method stub
+		foodRepo.deleteById(fiNum);
+		if(getFoodInfo(fiNum)==null) {
+			return 1;
+		}
 		return 0;
 	}
 

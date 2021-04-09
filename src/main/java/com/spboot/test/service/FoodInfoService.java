@@ -11,8 +11,8 @@ public interface FoodInfoService {
 	
 	List<FoodInfo> getFoodInfoList(FoodInfo food);
 	FoodInfo getFoodInfo(int fiNum);
-	int insertFoodInfo(FoodInfo food);
-	int updateFoodInfo(FoodInfo food);
+	FoodInfo insertFoodInfo(FoodInfo food);
+	FoodInfo updateFoodInfo(FoodInfo food);
 	int deleteFoodInfo(int fiNum);
 
 }

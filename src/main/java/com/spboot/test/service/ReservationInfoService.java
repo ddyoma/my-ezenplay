@@ -15,6 +15,4 @@ public interface ReservationInfoService {
 	int update(ReservationInfo resNum);
 	int delete(int resNum);
 	
-
-	
 }
