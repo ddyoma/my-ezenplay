@@ -75,7 +75,7 @@
 			    <label class="form-label">Username    </label>
 			</div>
 			    <div class="form-group">
-			    <input type="password" id="userPwd" required="required" class="form-control" value="test"/>
+			    <input type="password" id="userPwd" required="required" class="form-control" value="1234"/>
 			    <label class="form-label">Password</label>
 			    <button type ="button" class="btn" onclick="login()"style="width: 70%">Login </button>
 			    <br> <a href="#">아이디/비번찾기</a> <a href="/views/join">회원가입</a>

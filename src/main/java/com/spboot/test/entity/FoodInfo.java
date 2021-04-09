@@ -1,14 +1,14 @@
 package com.spboot.test.entity;
 
-import java.sql.Time;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -35,4 +35,7 @@ public class FoodInfo {
 	private Integer foodPrice;
 	@Column(name="food_cook_time")	
 	private String foodCookTime;
+	
+	@Transient
+	private MultipartFile foodFile;
 }

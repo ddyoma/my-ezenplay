@@ -22,26 +22,24 @@
 			
 			 <form method="POST" enctype="multipart/form-data" action ="/memeberjoin">
 					ID : <input type="text" name="userId">
-					비밀번호 : <input type="text" name="userPwd">
-					비밀번호 확인 : <input type="text" name="#">
+					비밀번호 : <input type="password" name="userPwd">
+					비밀번호 확인 : <input type="password" name="#">
 					이메일 : <input type="email" name="userEmail">
 					이름 : <input type="text" name="userName">
-					생년월일 : <input type="text" name="userDateOfBirth">
+					생년월일 : <input type="date" name="userDateOfBirth">
 					성별 : <select class="custom-select" id="inputGroupSelect04" name="userGender"><option value="여성">여성</option>
 					<option value="남성">남성</option></select>
 					<br>
-					<div>
+										<input type="radio" value="남성">
 					<br>
-					프로필사진 : <input  type="file" name="userFile">
+					프로필사진 : <input type="file" name="userFile">
 					<br>
-					</div>
 					<br>
-					
 					폰번호 : <input type="text" name="userPhone">
 					주소 : <input type="text" name="userAddr1">
 					상세주소 : <input type="text" name="userAddr2">
 					선호장르 : <select class="custom-select" id="inputGroupSelect04" name="favoriteGame"><option value="1">SF</option><option value="2">RPG</option></select>
-					<button onclick="insert()">전송</button>
+					<button type="button" onclick="insert()">전송</button>
 			</form>
 					
 				</div>
@@ -66,6 +64,31 @@
 			}
 		}
 	}
+	var formData = new FormData();
+	var userId = document.querySelector('[name=userId]');
+	var userPwd = document.querySelector('[name=userPwd]');
+	var userEmail = document.querySelector('[name=userEmail]');
+	var userName = document.querySelector('[name=userName]');
+	var userDateOfBirth = document.querySelector('[name=userDateOfBirth]');
+	var userGender = document.querySelector('[name=userGender]');
+	var userFile = document.querySelector('[name=userFile]');
+	var userPhone = document.querySelector('[name=userPhone]');
+	var userAddr1 = document.querySelector('[name=userAddr1]');
+	var userAddr2 = document.querySelector('[name=userAddr2]');
+	var favoriteGame = document.querySelector('[name=favoriteGame]');
+	formData.append('userId',userId.value);
+	formData.append('userPwd',userPwd.value);
+	formData.append('userEmail',userEmail.value);
+	if(userFile.files[0]){
+		formData.append('userFile',userFile.files[0]);
+	}
+	formData.append('userName',userName.value);
+	formData.append('userDateOfBirth',userDateOfBirth.value);
+	formData.append('userGender',userGender.value);
+	formData.append('userPhone',userPhone.value);
+	formData.append('userAddr1',userAddr1.value);
+	formData.append('userAddr2',userAddr2.value);
+	formData.append('favoriteGame',favoriteGame.value);
 	x.send(formData);
 }</script>
 

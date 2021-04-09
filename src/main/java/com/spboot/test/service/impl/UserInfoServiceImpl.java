@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spboot.test.entity.FoodInfo;
 import com.spboot.test.entity.UserInfo;
 import com.spboot.test.repository.UserInfoRepository;
 import com.spboot.test.service.UserInfoService;
@@ -34,8 +35,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public UserInfo updateUserInfo(UserInfo ui) {
-		return uiRepo.save(ui);
+	public int updateUserInfo(UserInfo userInfo) {
+		return 0;
 	}
 
 	@Override
@@ -43,31 +44,30 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return 0;
 	}
 
-	private final String ROOT = "C:\\Users\\sherl\\git\\aws-ezenplayteam\\src\\main\\webapp\\resources\\";
+	private final String ROOT = "C:\\Users\\Administrator\\git\\aws-ezenplay\\src\\main\\webapp\\images\\user\\";  //경로수정하세요
 
 	@Override
-	public UserInfo saveUserInfo(UserInfo ui) {
-		MultipartFile mf = ui.getUserFile();
-		log.info("Name=>{}", mf);
-		int idx = mf.getOriginalFilename().lastIndexOf(".");
-		log.info("Name=>{}", idx);
-		String e = mf.getOriginalFilename().substring(idx);
-		log.info("Name=>{}", e);
-		String profilePath = System.nanoTime() + e;
-		log.info("Name=>{}", profilePath);
-		ui.setUserProfile(mf.getOriginalFilename());
-		ui.setProfilePath(profilePath);
-		File f = new File(ROOT + profilePath);
+	public int saveUserInfo(UserInfo user) {
+		MultipartFile mf = user.getUserFile();
+		if (mf!=null) {
+			String userProfile = user.getUserFile().getOriginalFilename();
+			int idx = userProfile.lastIndexOf(".");
+			String str = userProfile.substring(idx);
+			String profilePath = System.nanoTime() + str;
+			user.setUserProfile(userProfile);
+			user.setProfilePath(profilePath);
+			File f = new File(ROOT + profilePath);
 
-		try {
-			mf.transferTo(f);
-		} catch (IllegalStateException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			try {
+				mf.transferTo(f);
+			} catch (IllegalStateException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
-
-		return uiRepo.save(ui);
+		UserInfo ui = uiRepo.save(user);
+		return ui.getUserNum();
 	}
 
 }

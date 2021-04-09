@@ -46,23 +46,22 @@ public class UserInfoController {
 	public @ResponseBody boolean logout(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		session.invalidate(); // 세션초기화
-		return true;  // 커밋가자
+		return true;
 	}
 
 	@PostMapping("/memberjoin")
 	public Integer upload(@ModelAttribute UserInfo mf) {
 		log.info("mf=>{}", mf);
-		UserInfo ui = uService.saveUserInfo(mf);
-		return ui.getUserNum();
+		return uService.saveUserInfo(mf);
 	}
+	
 	@PostMapping("/delete")
 	public @ResponseBody Integer deleteUser(@RequestBody UserInfo userInfo) {
 		return uService.deleteUserInfo(userInfo.getUserNum());
 	}
 	@PostMapping("/update")
 	public @ResponseBody Integer updateUser(@ModelAttribute UserInfo userInfo) {
-		userInfo = uService.updateUserInfo(userInfo);
-		return userInfo.getUserNum();
+		return uService.updateUserInfo(userInfo);
 	}
 	
 	
