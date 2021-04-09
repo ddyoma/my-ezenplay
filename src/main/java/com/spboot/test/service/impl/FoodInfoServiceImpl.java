@@ -34,7 +34,7 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 		if(mf!=null) {
 		    mf = food.getFoodFile();
 			String foodImgName = food.getFoodFile().getOriginalFilename();
-			int idx = foodImgName.lastIndexOf(".");
+			int idx = foodImgName.lastIndexOf(".");   
 			String str = foodImgName.substring(idx);
 			long nanoTime = System.nanoTime();
 			String foodImgPath = nanoTime + str;
