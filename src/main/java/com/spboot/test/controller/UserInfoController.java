@@ -46,11 +46,11 @@ public class UserInfoController {
 	public @ResponseBody boolean logout(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		session.invalidate(); // 세션초기화
-		return true;
+		return true;  // 커밋가자
 	}
 
 	@PostMapping("/memberjoin")
-	public @ResponseBody Integer upload(@ModelAttribute UserInfo mf) {
+	public Integer upload(@ModelAttribute UserInfo mf) {
 		log.info("mf=>{}", mf);
 		UserInfo ui = uService.saveUserInfo(mf);
 		return ui.getUserNum();
