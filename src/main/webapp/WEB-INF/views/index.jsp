@@ -9,6 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <jsp:include page="/include/head.jsp"></jsp:include>
 <link rel="stylesheet" href="/resources/css/panda.css" />
+
+
 </head>
 <style>
 
@@ -89,7 +91,7 @@ margin: auto;
 <c:if test="${UserInfo ne null }">
 
 	<div class="probox" style="background: #BDBDBD;"> <!-- 사진미등록자는 기본프로필화면으로보이게 -->
-		<img class="profileone" src="/images/${UserInfo.profilePath}" onerror="this.style.display='none'"alt='' /> 
+		<img class="profileone" src="/images/user/${UserInfo.profilePath}" onerror="this.style.display='none'"alt='' /> 
 	</div>
 		<div class="profont">
 		${UserInfo.userName }님 반갑습니다.<br>

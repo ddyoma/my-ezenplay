@@ -91,8 +91,8 @@
 
 		<!-- Scripts -->
 
-			<script src="/resources/assets/js/jquery.min.js"></script>
-			<script src="/resources/assets/js/jquery.dropotron.min.js"></script>
+		<!-- 문제가있어보이는 스크립트 	<script src="/resources/assets/js/jquery.min.js"></script>
+			<script src="/resources/assets/js/jquery.dropotron.min.js"></script>-->
 			<script src="/resources/assets/js/browser.min.js"></script>
 			<script src="/resources/assets/js/breakpoints.min.js"></script>
 			<script src="/resources/assets/js/util.js"></script>

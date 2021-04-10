@@ -5,12 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
 <div id="tt" class="container">
-	<div class="row" >
-		<div class="faqHeader" > 고객리뷰</div>
+	<div class="row">
+		<h2>고객리뷰</h2>
 	</div>
 </div>
 <div class="carousel-reviews broun-block" id="tt">
@@ -24,7 +23,7 @@
                 	    <div class="col-md-4 col-sm-6">
         				    <div class="block-text rel zmin">
 						        <a title="" href="#">더 이젠</a>
-							    <div class="mark">My rating: <span class="rating-input"><span class="span_star" id="count2"></span><span class="span_star" id="count2"></span><span class="span_star" id="count2"></span><span class="span_star" id="count2"></span></div>
+							    <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span></div>
 						          <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
                      괜찮게 이용했어요

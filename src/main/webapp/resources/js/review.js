@@ -5,14 +5,13 @@ window.onload = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var r = JSON.parse(xhr.responseText);
 			var h = '';
-			console.log(r);
-			for(var view of r)
-			h += '<tr>'
-			h += '<td>' + view.revNum + '</td>';
-			h += '</tr>'
+			for(var view of r){
+				var revNum = view.revNum;
+				var revStar = view.revStar;
 			}
-			document.querySelector('#tBody').innerHTML = h;
+			$('.span_star').text(revStar);
 		}
+	}
 	xhr.send();
 }
 	  
@@ -24,6 +23,7 @@ function upload(){
 				var res = JSON.parse(xhr.responseText);
 				if(res!=0){
 					alert('등록성공');
+					location.href = '/views/voccenter';
 				}else{
 					alert('등록실패');
 				}
@@ -31,7 +31,7 @@ function upload(){
 		}
 	var param = {
 			revComment : document.querySelector('[name=revComment]').value,
-			revStar : document.querySelector('[name=revStar]').value,
+			revStar : $('#count').text(),
 			userInfo : {userNum : document.querySelector('[name=userNum]').value}
 	}
 	xhr.setRequestHeader('content-type','application/json;charset=UTF-8');

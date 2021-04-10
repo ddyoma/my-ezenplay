@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<button onclick="location.href='/views/food/food-insert'">등록</button>
+
 </body>
 </html>
