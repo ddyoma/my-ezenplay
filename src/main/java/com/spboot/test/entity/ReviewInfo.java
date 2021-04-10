@@ -27,8 +27,6 @@ public class ReviewInfo {
 	   private Integer revNum;
 	   @Column(name="rev_comment")
 	   private String revComment ;
-	   @Column(name="rev_number_of_views",insertable = false)
-	   private Integer revNumberOfViews;
 	   @Column(name="rev_star")
 	   private Integer revStar;
 	   @DateTimeFormat(pattern = "yyyy-MM-dd")

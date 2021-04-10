@@ -57,8 +57,12 @@ margin: auto;
 		<div class="row">
 			<div class="col-7 col-12-medium">
 			</div>
+				<div class="container" style="float:right;">
+				<jsp:include page="/WEB-INF/views/test.jsp"></jsp:include>    <!-- pc방사진레이아웃 -->
+							</div>
 		<div class="container" style="text-align: center;">
-			<div class="pandas">		
+
+			<div class="pandas">
 			<div class="panda">
   				<div class="ear"></div>
   			<div class="face">
@@ -73,9 +77,11 @@ margin: auto;
     			<div class="nose"></div>
 					<div class="mouth"></div>
 				</div>
-  				
   					
 			</div>
+
+			
+					
 	<form>
 			  <div class="hand"></div>
 			  <div class="hand rgt"></div>
@@ -110,9 +116,7 @@ margin: auto;
 			      <div class="col-5 col-12-medium"></div>
 </div></c:if>
 
-	
-	
-	
+
   	<script>  //눈굴러가는 판다
   		$('#userPwd').focusin(function(){
 	 	 $('form').addClass('up')
@@ -205,7 +209,7 @@ margin: auto;
 		xhr.send(JSON.stringify(p));
 	}
 </script>
-
+ 
 
 <jsp:include page="/include/body.jsp"></jsp:include>
 </body>

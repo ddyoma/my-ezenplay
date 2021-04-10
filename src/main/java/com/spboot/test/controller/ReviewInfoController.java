@@ -25,7 +25,7 @@ public class ReviewInfoController {
 	private ReviewInfoService reviewService;
 	
 	@PostMapping("/review/insert")
-	public Integer insertReview(@RequestBody ReviewInfo reviewInfo) {
+	public  @ResponseBody Integer insertReview(@RequestBody ReviewInfo reviewInfo) {
 		reviewInfo =reviewService.insertReviewInfo(reviewInfo);
 		log.info("review=>{}",reviewInfo);
 		return reviewInfo.getRevNum();
@@ -43,8 +43,8 @@ public class ReviewInfoController {
 	public @ResponseBody ReviewInfo getReviewInfo(@RequestParam int revNum) {
 		return reviewService.getReviewInfo(revNum);
 	}
-	@GetMapping("review/views")
-	public List<ReviewInfo> getReviewInfos(){
+	@GetMapping("/review/list")
+	public @ResponseBody List<ReviewInfo> getReviewInfos(){
 		return reviewService.getReviewList();
 	}
 	
