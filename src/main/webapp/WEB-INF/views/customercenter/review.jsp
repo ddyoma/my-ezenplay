@@ -27,7 +27,7 @@
                 	    <div class="col-md-4 col-sm-6">
         				    <div class="block-text rel zmin">
 						        <a title="" href="#">더 이젠</a> <!-- 0점못주게 validation -->
-							    <div class="mark">My rating: <span class="rating-input" id="revStar0"></span><span></span></div>
+							    <div class="mark">My rating: <span class="rating-input" id="revStar0"></span></div>
 						          <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body" id="revComment0"></div>
             </div>
@@ -35,7 +35,7 @@
 					        </div>
 							<div class="person-text rel">
 				                <img src="#"/>
-								<a title="" href="#" id="userId0">Anna</a>
+								<a title="" href="#" id="userId0"></a>
 								<i>from Glasgow, Scotland</i>
 							</div>
 						</div>
@@ -43,27 +43,27 @@
             			<div class="col-md-4 col-sm-6 hidden-xs">
 						    <div class="block-text rel zmin">
 						        <a title="" href="#">The Purge: Anarchy</a>
-							    <div class="mark">My rating: <span class="rating-input" id="revStar1"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+							    <div class="mark">My rating: <span class="rating-input" id="revStar1"></span></div>
         						<p id="revComment1"> </p>
         						
 					            <ins class="ab zmin sprite sprite-i-triangle block"></ins>
 				            </div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img14.png">
-						        <a title="" href="#" id="userId1">Ella Mentree</a>
+						        <a title="" href="#" id="userId1"></a>
 								<i>United States</i>
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
 							<div class="block-text rel zmin">
 								<a title="" href="#">Planes: Fire & Rescue</a>
-								<div class="mark">My rating: <span class="rating-input" id="revStar2"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span>  </span></div>
+								<div class="mark">My rating: <span class="rating-input" id="revStar2"></span></div>
     							<p id="revComment2"></p>
 								<ins class="ab zmin sprite sprite-i-triangle block"></ins>
 							</div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img15.png">
-								<a title="" href="#" id="userId2">Rannynm</a>
+								<a title="" href="#" id="userId2"></a>
 								<i>Indonesia</i>
 							</div>
 						</div>
@@ -73,39 +73,39 @@
                         <div class="col-md-4 col-sm-6">
         				    <div class="block-text rel zmin">
 						        <a title="" href="#">Hercules</a>
-							    <div class="mark">My rating: <span class="rating-input" id="revStar3"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+							    <div class="mark">My rating: <span class="rating-input" id="revStar3"></span></div>
 						        <p id="revComment3"></p>
 							    <ins class="ab zmin sprite sprite-i-triangle block"></ins>
 					        </div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img13.png">
-								<a title="" href="#" id="userId3">Anna</a>
+								<a title="" href="#" id="userId3"></a>
 								<i>from Glasgow, Scotland</i>
 							</div>
 						</div>
             			<div class="col-md-4 col-sm-6 hidden-xs">
 						    <div class="block-text rel zmin">
 						        <a title="" href="#">The Purge: Anarchy</a>
-							    <div class="mark">My rating: <span class="rating-input" id="revStar4"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+							    <div class="mark">My rating: <span class="rating-input" id="revStar4"></span></div>
         						<p id="revComment4"></p>
 					            <ins class="ab zmin sprite sprite-i-triangle block"></ins>
 				            </div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img14.png">
-						        <a title="" href="#" id="userId4">Ella Mentree</a>
+						        <a title="" href="#" id="userId4"></a>
 								<i>United States</i>
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
 							<div class="block-text rel zmin">
 								<a title="" href="#">Planes: Fire & Rescue</a>
-								<div class="mark">My rating: <span class="rating-input" id="revStar5"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span>  </span></div>
+								<div class="mark">My rating: <span class="rating-input" id="revStar5"></span></div>
     							<p id="revComment5"></p>
 								<ins class="ab zmin sprite sprite-i-triangle block"></ins>
 							</div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img15.png">
-								<a title="" href="#" id="userId5">Rannynm</a>
+								<a title="" href="#" id="userId5"></a>
 								<i>Indonesia</i>
 							</div>
 						</div>
