@@ -3,13 +3,22 @@ window.onload = function(){
 	xhr.open('GET', '/review/list');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			var r = JSON.parse(xhr.responseText);
+			var res = JSON.parse(xhr.responseText);
+			for(var i = 0;i<=5;i++){
+			var r = res[i];
 			var h = '';
-			for(var view of r){
-				var revNum = view.revNum;
-				var revStar = view.revStar;
+				for(var j = 0;j<r.revStar;j++)
+				{
+					h+= '<span data-value=""+j class="glyphicon glyphicon-star"></span>';
+				}
+				for(var c =r.revStar;c<5;c++)
+				{
+					h+= '<span data-value=""+c class="glyphicon glyphicon-star-empty"></span>';
+				}
+			$('#revStar'+i).html(h);
+			$('#revComment'+i).text(res[i].revComment);
+			$('#userId'+i).text(res[i].userInfo.userId);
 			}
-			$('.span_star').text(revStar);
 		}
 	}
 	xhr.send();

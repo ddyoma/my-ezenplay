@@ -20,88 +20,92 @@
             <div id="carousel-reviews" class="carousel slide" data-ride="carousel">
             
                 <div class="carousel-inner">
-                    <div class="item active">
+
+	
+                    <div class="item active"><!-- 리뷰3개 -->
+                     <!-- 2 -->
                 	    <div class="col-md-4 col-sm-6">
         				    <div class="block-text rel zmin">
-						        <a title="" href="#">더 이젠</a>
-							    <div class="mark">My rating: <span class="rating-input"><span class="span_star" id="count2"></span><span class="span_star" id="count2"></span><span class="span_star" id="count2"></span><span class="span_star" id="count2"></span></div>
+						        <a title="" href="#">더 이젠</a> <!-- 0점못주게 validation -->
+							    <div class="mark">My rating: <span class="rating-input" id="revStar0"></span><span></span></div>
 						          <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                     괜찮게 이용했어요
-                </div>
-            </div>  <!--${revNumberOfViews }로직넣기  -->
+                <div class="panel-body" id="revComment0"></div>
+            </div>
 							    <ins class="ab zmin sprite sprite-i-triangle block"></ins>
 					        </div>
 							<div class="person-text rel">
 				                <img src="#"/>
-								<a title="" href="#">Anna</a>
+								<a title="" href="#" id="userId0">Anna</a>
 								<i>from Glasgow, Scotland</i>
 							</div>
 						</div>
+						
             			<div class="col-md-4 col-sm-6 hidden-xs">
 						    <div class="block-text rel zmin">
 						        <a title="" href="#">The Purge: Anarchy</a>
-							    <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
-        						<p>The 2013 movie "The Purge" left a bad taste in all of our mouths as nothing more than a pseudo-slasher with a hamfisted plot, poor pacing, and a desperate attempt at "horror." Upon seeing the first trailer for "The Purge: Anarchy," my first and most immediate thought was "we really don't need another one of these."  </p>
+							    <div class="mark">My rating: <span class="rating-input" id="revStar1"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+        						<p id="revComment1"> </p>
+        						
 					            <ins class="ab zmin sprite sprite-i-triangle block"></ins>
 				            </div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img14.png">
-						        <a title="" href="#">Ella Mentree</a>
+						        <a title="" href="#" id="userId1">Ella Mentree</a>
 								<i>United States</i>
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
 							<div class="block-text rel zmin">
 								<a title="" href="#">Planes: Fire & Rescue</a>
-								<div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span>  </span></div>
-    							<p>What a funny and entertaining film! I did not know what to expect, this is the fourth film in this vehicle's universe with the two Cars movies and then the first Planes movie. I was wondering if maybe Disney pushed it a little bit. However, Planes: Fire and Rescue is an entertaining film that is a fantastic sequel in this magical franchise. </p>
+								<div class="mark">My rating: <span class="rating-input" id="revStar2"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span>  </span></div>
+    							<p id="revComment2"></p>
 								<ins class="ab zmin sprite sprite-i-triangle block"></ins>
 							</div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img15.png">
-								<a title="" href="#">Rannynm</a>
+								<a title="" href="#" id="userId2">Rannynm</a>
 								<i>Indonesia</i>
 							</div>
 						</div>
                     </div>
-                    <div class="item">
+                    
+                    <div class="item"> <!-- 다음화면 리뷰3개 -->
                         <div class="col-md-4 col-sm-6">
         				    <div class="block-text rel zmin">
 						        <a title="" href="#">Hercules</a>
-							    <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
-						        <p>Never before has there been a good film portrayal of ancient Greece's favourite myth. So why would Hollywood start now? This latest attempt at bringing the son of Zeus to the big screen is brought to us by X-Men: The last Stand director Brett Ratner. If the name of the director wasn't enough to dissuade ...</p>
+							    <div class="mark">My rating: <span class="rating-input" id="revStar3"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+						        <p id="revComment3"></p>
 							    <ins class="ab zmin sprite sprite-i-triangle block"></ins>
 					        </div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img13.png">
-								<a title="" href="#">Anna</a>
+								<a title="" href="#" id="userId3">Anna</a>
 								<i>from Glasgow, Scotland</i>
 							</div>
 						</div>
             			<div class="col-md-4 col-sm-6 hidden-xs">
 						    <div class="block-text rel zmin">
 						        <a title="" href="#">The Purge: Anarchy</a>
-							    <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
-        						<p>The 2013 movie "The Purge" left a bad taste in all of our mouths as nothing more than a pseudo-slasher with a hamfisted plot, poor pacing, and a desperate attempt at "horror." Upon seeing the first trailer for "The Purge: Anarchy," my first and most immediate thought was "we really don't need another one of these."  </p>
+							    <div class="mark">My rating: <span class="rating-input" id="revStar4"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
+        						<p id="revComment4"></p>
 					            <ins class="ab zmin sprite sprite-i-triangle block"></ins>
 				            </div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img14.png">
-						        <a title="" href="#">Ella Mentree</a>
+						        <a title="" href="#" id="userId4">Ella Mentree</a>
 								<i>United States</i>
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
 							<div class="block-text rel zmin">
 								<a title="" href="#">Planes: Fire & Rescue</a>
-								<div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span>  </span></div>
-    							<p>What a funny and entertaining film! I did not know what to expect, this is the fourth film in this vehicle's universe with the two Cars movies and then the first Planes movie. I was wondering if maybe Disney pushed it a little bit. However, Planes: Fire and Rescue is an entertaining film that is a fantastic sequel in this magical franchise. </p>
+								<div class="mark">My rating: <span class="rating-input" id="revStar5"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span>  </span></div>
+    							<p id="revComment5"></p>
 								<ins class="ab zmin sprite sprite-i-triangle block"></ins>
 							</div>
 							<div class="person-text rel">
 								<img alt="" src="http://myinstantcms.ru/images/img15.png">
-								<a title="" href="#">Rannynm</a>
+								<a title="" href="#" id="userId5">Rannynm</a>
 								<i>Indonesia</i>
 							</div>
 						</div>
@@ -117,6 +121,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
