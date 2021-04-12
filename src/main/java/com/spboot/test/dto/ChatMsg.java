@@ -9,3 +9,4 @@ public class ChatMsg {
 	private String msg;
 	private String name;
 }
+ 
