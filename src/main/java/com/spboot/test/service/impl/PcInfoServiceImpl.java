@@ -1,6 +1,7 @@
 package com.spboot.test.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,31 +18,29 @@ public class PcInfoServiceImpl implements PcInfoService {
 	
 	@Override
 	public List<PcInfo> getPcInfoList() {
-		// TODO Auto-generated method stub
-		return null;
+		return pcRepo.findAllByOrderByPcSeatNumDesc();
 	}
 
 	@Override
-	public int insertPcInfo(PcInfo pc) {
-		// TODO Auto-generated method stub
-		return 0;
+	public PcInfo insertPcInfo(PcInfo pc) {
+		return pcRepo.save(pc);
 	}
 
 	@Override
 	public PcInfo getPcInfo(int pcSeatNum) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<PcInfo> opPI = pcRepo.findById(pcSeatNum);
+		if(opPI.isEmpty()) return null;
+		return opPI.get();
 	}
 
 	@Override
 	public PcInfo updatePcInfo(PcInfo pc) {
-		// TODO Auto-generated method stub
-		return null;
+		return pcRepo.save(pc);
 	}
 
 	@Override
 	public int deletePcInfo(int pcSeatNum) {
-		// TODO Auto-generated method stub
+		pcRepo.deleteById(pcSeatNum);
 		return 0;
 	}
 

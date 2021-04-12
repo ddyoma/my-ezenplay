@@ -1,6 +1,7 @@
 package com.spboot.test.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,9 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 
 	@Override
 	public ReservationInfo get(int resNum) {
-		return null;
+		Optional<ReservationInfo> opRs = resRepo.findById(resNum);
+		if(opRs.isEmpty()) return null;
+		return opRs.get();
 	}
 
 	@Override

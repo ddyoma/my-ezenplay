@@ -1,6 +1,7 @@
 package com.spboot.test.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,9 @@ public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 
 	@Override
 	public PcCurrentStatus getPcCurrentStatus(int pcStatusNum) {
-		return null;
+		Optional<PcCurrentStatus> opPc = PCRepo.findById(pcStatusNum);
+		if(opPc.isEmpty()) return null;
+		return opPc.get();
 	}
 
 	@Override
