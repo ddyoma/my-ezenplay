@@ -16,7 +16,7 @@
                 <h3>ezenPC #1</h3>
                 <span>Sub-title #1</span>
             </div>
-           <img src="/images/ezenpc1.jpg">
+           <img src="/resources/images/home/ezenpc1.jpg">
         </li>
 
         <li>
@@ -24,7 +24,7 @@
                 <h3>Slide #2</h3>
                 <span>Sub-title #2</span>
             </div>
-            <img src="/images/ezenpc2.jpg">
+            <img src="/resources/images/home/ezenpc2.jpg">
         </li>
 
         <li>

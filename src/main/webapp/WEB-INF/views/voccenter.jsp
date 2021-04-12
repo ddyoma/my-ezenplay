@@ -6,9 +6,9 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <jsp:include page="/include/head.jsp"></jsp:include>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/resources/css/review.css" /> <!-- 리뷰,질의응답css -->
-<script src="/resources/js/jquery.star.js"></script>
+<link rel="stylesheet" href="/resources/css/review.css" /> <!-- 리뷰,질의응답css, head에 넣으면 템플릿무너짐 -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><!-- 리뷰셀렉트, head에 넣으면 템플릿무너짐 -->
+<script src="/resources/js/jquery.star.js"></script><!-- 별점, head에 넣으면 템플릿무너짐 -->
 <title>ezen</title>
 </head>
 <body>
@@ -30,15 +30,13 @@ pageEncoding="UTF-8"%>
     <br />
     <br />
     <br />
-    <div class="alert alert-warning alert-dismissible" role="alert">
+    	<div class="alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         자주하는질문이외의다른문의사항이있을경우 <strong>010-0000-0000</strong>으로연락주시면빠른안내가능합니다
-    </div>
-    <br />
-    
+    	</div>
+    <br /> 
 <jsp:include page="/WEB-INF/views/customercenter/faq.jsp"></jsp:include>  <!-- FAQ -->
 <jsp:include page="/WEB-INF/views/customercenter/map.jsp"></jsp:include>  <!-- MAP -->
-
 </div>
 <jsp:include page="/WEB-INF/views/customercenter/review.jsp"></jsp:include> <!-- Review -->
 
@@ -51,7 +49,7 @@ pageEncoding="UTF-8"%>
 <form method="post" action="/review/insert" id="review">
 <div>
 <div class="probox" style="background: #BDBDBD;"> <!-- 사진미등록자는 기본프로필화면으로보이게 -->
-		<img class="profileone" src="/images/user/${UserInfo.profilePath}" onerror="this.style.display='none'"alt='' /> 
+		<img class="profileone" src="/resources/images/user/${UserInfo.profilePath}" onerror="this.style.display='none'"alt='' /> 
 	</div>
 <input type="text" name="userNum" value="${UserInfo.userNum}">
 유저: <input type="text" value="${UserInfo.userId}" readonly><br>

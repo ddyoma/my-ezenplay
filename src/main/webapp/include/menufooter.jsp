@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+</head> <!-- 각 메뉴에 들어가면 활성될 footer -->
 <body>
 			<!-- Footer -->
 				<div id="footer-wrapper">
@@ -91,12 +91,12 @@
 
 		<!-- Scripts -->
 
-			<script src="/resources/assets/js/jquery.min.js"></script>
-			<script src="/resources/assets/js/jquery.dropotron.min.js"></script>
-			<script src="/resources/assets/js/browser.min.js"></script>
-			<script src="/resources/assets/js/breakpoints.min.js"></script>
-			<script src="/resources/assets/js/util.js"></script>
-			<script src="/resources/assets/js/main.js"></script>
+			<script src="/resources/js/jquery.min.js"></script>
+			<script src="/resources/js/jquery.dropotron.min.js"></script>
+			<script src="/resources/js/browser.min.js"></script>
+			<script src="/resources/js/breakpoints.min.js"></script>
+			<script src="/resources/js/util.js"></script>
+			<script src="/resources/js/main.js"></script>
 
 	</body>
 </html>

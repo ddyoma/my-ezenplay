@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset="utf-8" />
 <meta name="viewport"content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="/resources/assets/css/main.css" />
+<link rel="stylesheet" href="/resources/css/main.css" />
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -15,18 +15,16 @@
 
 <body class="is-preload homepage">
 
-	<!--
+<!--
 
 	로그인전이면 메뉴가 다 막혀있습니다.  >  접근불가 팝업메세지로 변경
 
 -->
 
 	<div id="page-wrapper">
-
 		<!-- Header -->
 		<div id="header-wrapper">
 			<header id="header" class="container">
-
 				<!-- Logo -->
 				<div id="logo">
 					<h1>
@@ -37,12 +35,11 @@
 				<nav id="nav">
 					<section id="Container">
 						<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-					
 						<div id="Content">
 							<ul>
 								<li class="current"><a href="/">홈</a></li>
-								<li><a href="/views/seatlist" id ="c" >좌석현황</a></li>
-								<li><a href="/views/food/food-list" id ="d">메뉴</a></li>
+								<li><a href="/views/seat" id ="c" >좌석현황</a></li>
+								<li><a href="/views/food" id ="d">메뉴</a></li>
 								<li><a href="/views/timecharge" id ="e">시간충전</a></li>
 								<li><a href="/views/voccenter">고객센터</a></li>
 							</ul>

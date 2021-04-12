@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- Footer -->
+<!-- home화면 Footer -->
 				<div id="footer-wrapper">
 					<footer id="footer" class="container">
 						<div class="row">
@@ -93,9 +93,9 @@
 
 		<!-- 문제가있어보이는 스크립트 	<script src="/resources/assets/js/jquery.min.js"></script>
 			<script src="/resources/assets/js/jquery.dropotron.min.js"></script>-->
-			<script src="/resources/assets/js/browser.min.js"></script>
-			<script src="/resources/assets/js/breakpoints.min.js"></script>
-			<script src="/resources/assets/js/util.js"></script>
-			<script src="/resources/assets/js/main.js"></script>
+			<script src="/resources/js/browser.min.js"></script>
+			<script src="/resources/js/breakpoints.min.js"></script>
+			<script src="/resources/js/util.js"></script>
+			<script src="/resources/js/main.js"></script>
 </body>
 </html>
