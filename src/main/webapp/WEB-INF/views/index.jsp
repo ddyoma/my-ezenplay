@@ -7,12 +7,13 @@
 <title>ezen</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<jsp:include page="/include/head.jsp"></jsp:include>
+
 <link rel="stylesheet" href="/resources/css/panda.css" />
 </head>
 
 <body>
 <!-- Banner -->
+<jsp:include page="/include/head.jsp"></jsp:include>
 <div ID="banner-wrapper">
 	<div ID="banner" class="box container">
 		<div class="row">
