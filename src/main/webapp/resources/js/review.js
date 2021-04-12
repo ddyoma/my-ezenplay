@@ -25,6 +25,10 @@ window.onload = function(){
 }
 	  
 function upload(){
+	if($('#count').text()==0){
+		alert('별점은 필수입니다.');
+		return;
+	}
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/review/insert');
 	xhr.onreadystatechange = function(){
