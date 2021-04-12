@@ -2,41 +2,42 @@ package com.spboot.test.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spboot.test.entity.ReservationInfo;
+import com.spboot.test.repository.ReservationInfoRepository;
 import com.spboot.test.service.ReservationInfoService;
 
 @Service
 public class ReservationInfoServiceImpl implements ReservationInfoService {
 
+	@Autowired
+	private ReservationInfoRepository resRepo;
+	
 	@Override
 	public List<ReservationInfo> getList(ReservationInfo resNum) {
-		// TODO Auto-generated method stub
-		return null;
+		return resRepo.findAllByOrderByResNumDesc();
 	}
 
 	@Override
 	public ReservationInfo get(int resNum) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insert(ReservationInfo resNum) {
-		// TODO Auto-generated method stub
-		return 0;
+	public ReservationInfo insert(ReservationInfo resNum) {
+		return resRepo.save(resNum);
 	}
 
 	@Override
-	public int update(ReservationInfo resNum) {
-		// TODO Auto-generated method stub
-		return 0;
+	public ReservationInfo update(ReservationInfo resNum) {
+		return resRepo.save(resNum);
 	}
 
 	@Override
 	public int delete(int resNum) {
-		// TODO Auto-generated method stub
+		resRepo.deleteById(resNum);
 		return 0;
 	}
 

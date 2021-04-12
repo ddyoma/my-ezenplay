@@ -11,8 +11,8 @@ public interface PcCurrentStatusService {
 
 	List<PcCurrentStatus> getPcStatusList();
 	PcCurrentStatus getPcCurrentStatus(int pcStatusNum);
-	int insertPcCurrentStatus(PcCurrentStatus pcStatus);
-	int updatePcCurrentStatus(PcCurrentStatus pcStatus);
+	PcCurrentStatus insertPcCurrentStatus(PcCurrentStatus pcStatus);
+	PcCurrentStatus updatePcCurrentStatus(PcCurrentStatus pcStatus);
 	int deletePcCurrentStatus(int pcStatusNum);
 	
 }

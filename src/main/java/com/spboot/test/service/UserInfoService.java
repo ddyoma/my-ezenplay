@@ -12,7 +12,7 @@ public interface UserInfoService {
 
 	List<UserInfo> getList();
 	UserInfo login(UserInfo ui);
-	int saveUserInfo(UserInfo ui);
-	int updateUserInfo(UserInfo userInfo);
+	Integer saveUserInfo(UserInfo ui);
+	UserInfo updateUserInfo(UserInfo userInfo);
 	int deleteUserInfo(int uiNum);
 }

@@ -35,19 +35,20 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public int updateUserInfo(UserInfo userInfo) {
-		return 0;
+	public UserInfo updateUserInfo(UserInfo userInfo) {
+		return uiRepo.save(userInfo);
 	}
 
 	@Override
 	public int deleteUserInfo(int uiNum) {
+		uiRepo.deleteById(uiNum);
 		return 0;
 	}
 
 	private final String ROOT = "C:\\Users\\Administrator\\git\\aws-ezenplay\\src\\main\\webapp\\images\\user\\";  //경로수정하세요
 
 	@Override
-	public int saveUserInfo(UserInfo user) {
+	public Integer saveUserInfo(UserInfo user) {
 		MultipartFile mf = user.getUserFile();
 		if (mf!=null) {
 			String userProfile = user.getUserFile().getOriginalFilename();

@@ -11,8 +11,8 @@ public interface ReservationInfoService {
 	
 	List<ReservationInfo> getList(ReservationInfo resNum);
 	ReservationInfo get(int resNum);
-	int insert(ReservationInfo resNum);
-	int update(ReservationInfo resNum);
+	ReservationInfo insert(ReservationInfo resNum);
+	ReservationInfo update(ReservationInfo resNum);
 	int delete(int resNum);
 	
 }
