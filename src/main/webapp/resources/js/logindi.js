@@ -1,27 +1,37 @@
-$("#password").focusin(function () {
-  $("form").addClass("up");
-});
-$("#password").focusout(function () {
-  $("form").removeClass("up");
-});
-
-// Panda Eye move
-$(document).on("mousemove", function (event) {
-  var dw = $(document).width() / 15;
-  var dh = $(document).height() / 15;
-  var x = event.pageX / dw;
-  var y = event.pageY / dh;
-  $(".eye-ball").css({
-    width: x,
-    height: y
-  });
-});
-
-// validation
-
-$(".btn").click(function () {
-  $("form").addClass("wrong-entry");
-  setTimeout(function () {
-    $("form").removeClass("wrong-entry");
-  }, 3000);
-});
+function logout() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '/logout');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					if (xhr.responseText == 'true') {
+						location.href = '/';
+					}
+				}
+			}
+			xhr.send();
+		}
+	//로그인로직
+	function login() {
+		var p = {
+				userId : document.querySelector('#userId').value,
+			userPwd : document.querySelector('#userPwd').value
+		}
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', '/login');
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var html = '';
+				if (xhr.responseText) {
+					var res = JSON.parse(xhr.responseText);
+		
+					//alert(res.userId + '반갑습니다.');
+					//alert(res.userNum + '반갑습니다.');
+					location.href = '/';
+					return;
+				}
+			
+			}
+		}
+		xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+		xhr.send(JSON.stringify(p));
+	}

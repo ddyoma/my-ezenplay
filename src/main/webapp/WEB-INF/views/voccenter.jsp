@@ -53,7 +53,7 @@ pageEncoding="UTF-8"%>
 <div class="probox" style="background: #BDBDBD;"> <!-- 사진미등록자는 기본프로필화면으로보이게 -->
 		<img class="profileone" src="/images/user/${UserInfo.profilePath}" onerror="this.style.display='none'"alt='' /> 
 	</div>
-<input type="hidden" name="userNum" value="${UserInfo.userNum}" readonly>
+<input type="text" name="userNum" value="${UserInfo.userNum}">
 유저: <input type="text" value="${UserInfo.userId}" readonly><br>
 리뷰남기기: <textarea name="revComment"></textarea></div>
 <div id="stars" class="starrr"style="float:left"></div><span id="count"  >0</span> <br>
