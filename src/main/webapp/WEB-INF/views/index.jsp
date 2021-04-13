@@ -30,9 +30,8 @@ margin: auto;
 <body>
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
 <jsp:include page="/WEB-INF/views/home/maintempletslide.jsp"></jsp:include><!-- 대왕슬라이드 -->
+<br /><br /><br /><br /><br /><br /><!-- 슬라이드랑 바디부분 띄어쓰기 -->
  <main id="main">
-<!--<jsp:include page="/WEB-INF/views/home/maintempletsubsection.jsp"></jsp:include><!-- 가운데세개섹션 -->-->
-<br /><br /><br />
  <!-- ======= About Section ======= --><!-- 바디에 작성할공간 -->
 <section id="about" class="about">
 	<div class="container">
