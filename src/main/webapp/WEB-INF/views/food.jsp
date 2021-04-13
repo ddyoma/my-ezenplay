@@ -111,7 +111,7 @@ location.href='/';
 					html += '		src="/resources/images/food/'+foods.foodImgName+'"';
 					html += 'alt="'+foods.foodImgName+'">';
 					html += '	<div class="card-body">';
-					html += '	<p class="card-text">'+foods.fooddesc+'</p>';
+					html += '	<p class="card-text">'+foods.foodDesc+'</p>';
 					html += '	<div';
 					html += '		class="d-flex justify-content-between align-items-center">';
 					html += '		<div class="btn-group">';

@@ -85,11 +85,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return ui.getUserNum();
 	}
 
-	@Override
-	public boolean checkId(String userId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 }

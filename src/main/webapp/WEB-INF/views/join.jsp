@@ -61,7 +61,6 @@ ID : <input type="text" name="userId" ><button onclick="checkId()">중복확인<
 
 <script>function checkId(){
 	var userId = document.querySelector('[name=userId]').value;
-	alert(userId);
 
 var xhr = new XMLHttpRequest();
 xhr.open('POST', '/check'); 
@@ -70,8 +69,8 @@ xhr.onreadystatechange = function(){
 		console.log(xhr.responseText);
 		var res = JSON.parse(xhr.responseText);
 		alert(res); 
-		if(res==false){
-			alert('해당아이디로는 가입이 불가능합니다.');
+		if(res==true){
+			alert('해당아이디로는 가입이 불가능');
 			document.querySelector('[name=userId]').value = '';
 			document.querySelector('[name=userId]').focus();
 		}else{
