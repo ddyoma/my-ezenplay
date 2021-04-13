@@ -34,14 +34,14 @@ margin: auto;
  <main id="main">
  <!-- ======= About Section ======= -->
 <section id="about" class="about">
-   <div class="container">
+	<div class="container">
    <!-- 바디에 작성할공간여기부터 -->
    
 
 <jsp:include page="/WEB-INF/views/home/maintempletbodysection.jsp"></jsp:include><!-- 가운데바디1섹션 -->
-<jsp:include page="/WEB-INF/views/home/login.jsp"></jsp:include><!-- 상단바와 로고 -->
+<jsp:include page="/WEB-INF/views/home/login.jsp"></jsp:include><!-- 로그인창 -->
 <!-- 바디에 작성공간여기까지 -->
-   </div>
+	</div>
 </section><!-- End About Section -->
 <jsp:include page="/WEB-INF/views/home/maintempletfootersection.jsp"></jsp:include><!-- 가운데바디2섹션 service형태라 안쓸듯 -->
 <jsp:include page="/WEB-INF/views/home/maintempletclient.jsp"></jsp:include><!-- client -->

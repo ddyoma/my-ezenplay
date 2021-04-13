@@ -7,9 +7,11 @@
 <head>
 <jsp:include page="/WEB-INF/views/home/maintemplethead.jsp"></jsp:include><!-- 상단바로고디자인 -->
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
-
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>ezen</title>
 </head>
+<!--리뷰작성 스타일-->
 <style>
 .probox {
 margin: auto;
@@ -24,6 +26,7 @@ margin: auto;
     height: 100%;
     object-fit: cover;
 }
+
 </style>
 <body>
  <!-- ======= Breadcrumbs ======= -->
@@ -109,24 +112,48 @@ margin: auto;
           </div>
         </div>
 		 <jsp:include page="/WEB-INF/views/customercenter/q.jsp"></jsp:include><!-- f&q -->
+				  <br/><br/><br/>
+		 
+		 <jsp:include page="/WEB-INF/views/customercenter/reviewslide.jsp"></jsp:include><!-- 리뷰슬라이드-->
+		 
 				  <br/><br/><br/><br/><br/><br/><br/>
-				  
-				<form method="post" action="/review/insert" id="review" style="float:left">
-				<div><br/><br/><br/><br/><br/>
-				<div class="probox" style="background: #BDBDBD;"> <!-- 사진미등록자는 기본프로필화면으로보이게 -->
-						<!-- <img class="profileone" src="/resources/images/user/${UserInfo.profilePath}" onerror="this.style.display='none'"alt='' /> -->
-					</div>
-				<input type="text" name="userNum" value="${UserInfo.userNum}">
-				유저: <input type="text" value="${UserInfo.userId}" readonly><br>
-				리뷰남기기: <textarea name="revComment"></textarea></div>
-				<div id="stars" class="starrr"style="float:left"></div><span id="count"  >0</span> <br>
-				<button onclick="upload()" type="button" >리뷰등록</button></form>
+		
+		<jsp:include page="/WEB-INF/views/customercenter/reviewup.jsp"></jsp:include><!-- 리뷰등록-->		  
+		
 				      </div>		 
     </section><!-- End Contact Section -->
   </main><!-- End #main -->
 
   
+   <script>
+   jQuery(document).ready(function($){
+       
+      $(".btnrating").on('click',(function(e) {
+      
+      var previous_value = $("#selected_rating").val();
+      
+      var selected_value = $(this).attr("data-attr");
+      $("#selected_rating").val(selected_value);
+      
+      $(".selected-rating").empty();
+      $(".selected-rating").html(selected_value);
+      
+      for (i = 1; i <= selected_value; ++i) {
+      $("#rating-star-"+i).toggleClass('btn-warning');
+      $("#rating-star-"+i).toggleClass('btn-default');
+      }
+      
+      for (ix = 1; ix <= previous_value; ++ix) {
+      $("#rating-star-"+ix).toggleClass('btn-warning');
+      $("#rating-star-"+ix).toggleClass('btn-default');
+      }
+      
+      }));
+      
+         
+   });
 
+   </script>
  
 
 
@@ -137,5 +164,6 @@ margin: auto;
 
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 <jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
+
 </body>
 </html>
