@@ -16,6 +16,5 @@
     	</div>
     <br /> 
 <jsp:include page="/WEB-INF/views/customercenter/faq.jsp"></jsp:include>  <!-- FAQ -->
-<jsp:include page="/WEB-INF/views/customercenter/map.jsp"></jsp:include>  <!-- MAP -->
 </div>
 <br/><br/><br/><br/><br/>

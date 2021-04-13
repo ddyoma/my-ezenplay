@@ -109,12 +109,13 @@ margin: auto;
           </div>
         </div>
 		 <jsp:include page="/WEB-INF/views/customercenter/q.jsp"></jsp:include><!-- f&q -->
+		 <jsp:include page="/WEB-INF/views/customercenter/map.jsp"></jsp:include><!-- map -->
 				  <br/><br/><br/><br/><br/><br/><br/>
 				  
 				<form method="post" action="/review/insert" id="review" style="float:left">
 				<div><br/><br/><br/><br/><br/>
 				<div class="probox" style="background: #BDBDBD;"> <!-- 사진미등록자는 기본프로필화면으로보이게 -->
-						<img class="profileone" src="/resources/images/user/${UserInfo.profilePath}" onerror="this.style.display='none'"alt='' /> 
+						<!-- <img class="profileone" src="/resources/images/user/${UserInfo.profilePath}" onerror="this.style.display='none'"alt='' /> -->
 					</div>
 				<input type="text" name="userNum" value="${UserInfo.userNum}">
 				유저: <input type="text" value="${UserInfo.userId}" readonly><br>

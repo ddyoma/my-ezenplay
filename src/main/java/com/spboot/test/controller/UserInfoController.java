@@ -27,9 +27,14 @@ public class UserInfoController {
 	@Autowired
 	private UserInfoService uService;
 
-	@GetMapping("/user")
-	public List<UserInfo> getUser() {
+	@GetMapping("/users")
+	public List<UserInfo> getUsers() {
 		return uService.getList();
+	}
+	
+	@GetMapping("/user")
+	public UserInfo getUser(int userNum) {
+		return uService.getUser(userNum);
 	}
 
 	@PostMapping("/login")
@@ -57,12 +62,11 @@ public class UserInfoController {
 	
 	@PostMapping("/delete")
 	public @ResponseBody Integer deleteUser(@RequestBody UserInfo userInfo) {
-		return uService.deleteUserInfo(userInfo.getUserNum());
+		return uService.deleteUserInfo(userInfo);
 	}
 	@PostMapping("/update")
 	public @ResponseBody UserInfo updateUser(@ModelAttribute UserInfo userInfo) {
 		return uService.updateUserInfo(userInfo);
 	}
-	
 	
 }

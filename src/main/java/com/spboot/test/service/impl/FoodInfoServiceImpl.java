@@ -34,13 +34,8 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 		if(mf!=null) {
 		    mf = food.getFoodFile();
 			String foodImgName = food.getFoodFile().getOriginalFilename();
-			int idx = foodImgName.lastIndexOf(".");   
-			String str = foodImgName.substring(idx);
-			long nanoTime = System.nanoTime();
-			String foodImgPath = nanoTime + str;
 			food.setFoodImgName(foodImgName);
-			food.setFoodImgPath(foodImgPath);
-			File file = new File(ROOT+foodImgPath);
+			File file = new File(ROOT+foodImgName);
 			try {
 				mf.transferTo(file);   
 			} catch (IllegalStateException | IOException e) {

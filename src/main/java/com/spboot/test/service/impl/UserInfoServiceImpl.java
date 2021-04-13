@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spboot.test.entity.FoodInfo;
 import com.spboot.test.entity.UserInfo;
 import com.spboot.test.repository.UserInfoRepository;
 import com.spboot.test.service.UserInfoService;
@@ -33,6 +32,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public List<UserInfo> getList() {
 		return uiRepo.findAllByOrderByUserNumDesc();
 	}
+	
+	@Override
+	public UserInfo getUser(int userNum) {
+		return uiRepo.findByUserNum(userNum);
+	}
 
 	@Override
 	public UserInfo updateUserInfo(UserInfo userInfo) {
@@ -40,8 +44,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public int deleteUserInfo(int uiNum) {
-		uiRepo.deleteById(uiNum);
+	public int deleteUserInfo(UserInfo ui) {     //웅재수정
+		UserInfo userInfo = uiRepo.findByUserIdAndUserPwd(ui.getUserId(), ui.getUserPwd());
+		if(userInfo!=null) {
+			uiRepo.deleteById(ui.getUserNum());
+			return 1;
+		}
 		return 0;
 	}
 
@@ -70,5 +78,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		UserInfo ui = uiRepo.save(user);
 		return ui.getUserNum();
 	}
+
 
 }
