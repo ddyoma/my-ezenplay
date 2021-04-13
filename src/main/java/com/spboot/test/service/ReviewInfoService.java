@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.spboot.test.entity.ReviewInfo;
 
-@Service
 public interface ReviewInfoService {
 
 	List<ReviewInfo> getReviewList();

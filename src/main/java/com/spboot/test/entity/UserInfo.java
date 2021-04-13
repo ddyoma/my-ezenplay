@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -58,7 +60,13 @@ public class UserInfo {
    private String profilePath;
    @Column(name="action",insertable = false)
    private String action;
+   @Column(name="total_amount" ,insertable = false)
+   private Long totalAmount;
    
    @Transient
    private MultipartFile userFile;
+   
+   @ManyToOne
+   @JoinColumn(name = "grade_num")
+   private GradeInfo gradeInfo;
 }

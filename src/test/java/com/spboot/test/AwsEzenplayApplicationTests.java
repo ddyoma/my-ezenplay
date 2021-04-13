@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.spboot.test.repository.ReviewInfoRepository;
+import com.spboot.test.controller.GradeInfoController;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,11 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 class AwsEzenplayApplicationTests {
 
 	@Autowired
-	private ReviewInfoRepository uRepo;
+	private GradeInfoController uRepo;
 
 	@Test
 	void contextLoads() {
-		log.info("uRepo=>{}",uRepo.findAllByOrderByRevNumDesc());
+		log.info("uRepo=>{}",uRepo.getGrade());
 	}
 
 }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.spboot.test.entity.UserInfo;
 
-@Service
 public interface UserInfoService {
 
 	List<UserInfo> getList();

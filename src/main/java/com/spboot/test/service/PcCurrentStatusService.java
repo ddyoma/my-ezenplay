@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.spboot.test.entity.PcCurrentStatus;
 
-@Service
 public interface PcCurrentStatusService {
 
 	List<PcCurrentStatus> getPcStatusList();
