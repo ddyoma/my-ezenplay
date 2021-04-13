@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,9 +8,9 @@
     <style type="text/css">
       /* Set the size of the div element that contains the map */
       #map {
-        height: 400px;
+        height: 320px;
         /* The height is 400 pixels */
-        width: 70%;
+        width: 100%;
         /* The width is the width of the web page */
       }
     </style>
@@ -31,7 +33,7 @@
     </script>
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
+    <h3>찾아오시는길</h3>
     <!--The div element for the map -->
     <div id="map"></div>
 
