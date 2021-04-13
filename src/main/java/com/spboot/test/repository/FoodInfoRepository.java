@@ -9,5 +9,4 @@ import com.spboot.test.entity.FoodInfo;
 public interface FoodInfoRepository extends JpaRepository<FoodInfo, Integer> {
 
 	public List<FoodInfo> findAllByOrderByFoodNumDesc();
-	public FoodInfo findByFoodNum(Integer fiNum);
 }

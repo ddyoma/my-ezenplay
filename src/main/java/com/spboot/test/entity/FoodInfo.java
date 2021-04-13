@@ -29,8 +29,6 @@ public class FoodInfo {
 	private String foodDesc;
 	@Column(name="food_img_name")	
 	private String foodImgName;
-	@Column(name="food_img_path")	
-	private String foodImgPath;
 	@Column(name="food_price")	
 	private Integer foodPrice;
 	@Column(name="food_cook_time")	

@@ -3,6 +3,7 @@ package com.spboot.test.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,18 +19,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FoodInfoServiceImpl implements FoodInfoService {
 
-	private final String ROOT = "C:\\Users\\Administrator\\git\\aws-ezenplay\\src\\main\\webapp\\images\\food\\";
+	private final String ROOT = "C:\\Users\\Administrator\\git\\aws-ezenplay\\src\\main\\webapp\\resources\\images\\food\\";
 	
 	@Autowired
 	private FoodInfoRepository foodRepo;
 	
 	@Override
 	public List<FoodInfo> getFoodInfoList(FoodInfo food) {
-		return null;
+		return foodRepo.findAllByOrderByFoodNumDesc();
 	}
 
 	@Override
-	public int insertFoodInfo(FoodInfo food) {
+	public FoodInfo insertFoodInfo(FoodInfo food) {
 		MultipartFile mf = food.getFoodFile();
 		if(mf!=null) {
 		    mf = food.getFoodFile();
@@ -42,20 +43,19 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 				e.printStackTrace();
 			}
 		}
-		FoodInfo fi = foodRepo.save(food);
-		return fi.getFoodNum();
+		return foodRepo.save(food);
 	}
 		
 
 
 	@Override
-	public FoodInfo getFoodInfo(int fiNum) {
-		return foodRepo.findByFoodNum(fiNum);
+	public Optional<FoodInfo> getFoodInfo(int fiNum) {
+		return foodRepo.findById(fiNum);
 	}
 
 	@Override
-	public int updateFoodInfo(FoodInfo food) {
-		return 0;
+	public FoodInfo updateFoodInfo(FoodInfo food) {
+		return foodRepo.save(food);
 	}
 
 	@Override
