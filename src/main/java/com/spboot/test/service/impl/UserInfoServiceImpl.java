@@ -29,6 +29,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
+	public boolean checkId(String userId) {
+			
+			log.info("tmp=>{}", userId);
+			return uiRepo.existsByUserId(userId);
+	}
+	@Override
 	public List<UserInfo> getList() {
 		return uiRepo.findAllByOrderByUserNumDesc();
 	}
@@ -78,6 +84,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		UserInfo ui = uiRepo.save(user);
 		return ui.getUserNum();
 	}
+
 
 
 }

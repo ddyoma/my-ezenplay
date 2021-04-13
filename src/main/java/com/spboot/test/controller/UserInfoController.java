@@ -26,6 +26,11 @@ public class UserInfoController {
 
 	@Autowired
 	private UserInfoService uService;
+	
+	@PostMapping("/check")
+	public boolean checkId(@RequestBody String userId) {
+		return uService.checkId(userId);
+	}
 
 	@GetMapping("/users")
 	public List<UserInfo> getUsers() {
