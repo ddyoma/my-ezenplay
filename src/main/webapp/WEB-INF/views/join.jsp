@@ -28,10 +28,10 @@
       <div class="container">
         <div class="row">
 	
-
+ID : <input type="text" name="userId" ><button onclick="checkId()">중복확인</button>
 			
-			 <form method="POST" enctype="multipart/form-data" action ="/memeberjoin">
-					ID : <input type="text" name="userId">
+			 <form method="POST" enctype="multipart/form-data" >
+					
 					비밀번호 : <input type="password" name="userPwd">
 					비밀번호 확인 : <input type="password" name="#">
 					이메일 : <input type="email" name="userEmail">
@@ -48,7 +48,7 @@
 					폰번호 : <input type="text" name="userPhone">
 					주소 : <input type="text" name="userAddr1">
 					상세주소 : <input type="text" name="userAddr2">
-					선호장르 : <select class="custom-select" id="inputGroupSelect04" name="favoriteGame"><option value="1">SF</option><option value="2">RPG</option></select>
+					선호장르 : <select class="custom-select" id="inputGroupSelect05" name="favoriteGame"><option value="1">SF</option><option value="2">RPG</option></select>
 					<button type="button" onclick="insert()">전송</button>
 			</form>
 		</div>
@@ -59,10 +59,35 @@
 
 
 
+<script>function checkId(){
+	var userId = document.querySelector('[name=userId]').value;
+	alert(userId);
+
+var xhr = new XMLHttpRequest();
+xhr.open('POST', '/check'); 
+xhr.onreadystatechange = function(){
+	if(xhr.readyState==4 && xhr.status==200){
+		console.log(xhr.responseText);
+		var res = JSON.parse(xhr.responseText);
+		alert(res); 
+		if(res==false){
+			alert('해당아이디로는 가입이 불가능합니다.');
+			document.querySelector('[name=userId]').value = '';
+			document.querySelector('[name=userId]').focus();
+		}else{
+			alert('가입가능한 아이디입니다.');
+		}
+	}
+}
+	xhr.send(userId);
+}
+
+</script>
 
 
+<script> 
 
-<script> function insert(){
+function insert(){
 	var x = new XMLHttpRequest();
 	x.open('POST', '/memberjoin');
 	x.onreadystatechange = function(){

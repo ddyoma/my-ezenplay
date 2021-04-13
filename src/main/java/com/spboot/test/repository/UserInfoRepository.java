@@ -10,5 +10,6 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Integer> {
 
 	public List<UserInfo> findAllByOrderByUserNumDesc();
 	public UserInfo findByUserIdAndUserPwd(String userId, String userPwd);
-	public UserInfo findByUserNum(Integer userNum);
+	public boolean existsByUserId(String userId);
+	public UserInfo findByUserNum(int userNum);
 }
