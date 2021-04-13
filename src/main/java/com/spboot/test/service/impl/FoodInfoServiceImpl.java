@@ -25,7 +25,7 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 	private FoodInfoRepository foodRepo;
 	
 	@Override
-	public List<FoodInfo> getFoodInfoList(FoodInfo food) {
+	public List<FoodInfo> getFoodInfoList() {
 		return foodRepo.findAllByOrderByFoodNumDesc();
 	}
 
@@ -66,5 +66,16 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 		}
 		return 0;
 	}
+
+	@Override
+	public List<FoodInfo> getFoodInfos(String foodType) {
+		if(foodType==null) {
+			return foodRepo.findAllByOrderByFoodNumDesc();
+		}
+		
+		return foodRepo.findAllByFoodTypeOrderByFoodNumDesc(foodType);
+	}
+
+
 
 }
