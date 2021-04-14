@@ -70,8 +70,10 @@ public class UserInfoController {
 		return uService.deleteUserInfo(userInfo);
 	}
 	@PostMapping("/update")
-	public @ResponseBody UserInfo updateUser(@ModelAttribute UserInfo userInfo) {
+	public Integer updateUser(@ModelAttribute UserInfo userInfo) {
+		log.info("userInfo=>{}",userInfo);
 		return uService.updateUserInfo(userInfo);
+		
 	}
 	
 }

@@ -12,7 +12,7 @@ public interface UserInfoService {
 	UserInfo getUser(int userNum);
 	UserInfo login(UserInfo ui);
 	Integer saveUserInfo(UserInfo ui);
-	UserInfo updateUserInfo(UserInfo userInfo);
+	Integer updateUserInfo(UserInfo userInfo);
 	int deleteUserInfo(UserInfo ui);
 	boolean checkId(String userId);
 }

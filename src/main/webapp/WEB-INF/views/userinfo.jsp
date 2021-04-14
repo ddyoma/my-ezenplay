@@ -9,6 +9,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/resources/css/userinfo.css">
+<link rel="stylesheet" href="/resources/css/inputcss.css"> <!-- input css -->
 <jsp:include page="/WEB-INF/views/home/maintemplethead.jsp"></jsp:include><!-- 상단바로고디자인 -->
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
 
@@ -43,10 +44,12 @@
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">결제내역</a>
                                 </li>
                             </ul>
+                           <small style="color:#8C8C8C;"> *수정가능</small><br>
+                           <small style="color:#8C8C8C;"> (수정후 꼭 Enter키를 눌러주세요)</small>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> <!-- 수정버튼 -->
+                        <input type="button" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" onclick="update()"/> <!-- 수정버튼 -->
                     </div>
                 </div>
                 <div class="row">
@@ -72,42 +75,62 @@
                                                 <label>User Id</label>
                                             </div>
                                             <div class="col-md-6" id="userId">
-                                                <p>Kshiti123</p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Phone</label>
+                                                <label for="userPhone">*Phone</label>
                                             </div>
-                                            <div class="col-md-6" id="userPhone">
+                                            <div style="width:365px;">
+                                            <div class="col-md-6" id="userPhone" onclick="showPhone()">
+                                            </div>
+                                            <div class="password-field" id="hideUserPhone" style="display:none">
+                                             <input onkeyup="if(window.event.keyCode==13)printPhone()" type="text" name="userPhone" value="${UserInfo.userPhone}" style="width:220px;" placeholder="Phone"><button type="button" onclick="showPhone()">X</button>
+                                            </div>
+                                            
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Address</label>
+                                                <label>*Address</label>
                                             </div>
-                                            <div class="col-md-6" id="userAddr1">    <!-- 합치기힘들어서 일단나눔 -->
+                                            <div style="width:365px;">
+                                            <div class="col-md-6" id="userAddr1" onclick="showAddr1()">    <!-- 합치기힘들어서 일단나눔 -->
                                             </div>
+                                            <div class="password-field" id="hideUserAddress1" style="display:none">
+                                             <input onkeyup="if(window.event.keyCode==13)printAddr1()" type="text" name="userAddr1" value="${UserInfo.userAddr1 }" style="width:220px;" placeholder="Address"><button type="button" onclick="showAddr1()">X</button>
+                                            </div>
+                                             </div>
                                         </div>
                                          <div class="row">
                                             <div class="col-md-6">
-                                                <label>Address2</label>
+                                                <label>*Address2</label>
                                             </div>
-                                            <div class="col-md-6" id="userAddr2">
+                                            <div style="width:365px;">
+                                            <div class="col-md-6" id="userAddr2" onclick="showAddr2()">
+                                            </div>
+                                            <div class="password-field" id="hideUserAddress2" style="display:none">
+                                             <input onkeyup="if(window.event.keyCode==13)printAddr2()" type="text" name="userAddr2" value="${UserInfo.userAddr2 }" style="width:220px;" placeholder="Address"><button type="button" onclick="showAddr2()">X</button>
+                                            </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Email</label>
+                                                <label>*Email</label>
                                             </div>
-                                            <div class="col-md-6" id="userEmail">
+                                            <div style="width:365px;">
+                                            <div class="col-md-6" id="userEmail" onclick="showEmail()">
+                                            </div>
+                                             <div class="password-field" id="hideUserEmail" style="display:none">
+                                             <input onkeyup="if(window.event.keyCode==13)printEmail()" type="text" name="userEmail" value="${UserInfo.userEmail }" style="width:220px;" placeholder="Address"><button type="button" onclick="showEmail()">X</button>
+                                            </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Mileage</label>
                                             </div>
-                                       <c:if test="${UserInfo.userMileage eq 0}">  <!-- 마일리지가 0원일경우 화면에안나옴 -->
+                                       <c:if test="${UserInfo.userMileage eq 0}">  <!-- 마일리지가 0원일경우 화면에안나옴방지 -->
                                             <div class="col-md-6">
                                             	<p>0</p>
                                             </div>
@@ -127,6 +150,7 @@
                                  <iframe src="http://localhost/views/user/payhistory" frameborder="1" width="100%" height="350px"> </iframe> <!-- 결제내역page -->
                             </div>
                         </div>
+                        <p style="cursor:pointer"></p>
                     </div>
                 </div>
             </form>           
@@ -134,6 +158,84 @@
         <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 		<jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
 <script>
+function showPhone(){
+	var userPhone = document.querySelector('#userPhone').style.display;
+	if(userPhone){
+		document.querySelector('#userPhone').style.display='';
+		document.querySelector('#hideUserPhone').style.display='none';
+	}else{
+		document.querySelector('#userPhone').style.display='none';
+		document.querySelector('#hideUserPhone').style.display='';
+	}
+}
+function showAddr1(){
+	var userAddr1 = document.querySelector('#userAddr1').style.display;
+	if(userAddr1){
+		document.querySelector('#userAddr1').style.display='';
+		document.querySelector('#hideUserAddress1').style.display='none';
+	}else{
+		document.querySelector('#userAddr1').style.display='none';
+		document.querySelector('#hideUserAddress1').style.display='';
+	}
+}
+
+function showAddr2(){
+	var userAddr2 = document.querySelector('#userAddr2').style.display;
+	if(userAddr2){
+		document.querySelector('#userAddr2').style.display='';
+		document.querySelector('#hideUserAddress2').style.display='none';
+	}else{
+		document.querySelector('#userAddr2').style.display='none';
+		document.querySelector('#hideUserAddress2').style.display='';
+	}
+}
+function showEmail(){
+	var userEmail = document.querySelector('#userEmail').style.display;;
+	if(userEmail){
+		document.querySelector('#userEmail').style.display='';
+		document.querySelector('#hideUserEmail').style.display='none';
+	}else{
+		document.querySelector('#userEmail').style.display='none';
+		document.querySelector('#hideUserEmail').style.display='';
+	}
+}
+function printPhone(){
+	const name = document.querySelector('[name=userPhone]').value;
+	document.querySelector("#userPhone").innerHTML = '<p>'+name+'</p>';
+	var userPhone = document.querySelector('#userPhone').style.display;
+	if(userPhone){
+		document.querySelector('#userPhone').style.display='';
+		document.querySelector('#hideUserPhone').style.display='none';
+	}
+}
+function printAddr1(){
+	const name = document.querySelector('[name=userAddr1]').value;
+	document.querySelector("#userAddr1").innerHTML = '<p>'+name+'</p>';
+	var userAddr1 = document.querySelector('#userAddr1').style.display;
+	if(userAddr1){
+		document.querySelector('#userAddr1').style.display='';
+		document.querySelector('#hideUserAddress1').style.display='none';
+	}
+}
+function printAddr2(){
+	const name = document.querySelector('[name=userAddr2]').value;
+	document.querySelector("#userAddr2").innerHTML = '<p>'+name+'</p>';
+	var userAddr2 = document.querySelector('#userAddr2').style.display;
+	if(userAddr2){
+		document.querySelector('#userAddr2').style.display='';
+		document.querySelector('#hideUserAddress2').style.display='none';
+	}
+}
+function printEmail(){
+	const name = document.querySelector('[name=userEmail]').value;
+	document.querySelector("#userEmail").innerHTML = '<p>'+name+'</p>';
+	var userEmail = document.querySelector('#userEmail').style.display;
+	if(userEmail){
+		document.querySelector('#userEmail').style.display='';
+		document.querySelector('#hideUserEmail').style.display='none';
+	}
+}
+
 function getUser(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/user?userNum=${UserInfo.userNum}');
@@ -149,8 +251,12 @@ function getUser(){
 						document.querySelector('#grade-name').innerHTML = res[key].gradeName;
 					}else{
 						var id = document.querySelector('#'+key);
+						var pointer = 'style="cursor:pointer"';
+						if(key=='userMileage'||key=='restOfTime'||key=='userId'){
+							pointer = '';
+						}
 						if(id){
-							id.innerHTML = '<p>'+value+'</p>';
+							id.innerHTML = '<p '+pointer+'>'+value+'</p>';
 						}
 					}
 				}
@@ -164,7 +270,7 @@ function getUser(){
 			}else if(res.totalAmount<1000000){
 				document.querySelector('#gradePrice').innerHTML = 1000000;
 			}else{
-				document.querySelector('#gradePrice').innerHTML = '폐인';
+				document.querySelector('#gradePrice').innerHTML = '최고등급';
 			}
 			
 			if(res.profilePath){
@@ -185,6 +291,33 @@ function change(obj){
 		document.querySelector('#profile-img').src = e.target.result;
 	}
 	reader.readAsDataURL(obj.files[0]);
+}
+
+function update(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST','/update');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 &&xhr.status==200){
+			console.log(xhr.responseText);
+		}
+	}
+	var formData = new FormData();
+	
+	formData.append('userPhone',document.querySelector('#userPhone>p').innerHTML);
+	formData.append('userAddr1',document.querySelector('#userAddr1>p').innerHTML);
+	formData.append('userAddr2',document.querySelector('#userAddr2>p').innerHTML);
+	formData.append('userEmail',document.querySelector('#userEmail>p').innerHTML);
+	formData.append('userName',document.querySelector('#uName').innerHTML);
+	formData.append('userPwd',${UserInfo.userPwd});
+	formData.append('userMileage',${UserInfo.userMileage});
+	formData.append('favoriteGame','${UserInfo.favoriteGame}');
+	formData.append('restOfTime','${UserInfo.restOfTime}');
+	formData.append('totalAmount',document.querySelector('#totalAmount').innerHTML);
+	if(document.querySelector('[name=file]').files[0]){
+		formData.append('userFile',document.querySelector('[name=file]').files[0]);
+	}
+	formData.append('userNum',${UserInfo.userNum});
+	xhr.send(formData);
 }
 </script>
 </body>
