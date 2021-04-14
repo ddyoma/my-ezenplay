@@ -37,8 +37,8 @@ public class FoodInfoController {
 		return foodService.getFoodInfos(foodType);
 	}
 	
-	@PostMapping("/food-insert")
-	public @ResponseBody FoodInfo insertFood(@ModelAttribute FoodInfo food) {
+	@PostMapping("/views/food/food-result")
+	public  FoodInfo insertFood(@ModelAttribute FoodInfo food) {
 		log.info("foodInfo=>{}",food);
 		return foodService.insertFoodInfo(food);
 	}

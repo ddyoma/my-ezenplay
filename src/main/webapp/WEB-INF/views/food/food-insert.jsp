@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form method="POST" action="/food-insert" enctype="multipart/form-data">
+<form method="POST" action="/views/food/food-result" enctype="multipart/form-data">
 <select name='foodType'>
   <option value='' selected>음식종류</option>
   <option value='음식'>음식</option>
@@ -20,7 +20,7 @@
 음식사진: <input type="file" name="foodFile"/><br>
 <input type="number" name="foodPrice" onkeypress="return digit_check(event)" placeholder="음식가격"/><br>
 <input type="number" name="foodCookTime" onkeypress="return digit_check(event)" placeholder="소요시간"/><br>
-<button type="submit" id="insertFood" >등록</button>
+<button type="submit">등록</button>
 </form>
 
 <script>
@@ -31,9 +31,8 @@ function digit_check(evt){
     }
 }
 
-insertFood.onclick =function(){
-	location.href='/views/food';
-}
+
+
 </script>
 </body>
 </html>
