@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spboot.test.entity.FoodInfo;
 import com.spboot.test.entity.UserInfo;
 import com.spboot.test.repository.UserInfoRepository;
 import com.spboot.test.service.UserInfoService;
@@ -27,21 +28,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 		log.info("tmp=>{}", userInfo);
 		return userInfo;
 	}
-
 	@Override
-	public boolean checkId(String userId) {
-			
-			log.info("tmp=>{}", userId);
-			return uiRepo.existsByUserId(userId);
+	public UserInfo findId(UserInfo ui) {
+		UserInfo userInfo = uiRepo.findByUserNameAndUserDateOfBirthAndUserPhone(ui.getUserName(), ui.getUserDateOfBirth(), ui.getUserPhone());
+		log.info("tmp=>{}", userInfo);  
+		return userInfo;
 	}
 	@Override
 	public List<UserInfo> getList() {
 		return uiRepo.findAllByOrderByUserNumDesc();
-	}
-	
-	@Override
-	public UserInfo getUser(int userNum) {
-		return uiRepo.findByUserNum(userNum);
 	}
 
 	@Override
@@ -50,15 +45,17 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public int deleteUserInfo(UserInfo ui) {     //웅재수정
-		UserInfo userInfo = uiRepo.findByUserIdAndUserPwd(ui.getUserId(), ui.getUserPwd());
-		if(userInfo!=null) {
-			uiRepo.deleteById(ui.getUserNum());
-			return 1;
-		}
+	public int deleteUserInfo(int uiNum) {
+		uiRepo.deleteById(uiNum);
 		return 0;
 	}
-
+	
+	@Override
+	public boolean checkId(String userId) {
+			
+			log.info("tmp=>{}", userId);
+			return uiRepo.existsByUserId(userId);
+	}
 	private final String ROOT = "C:\\Users\\Administrator\\git\\aws-ezenplay\\src\\main\\webapp\\images\\user\\";  //경로수정하세요
 
 	@Override
@@ -85,6 +82,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return ui.getUserNum();
 	}
 
-
+	
 
 }

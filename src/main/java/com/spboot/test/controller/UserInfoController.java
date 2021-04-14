@@ -26,20 +26,24 @@ public class UserInfoController {
 
 	@Autowired
 	private UserInfoService uService;
-	
+
+	@GetMapping("/user")
+	public List<UserInfo> getUser() {
+		return uService.getList();
+	}
+
 	@PostMapping("/check")
 	public boolean checkId(@RequestBody String userId) {
 		return uService.checkId(userId);
 	}
-
-	@GetMapping("/users")
-	public List<UserInfo> getUsers() {
-		return uService.getList();
-	}
-	
-	@GetMapping("/user")
-	public UserInfo getUser(int userNum) {
-		return uService.getUser(userNum);
+	@PostMapping("/findId")
+	public @ResponseBody UserInfo findId(@RequestBody UserInfo ui) {
+		UserInfo userInfo = uService.findId(ui);
+		log.info("ui=>{}",userInfo);
+		if (userInfo != null) {
+			
+		}
+		return userInfo;
 	}
 
 	@PostMapping("/login")
@@ -64,14 +68,15 @@ public class UserInfoController {
 		log.info("mf=>{}", mf);
 		return uService.saveUserInfo(mf);
 	}
-	
+
 	@PostMapping("/delete")
 	public @ResponseBody Integer deleteUser(@RequestBody UserInfo userInfo) {
-		return uService.deleteUserInfo(userInfo);
+		return uService.deleteUserInfo(userInfo.getUserNum());
 	}
+
 	@PostMapping("/update")
 	public @ResponseBody UserInfo updateUser(@ModelAttribute UserInfo userInfo) {
 		return uService.updateUserInfo(userInfo);
 	}
-	
+
 }
