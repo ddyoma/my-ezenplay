@@ -28,10 +28,10 @@
       <div class="container">
         <div class="row">
 	
-ID : <input type="text" name="userId" ><button onclick="checkId()">중복확인</button>
+
 			
-			 <form method="POST" enctype="multipart/form-data" >
-					
+			 <form method="POST" enctype="multipart/form-data" action="/memberjoin" >
+					ID : <input type="text" name="userId"  onchange="idChack=false;" ><button onclick="checkId()" type="button">중복확인</button>
 					비밀번호 : <input type="password" name="userPwd">
 					비밀번호 확인 : <input type="password" name="#">
 					이메일 : <input type="email" name="userEmail">
@@ -59,39 +59,45 @@ ID : <input type="text" name="userId" ><button onclick="checkId()">중복확인<
 
 
 
-<script>function checkId(){
+<script>
+var idCheck = false;
+function checkId(){
 	var userId = document.querySelector('[name=userId]').value;
 
-var xhr = new XMLHttpRequest();
-xhr.open('POST', '/check'); 
-xhr.onreadystatechange = function(){
-	if(xhr.readyState==4 && xhr.status==200){
-		console.log(xhr.responseText);
-		var res = JSON.parse(xhr.responseText);
-		alert(res); 
-		if(res==true){
-			alert('해당아이디로는 가입이 불가능');
-			document.querySelector('[name=userId]').value = '';
-			document.querySelector('[name=userId]').focus();
-		}else{
-			alert('가입가능한 아이디입니다.');
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/check'); 
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			console.log(xhr.responseText);
+			var res = JSON.parse(xhr.responseText);
+			alert(res); 
+			if(res==true){
+				alert('해당아이디로는 가입이 불가능');
+				document.querySelector('[name=userId]').value = '';
+				document.querySelector('[name=userId]').focus();
+			}else{
+				alert('가입가능한 아이디입니다.');
+				idChack = true;
+				
+			}
 		}
 	}
-}
-	xhr.send(userId);
-}
+		xhr.send(userId);
+	}
 
-</script>
-
-
-<script> 
+ 
 
 function insert(){
+	if(!idCheck){
+		alert('다시중복확인하세요');
+		return;
+	}
 	var x = new XMLHttpRequest();
 	x.open('POST', '/memberjoin');
 	x.onreadystatechange = function(){
 		if (x.readyState == 4 && x.status == 200) {
 			if(x.responseText && x.responseText!=null){
+				
 				alert('등록완료');
 				location.href='/';
 			}
