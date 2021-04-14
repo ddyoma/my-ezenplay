@@ -2,6 +2,7 @@ package com.spboot.test.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +19,10 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class FoodInfoServiceImpl implements FoodInfoService {
-
-	private final String ROOT = "C:\\Users\\Administrator\\git\\aws-ezenplay\\src\\main\\webapp\\resources\\images\\food\\";
+	
+	private final String ROOT = System.getProperty("user.dir")+"\\src\\main\\webapp\\resources\\images\\food\\";
+	
+	 
 	
 	@Autowired
 	private FoodInfoRepository foodRepo;
@@ -33,8 +36,7 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 	public FoodInfo insertFoodInfo(FoodInfo food) {
 		MultipartFile mf = food.getFoodFile();
 		if(mf!=null) {
-		    mf = food.getFoodFile();
-			String foodImgName = food.getFoodFile().getOriginalFilename();
+			String foodImgName = mf.getOriginalFilename();
 			food.setFoodImgName(foodImgName);
 			File file = new File(ROOT+foodImgName);
 			try {

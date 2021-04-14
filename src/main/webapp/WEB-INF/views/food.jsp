@@ -43,9 +43,9 @@ location.href='/';
 <h1><a href="index.html" class="logo">EZENPLAY</a></h1>
 <ul class="list-unstyled components mb-5">
 <li class="active" onclick="foodList()"><a href="#"  data-toggle="collapse" aria-expanded="false">Menu</a></li>
-<li value="1"  onclick="foodinfo(this.value)"><a href="#" >Foods</a></li>
-<li value="2"  onclick="foodinfo(this.value)"><a href="#">Snacks</a></li>
-<li value="3"  onclick="foodinfo(this.value)"><a href="#">Drinks</a></li>
+<li value="1"  onclick="foodInfo(this.value)"><a href="#" >Foods</a></li>
+<li value="2"  onclick="foodInfo(this.value)"><a href="#">Snacks</a></li>
+<li value="3"  onclick="foodInfo(this.value)"><a href="#">Drinks</a></li>
 </ul>
 <div class="mb-5">
 <h3 class="h6">Search menu</h3>
@@ -57,6 +57,7 @@ location.href='/';
 <input type="text" class="form-control" placeholder="Food Name">
 </div>
 </form>
+<button type="button" class="btn btn-outline-light">Search</button>
 </div>
 <div class="footer">
 <p>
@@ -71,8 +72,10 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 </nav>
 <!-- 사이드 바 종료 -->
 <!--  음식 메뉴 시작 -->
+
 <div id="content" class="p-4 p-md-5 pt-5">
-<div id="foodList" class="row"></div>	
+<a href="/views/food/food-insert"><button type="button" class="btn btn-success" style="margin-bottom:20px;">Register</button></a>
+<div id="foodList" class="row" ></div>	
 </div>
 </div>
 <!--  음식 메뉴 종료 -->
@@ -126,7 +129,7 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 
 	}
 	
-	function foodinfo(obj) {
+	function foodInfo(obj) {
 		
 		if(obj==1){
 			var foodType = '음식';
