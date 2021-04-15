@@ -26,8 +26,8 @@
                                 <input type="file" name="file" onchange="change(this)"/><br>
                             </div>
                         </div>
-                        
                     </div>
+ 
                     <div class="col-md-6">
                         <div class="profile-head">
                         
@@ -62,6 +62,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
+                        <button class="profile-my-btn" type="button" onclick="showImg()">기본이미지로변경</button>
                             <p>WORK LINK</p>
                             <a href="">Website Link</a><br/>
                             <a href="">Bootsnipp Profile</a><br/>
@@ -159,7 +160,6 @@
                                  <iframe src="http://localhost/views/user/payhistory" frameborder="1" width="100%" height="350px"> </iframe> <!-- 결제내역page -->
                             </div>
                         </div>
-                        <p style="cursor:pointer"></p>
                     </div>
                 </div>
             </form>           

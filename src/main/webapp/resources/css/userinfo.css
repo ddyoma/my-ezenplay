@@ -38,6 +38,12 @@ body{
 .profile-head h6{
     color: #0062cc;
 }
+.profile-my-btn{
+	border-radius: 1.5rem;
+	color: #6c757d;
+	cursor: pointer;
+	float:center;
+}
 .profile-edit-btn{
     border: none;
     border-radius: 1.5rem;
