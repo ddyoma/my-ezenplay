@@ -63,6 +63,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 			}else {
 				userInfo.setGradeInfo(gradeInfo.getOne(4));
 			}
+			if(userInfo.getUserPwd()==null) {
+				userInfo.setUserPwd(ui.getUserPwd());
+			}
+			if(userInfo.getUserMileage()==null) {
+				userInfo.setUserMileage(ui.getUserMileage());
+			}
 			MultipartFile mf = userInfo.getUserFile();
 			if (mf!=null) {
 				String userProfile = userInfo.getUserFile().getOriginalFilename();

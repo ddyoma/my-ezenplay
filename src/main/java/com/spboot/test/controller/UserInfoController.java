@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 //github.com/cwyoon75/aws-ezenplay.git
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -80,10 +81,14 @@ public class UserInfoController {
 	}
 
 	@PostMapping("/update")
-	public Integer updateUser(@ModelAttribute UserInfo userInfo) {
+	public Integer updateUser(@ModelAttribute UserInfo userInfo,HttpServletRequest req) {
 		log.info("userInfo=>{}",userInfo);
+		UserInfo ui  = uService.getUser(userInfo.getUserNum());
+		HttpSession session = req.getSession();
+		if(ui!=null) {
+		session.setAttribute("UserInfo", userInfo);
+		}
 		return uService.updateUserInfo(userInfo);
-		
 	}
 
 }

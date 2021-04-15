@@ -31,7 +31,14 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                         
-                                   <h5><span id="uName"> </span></h5><!-- 유저이름 -->
+                                   <div>
+                                   <div id="userName" onclick="showName()">
+                                   </div>
+                                   <div class="password-field" id="hideUserName" style="display:none">
+                                   <input onkeyup="if(window.event.keyCode==13)printName()" type="text" name="userName" value="${UserInfo.userName }" style="width:220px;" placeholder="이름"><button type="button" onclick="showName()">X</button>
+                                   </div>
+                                   </div>
+                                   <!-- 유저이름 -->
                                    
                                     <h6><span id="grade-img"></span> <span id="grade-name"></span></h6><!-- 유저등급,등급명 -->
                                     
@@ -49,7 +56,7 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="button" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" onclick="update()"/> <!-- 수정버튼 -->
+                        <input type="button" class="profile-edit-btn" name="btnAddMore" value="수정" onclick="update()"/> <!-- 수정버튼 -->
                     </div>
                 </div>
                 <div class="row">
@@ -130,12 +137,9 @@
                                             <div class="col-md-6">
                                                 <label>Mileage</label>
                                             </div>
-                                       <c:if test="${UserInfo.userMileage eq 0}">  <!-- 마일리지가 0원일경우 화면에안나옴방지 -->
-                                            <div class="col-md-6">
-                                            	<p>0</p>
-                                            </div>
-                                       </c:if>
+                                      
                                             <div class="col-md-6" id="userMileage">
+                                           <p> ${UserInfo.userMileage}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -145,6 +149,11 @@
                                             <div class="col-md-6" id="restOfTime">
                                             </div>
                                         </div>
+                                        <input type="hidden" id="favoriteGame" value="${UserInfo.favoriteGame}">
+                                        <input type="hidden" id="userProfile" value="${UserInfo.userProfile}">
+                                        <input type="hidden" id="profilePath" value="${UserInfo.profilePath}">
+                                        <input type="hidden" id="userNum" value="${UserInfo.userNum}">
+                                        
                             </div>
                             <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                  <iframe src="http://localhost/views/user/payhistory" frameborder="1" width="100%" height="350px"> </iframe> <!-- 결제내역page -->
@@ -157,168 +166,7 @@
         </div>
         <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 		<jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
-<script>
-function showPhone(){
-	var userPhone = document.querySelector('#userPhone').style.display;
-	if(userPhone){
-		document.querySelector('#userPhone').style.display='';
-		document.querySelector('#hideUserPhone').style.display='none';
-	}else{
-		document.querySelector('#userPhone').style.display='none';
-		document.querySelector('#hideUserPhone').style.display='';
-	}
-}
-function showAddr1(){
-	var userAddr1 = document.querySelector('#userAddr1').style.display;
-	if(userAddr1){
-		document.querySelector('#userAddr1').style.display='';
-		document.querySelector('#hideUserAddress1').style.display='none';
-	}else{
-		document.querySelector('#userAddr1').style.display='none';
-		document.querySelector('#hideUserAddress1').style.display='';
-	}
-}
 
-function showAddr2(){
-	var userAddr2 = document.querySelector('#userAddr2').style.display;
-	if(userAddr2){
-		document.querySelector('#userAddr2').style.display='';
-		document.querySelector('#hideUserAddress2').style.display='none';
-	}else{
-		document.querySelector('#userAddr2').style.display='none';
-		document.querySelector('#hideUserAddress2').style.display='';
-	}
-}
-function showEmail(){
-	var userEmail = document.querySelector('#userEmail').style.display;;
-	if(userEmail){
-		document.querySelector('#userEmail').style.display='';
-		document.querySelector('#hideUserEmail').style.display='none';
-	}else{
-		document.querySelector('#userEmail').style.display='none';
-		document.querySelector('#hideUserEmail').style.display='';
-	}
-}
-function printPhone(){
-	const name = document.querySelector('[name=userPhone]').value;
-	document.querySelector("#userPhone").innerHTML = '<p>'+name+'</p>';
-	var userPhone = document.querySelector('#userPhone').style.display;
-	if(userPhone){
-		document.querySelector('#userPhone').style.display='';
-		document.querySelector('#hideUserPhone').style.display='none';
-	}
-}
-function printAddr1(){
-	const name = document.querySelector('[name=userAddr1]').value;
-	document.querySelector("#userAddr1").innerHTML = '<p>'+name+'</p>';
-	var userAddr1 = document.querySelector('#userAddr1').style.display;
-	if(userAddr1){
-		document.querySelector('#userAddr1').style.display='';
-		document.querySelector('#hideUserAddress1').style.display='none';
-	}
-}
-function printAddr2(){
-	const name = document.querySelector('[name=userAddr2]').value;
-	document.querySelector("#userAddr2").innerHTML = '<p>'+name+'</p>';
-	var userAddr2 = document.querySelector('#userAddr2').style.display;
-	if(userAddr2){
-		document.querySelector('#userAddr2').style.display='';
-		document.querySelector('#hideUserAddress2').style.display='none';
-	}
-}
-function printEmail(){
-	const name = document.querySelector('[name=userEmail]').value;
-	document.querySelector("#userEmail").innerHTML = '<p>'+name+'</p>';
-	var userEmail = document.querySelector('#userEmail').style.display;
-	if(userEmail){
-		document.querySelector('#userEmail').style.display='';
-		document.querySelector('#hideUserEmail').style.display='none';
-	}
-}
-
-function getUser(){
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/user?userNum=${UserInfo.userNum}');
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState==4 && xhr.status==200){
-			var res = JSON.parse(xhr.responseText);
-			console.log(res);
-			for(var key in res){
-				var value = res[key];
-				if(value!=null&&value!=''){
-					if(key=='gradeInfo'){
-						document.querySelector('#grade-img').innerHTML = '<img style="width:20px; height:20px;"  src="/resources/images/grade/'+res[key].filePath+'">'
-						document.querySelector('#grade-name').innerHTML = res[key].gradeName;
-					}else{
-						var id = document.querySelector('#'+key);
-						var pointer = 'style="cursor:pointer"';
-						if(key=='userMileage'||key=='restOfTime'||key=='userId'){
-							pointer = '';
-						}
-						if(id){
-							id.innerHTML = '<p '+pointer+'>'+value+'</p>';
-						}
-					}
-				}
-			}
-			document.querySelector('#totalAmount').innerHTML = res.totalAmount;
-			document.querySelector('#uName').innerHTML = res.userName;
-			if(res.totalAmount<50000){
-				document.querySelector('#gradePrice').innerHTML = 50000;
-			}else if(res.totalAmount<300000){
-				document.querySelector('#gradePrice').innerHTML = 300000;
-			}else if(res.totalAmount<1000000){
-				document.querySelector('#gradePrice').innerHTML = 1000000;
-			}else{
-				document.querySelector('#gradePrice').innerHTML = '최고등급';
-			}
-			
-			if(res.profilePath){
-				document.querySelector('#profile-i').innerHTML = '<img src="/images/user/'+res.profilePath+'" id="profile-img"/>';
-			}else{
-				document.querySelector('#profile-i').innerHTML = '<img src="/resources/images/user/basic.png" id="profile-img"/>';
-			}
-		}
-	}
-	xhr.send();
-}
-
-window.onload = getUser();
-
-function change(obj){
-	var reader = new FileReader();
-	reader.onload = function(e){
-		document.querySelector('#profile-img').src = e.target.result;
-	}
-	reader.readAsDataURL(obj.files[0]);
-}
-
-function update(){
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST','/update');
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState==4 &&xhr.status==200){
-			console.log(xhr.responseText);
-		}
-	}
-	var formData = new FormData();
-	
-	formData.append('userPhone',document.querySelector('#userPhone>p').innerHTML);
-	formData.append('userAddr1',document.querySelector('#userAddr1>p').innerHTML);
-	formData.append('userAddr2',document.querySelector('#userAddr2>p').innerHTML);
-	formData.append('userEmail',document.querySelector('#userEmail>p').innerHTML);
-	formData.append('userName',document.querySelector('#uName').innerHTML);
-	formData.append('userPwd',${UserInfo.userPwd});
-	formData.append('userMileage',${UserInfo.userMileage});
-	formData.append('favoriteGame','${UserInfo.favoriteGame}');
-	formData.append('restOfTime','${UserInfo.restOfTime}');
-	formData.append('totalAmount',document.querySelector('#totalAmount').innerHTML);
-	if(document.querySelector('[name=file]').files[0]){
-		formData.append('userFile',document.querySelector('[name=file]').files[0]);
-	}
-	formData.append('userNum',${UserInfo.userNum});
-	xhr.send(formData);
-}
-</script>
+<script src="/resources/js/user-info.js"></script>
 </body>
 </html>

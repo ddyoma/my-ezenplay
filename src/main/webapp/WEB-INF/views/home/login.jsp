@@ -126,7 +126,7 @@
 					</div></div>
 					</c:if>
 					<c:if test="${UserInfo ne null }">
-					${UserInfo.userId }님 반갑습니다
+					${UserInfo.userName }님 반갑습니다
 					<button type="button" class="btn login_btn" onclick="location.href='/views/userinfo'">내정보</button><br>
 					<button type="button" name="button" class="btn login_btn" onclick="logout()">로그아웃</button></c:if>
 				</div><!-- 창내부 끝 -->
