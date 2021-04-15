@@ -14,10 +14,8 @@ import com.spboot.test.entity.FoodInfo;
 import com.spboot.test.repository.FoodInfoRepository;
 import com.spboot.test.service.FoodInfoService;
 
-import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class FoodInfoServiceImpl implements FoodInfoService {
 	
 	private final String ROOT = System.getProperty("user.dir")+"\\src\\main\\webapp\\resources\\images\\food\\";
@@ -51,8 +49,8 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 
 
 	@Override
-	public Optional<FoodInfo> getFoodInfo(int fiNum) {
-		return foodRepo.findById(fiNum);
+	public Optional<FoodInfo> getFoodInfo(int foodNum) {
+		return foodRepo.findById(foodNum);
 	}
 
 	@Override
@@ -61,9 +59,9 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 	}
 
 	@Override
-	public int deleteFoodInfo(int fiNum) {
-		foodRepo.deleteById(fiNum);
-		if(getFoodInfo(fiNum)==null) {
+	public int deleteFoodInfo(int foodNum) {
+		foodRepo.deleteById(foodNum);
+		if(getFoodInfo(foodNum)==null) {
 			return 1;
 		}
 		return 0;
