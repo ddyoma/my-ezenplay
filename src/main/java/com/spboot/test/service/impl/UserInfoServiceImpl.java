@@ -38,6 +38,14 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return userInfo;
 	}
 	@Override
+	public UserInfo saveUserPwd(UserInfo userInfo) {
+		UserInfo uu = uiRepo.findByUserId(userInfo.getUserId());
+		uu.setUserPwd(userInfo.getUserPwd());
+		return uiRepo.save(uu);
+	}
+
+	
+	@Override
 	public List<UserInfo> getList() {
 		return uiRepo.findAllByOrderByUserNumDesc();
 	}
@@ -134,6 +142,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		UserInfo ui = uiRepo.save(user);
 		return ui.getUserNum();
 	}
+
 
 	
 
