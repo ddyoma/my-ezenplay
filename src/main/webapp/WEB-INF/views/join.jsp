@@ -6,8 +6,13 @@
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/views/home/maintemplethead.jsp"></jsp:include><!-- 상단바로고디자인 -->
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <style>
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700);
 
 body {
     background: #fff;
@@ -105,13 +110,14 @@ input.upload {
     <div class="col-md-8">  
         <h1 class="entry-title"><span>회원가입</span> </h1>
         <hr>
-            <form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data" >        
+            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="/memberjoin" onsubmit="return check()">        
          <div class="form-group">
           <label class="control-label col-sm-3">아이디 입력 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
-            <input type="text" class="form-control" name="userId" placeholder="4자리 이상" value="">
-        <button class="button" onclick="checkId()" type="button">중복확인</button>
+            <input type="text" class="form-control" name="userId" id="id" placeholder="4자리 이상">
+        <small>아이디 중복확인을 해주세요.</small>
           </div>
+            <button onclick="checkId()" class="button" type="button">중복확인</button>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-3">비밀번호 입력 <span class="text-danger">*</span></label>
@@ -128,24 +134,24 @@ input.upload {
           <div class="col-md-5 col-sm-8">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-              <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="*******" value="">
+              <input type="password" class="form-control" name="userPwd2" id="password2" placeholder="*******" value="">
             </div>  
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-3">이름 <span class="text-danger">*</span></label>
-          <div class="col-md-8 col-sm-9">
-            <input type="text" class="form-control" name="userName" id="mem_name" placeholder="Enter your Name here" value="">
+          <div class="col-md-5 col-sm-8">
+            <input type="text" class="form-control" name="userName" id="name" >
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-3">이메일 입력 <span class="text-danger">*</span></label>
-          <div class="col-md-8 col-sm-9">
+          <div class="col-md-5 col-sm-8">
               <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-              <input type="email" class="form-control" name="userEmail" id="emailid" placeholder="example@email.com" value="">
+              <input type="email" class="form-control" name="userEmail" id="email" placeholder="example@email.com">
             </div>
-            <small> Your </small> </div>
+            <small> 이메일 형식에 맞게 써주세요. </small> </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-3">이메일 인증 </label>
@@ -180,8 +186,8 @@ input.upload {
         <div class="form-group">
           <label class="control-label col-sm-3">성별 <span class="text-danger">*</span></label>
           <div class="col-md-8 col-sm-9">
-            <label><input name="gender" type="radio" value="Male" > 남 </label>   
-            <label><input name="gender" type="radio" value="Female" > 여 </label>
+            <label><input name="userGender" type="radio" value="Male" > 남 </label>   
+            <label><input name="userGender" type="radio" value="Female" > 여 </label>
           </div>
         </div>
         <div class="form-group">
@@ -189,7 +195,7 @@ input.upload {
           <div class="col-md-5 col-sm-8">
           	<div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-            <input type="text" class="form-control" name="contactnum" id="contactnum" placeholder="010-1234-5678" value="">
+            <input type="text" class="form-control" name="userPhone" id="contactnum" placeholder="010-1234-5678" value="">
             </div>
           </div>
         </div>
@@ -197,95 +203,113 @@ input.upload {
           <label class="control-label col-sm-3">프로필 사진 </label>
           <div class="col-md-5 col-sm-8">
             <div class="input-group"> <span class="input-group-addon" id="file_upload"><i class="glyphicon glyphicon-upload"></i></span>
-              <input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload">
+              <input type="file" name="userFile" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload">
             </div>
           </div>
         </div>
+        
         <div class="form-group">
           <div class="col-xs-offset-3 col-md-8 col-sm-9"><span class="text-muted"><span class="label label-danger">Note:-</span> By clicking Sign Up, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Policy</a>, including our <a href="#">Cookie Use</a>.</span> </div>
         </div>
-        <div class="form-group">
-          <div class="col-xs-offset-3 col-xs-10">
-            <input name="Submit" type="submit" value="Sign Up" class="btn btn-primary" onclick="insert()">
-          </div>
-        </div>
+        <div class="col-xs-offset-3 col-xs-8"> 
+            <input name="Submit" type="submit" value="회원가입" style="border-radius:5px; font-s" class="btn btn-primary" >
+           </div>
       </form>
     </div>
 </div>
 </div>
-
 <script>
 function checkId(){
-	var userId = document.querySelector('[name=userId]').value;
-
+	var userId = document.querySelector('#id').value;
+	if(userId.trim().length<4){
+		alert('아이디는 4글자 이상입니다.');
+		return;
+	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/check'); 
+	xhr.open('GET', '/checkId'); 
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			alert(res); 
-			if(res==true){
+			if(res.result==1){
 				alert('해당아이디로는 가입이 불가능');
-				document.querySelector('[name=userId]').value = '';
-				document.querySelector('[name=userId]').focus();
+				document.querySelector('#id').value = '';
+				document.querySelector('#id').focus();
 			}else{
 				alert('가입가능한 아이디입니다.');
 				idChack = true;
 				
 			}
 		}
+		xhr.send();
 	}
-		xhr.send(userId);
-	}
-
- 
-
-function insert(){
-	if(!idCheck){
-		alert('다시중복확인하세요');
-		return;
-	}
-	var x = new XMLHttpRequest();
-	x.open('POST', '/memberjoin');
-	x.onreadystatechange = function(){
-		if (x.readyState == 4 && x.status == 200) {
-			if(x.responseText && x.responseText!=null){
-				
-				alert('등록완료');
-				location.href='/';
-			}
+}
+}
+	function validation(userId, min, max, msg ){
+		var obj = document.querySelector(id);
+		if((min && obj.value.trim().length < min) || (max && obj.value.trim().length > max)){
+			alert(msg);
+			obj.value = '';
+			obj.focus();
+			return false;
 		}
+		return true
 	}
-	var formData = new FormData();
-	var userId = document.querySelector('[name=userId]');
-	var userPwd = document.querySelector('[name=userPwd]');
-	var userEmail = document.querySelector('[name=userEmail]');
-	var userName = document.querySelector('[name=userName]');
-	var userDateOfBirth = document.querySelector('[name=userDateOfBirth]');
-	var userGender = document.querySelector('[name=userGender]');
-	var userFile = document.querySelector('[name=userFile]');
-	var userPhone = document.querySelector('[name=userPhone]');
-	var userAddr1 = document.querySelector('[name=userAddr1]');
-	var userAddr2 = document.querySelector('[name=userAddr2]');
-	var favoriteGame = document.querySelector('[name=favoriteGame]');
-	formData.append('userId',userId.value);
-	formData.append('userPwd',userPwd.value);
-	formData.append('userEmail',userEmail.value);
-	if(userFile.files[0]){
-		formData.append('userFile',userFile.files[0]);
+	function check(){
+		if (!validation('#name', 3, 10, '이름을 다시 입력해주세요.')) {
+			return false;
+		}
+		if (!validation('#id', 4, 10, '아이디를 다시 입력해주세요.')) {
+			return false;
+		}
+		if (!validation('#password', 6, 20, '비밀번호를 다시 입력해주세요.')) {
+			return false;
+		}
+		var pwd2 = document.querySelector('#pwd2');
+		if (pwd.value != pwd2.value) {
+			alert('비밀번호를 똑같이 다시 입력해주세요.');
+			pwd2.value = "";
+			pwd2.focus();
+			return false;
+		}
+		if (!validation('#address', 10, 100, '주소를 다시 입력해주세요.')) {
+			return false;
+		}
+		if (!validation('#phone2', 7, 10, '폰번호를 다시 입력해주세요.')) {
+			return false;
+		}
+		var phone2 = document.querySelector('#phone2');
+		if (isNaN(phone2.value.trim())) {
+			alert('폰번호를 다시 입력해주세요.');
+			phone2.value = "";
+			phone2.focus();
+			return false;
+		}
+
+		if (!validation('#hint', 1, 10, '질문을 다시 선택해주세요.')) {
+			return false;
+		}
+
+		if (!validation('#answer', 2, 10, '답변을 다시 선택해주세요.')) {
+			return false;
+		}
+		var genres = document.querySelectorAll('[name=ui_genre]:checked');
+		if(genres.length==0){
+			alert('좋아하는 장르를 1개 이상 선택해주세요.');
+			document.querySelector('#genre1').focus();
+			return false;
+		}
+		return true;
 	}
-	formData.append('userName',userName.value);
-	formData.append('userDateOfBirth',userDateOfBirth.value);
-	formData.append('userGender',userGender.value);
-	formData.append('userPhone',userPhone.value);
-	formData.append('userAddr1',userAddr1.value);
-	formData.append('userAddr2',userAddr2.value);
-	formData.append('favoriteGame',favoriteGame.value);
-	x.send(formData);
-}</script>
+	function goPage(url){
+		location.href = url;
+	}
+ 
+</script>
+
 
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 <jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
+
 </body>
 </html>
