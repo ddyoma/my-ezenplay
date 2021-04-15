@@ -71,7 +71,7 @@ public class UserInfoController {
 
 	@PostMapping("/delete")
 	public @ResponseBody Integer deleteUser(@RequestBody UserInfo userInfo) {
-		return uService.deleteUserInfo(userInfo);
+		return uService.deleteUserInfo(userInfo); 
 	}
 
 	@PostMapping("/update")
