@@ -3,28 +3,34 @@ window.onload = function(){
 	xhr.open('GET', '/review/list');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			for(var i = 0;i<=5;i++){
+
 			var r = res[i];
+		
 			var h = '';
 				for(var j = 0;j<r.revStar;j++)
 				{
-					h+= '<span data-value=""+j class="glyphicon glyphicon-star"></span>';
+					h+= '<i class="fa fa-star"></i>';
 				}
-				for(var c =r.revStar;c<5;c++)
-				{
-					h+= '<span data-value=""+c class="glyphicon glyphicon-star-empty"></span>';
-				}
+				
+			$('#revComment'+i).text(r.revComment);
+			$('#userId'+i).text(r.userInfo.userId);
 			$('#revStar'+i).html(h);
-			$('#revComment'+i).text(res[i].revComment);
-			$('#userId'+i).text(res[i].userInfo.userId);
+		
 			}
 		}
 	}
 	xhr.send();
 }
+
 	  
+
 function upload(){
+	
+		
+	
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/review/insert');
 	xhr.onreadystatechange = function(){
@@ -39,7 +45,7 @@ function upload(){
 			}
 		}
 	var param = {
-			revComment : document.querySelector('[name=revComment]').value,
+			revComment : document.querySelector('[name=message]').value,
 			revStar : $('#count').text(),
 			userInfo : {userNum : document.querySelector('[name=userNum]').value}
 	}
