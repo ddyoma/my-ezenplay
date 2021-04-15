@@ -27,9 +27,14 @@ public class UserInfoController {
 	@Autowired
 	private UserInfoService uService;
 
-	@GetMapping("/user")
+	@GetMapping("/users")
 	public List<UserInfo> getUser() {
 		return uService.getList();
+	}
+	
+	@GetMapping("/user")
+	public UserInfo getUser(int userNum) {
+		return uService.getUser(userNum);
 	}
 
 	@PostMapping("/check")

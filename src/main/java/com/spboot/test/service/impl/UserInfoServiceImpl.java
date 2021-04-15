@@ -41,6 +41,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public List<UserInfo> getList() {
 		return uiRepo.findAllByOrderByUserNumDesc();
 	}
+	
+	@Override
+	public UserInfo getUser(int userNum) {
+		return uiRepo.findByUserNum(userNum);
+	}
 
 	@Override
 	public Integer updateUserInfo(UserInfo userInfo) {

@@ -119,7 +119,7 @@
 		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="views/join" class="ml-2">Sign Up</a>
+						Don't have an account? <a href="/views/join" class="ml-2">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center links">
 						<a href="#">Forgot your password?</a>
@@ -127,6 +127,7 @@
 					</c:if>
 					<c:if test="${UserInfo ne null }">
 					${UserInfo.userId }님 반갑습니다
+					<button type="button" class="btn login_btn" onclick="location.href='/views/userinfo'">내정보</button><br>
 					<button type="button" name="button" class="btn login_btn" onclick="logout()">로그아웃</button></c:if>
 				</div><!-- 창내부 끝 -->
 				
