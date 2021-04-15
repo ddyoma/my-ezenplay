@@ -126,7 +126,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		if (mf!=null) {
 			String userProfile = user.getUserFile().getOriginalFilename();
 			int idx = userProfile.lastIndexOf(".");
-			String str = userProfile.substring(idx);
+			String str = userProfile.substring(idx+1);
 			String profilePath = System.nanoTime() + str;
 			user.setUserProfile(userProfile);
 			user.setProfilePath(profilePath);

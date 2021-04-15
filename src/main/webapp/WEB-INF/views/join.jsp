@@ -183,6 +183,7 @@ input.upload {
             </div>
           </div>
         </div>
+        
         <div class="form-group">
           <label class="control-label col-sm-3">성별 <span class="text-danger">*</span></label>
           <div class="col-md-8 col-sm-9">
