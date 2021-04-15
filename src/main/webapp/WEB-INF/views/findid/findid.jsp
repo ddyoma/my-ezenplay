@@ -33,7 +33,7 @@
 							<li class="nav-item"><a class="nav-link active"
 								data-toggle="tab" href="#infoPanel" role="tab">id찾기</a>
 							<li>
-							<li class="nav-item" ><a class="nav-link"  data-toggle="tab" id="tabtest"
+							<li class="nav-item" id="pwdchange"><a class="nav-link"  data-toggle="tab" id="tabtest"
 								href="#placementPanel" role="tab">비밀번호바꾸기</a>
 							<li>
 						</ul>
@@ -78,8 +78,8 @@
 													</h5>
 									<label for="campaignName">변경하실 비밀번호를 입력하세요</label><br>
 									아이디 : <input type="text" class="form-text" id='userId' name="idput" value="" readonly></input>
-									현재 비밀번호 : <input type="text" class="form-text" id='userPwd' ></input>
-									변경하실 비밀번호 : <input type="text" class="form-text" id='userNewPwd' ></input>
+									변경할실 비밀번호 : <input type="text" class="form-text" id='userPwd' ></input>
+									변경하실 비밀번호확인 : <input type="text" class="form-text" id='userNewPwd' ></input>
 								</div>
 								<button class="btn btn-secondary" id="hidebtn2">변경하기</button>
 								</div>	
@@ -110,6 +110,7 @@
 </body>
 <script> //각 버튼 숨기고 보이기, id찾기
 window.onload =function(){
+	$("#pwdchange").css({ 'pointer-events': 'none' });
 	var hide = document.getElementById('hidebtn');
 	var hide2 = document.getElementById('hidebtn2');
 	var open = document.getElementById('openbtn');
@@ -144,7 +145,8 @@ window.onload =function(){
              alert("본인 생년월일을 입력하세요.")
            
              return false;
-         }
+		 }
+         
 		 if(userPhone == ""){
              alert("기억나는 번호를 입력하세요.")
         
@@ -162,48 +164,66 @@ window.onload =function(){
 				var html = '';
 				var html2 = '';
 				if (xhr.responseText) {
+					console.log(xhr.responseText);
 					var res = JSON.parse(xhr.responseText); 
 					console.log(res);
-					//if(!res.userId){
-						//	alert("없는계정입니다.");
-						//	return false;
-					//}
 					html += '<p class="form-text">찾으시는 ID는'+res.userId+'입니다.</p>';
 					html2 += '<p class="form-text">찾으셨던 ID는'+res.userId+'입니다.</p>';
+					html2 += '<p class="form-text">찾으셨던 ID는'+res.userNum+'입니다.</p>';
 					var ui = res.userId;
-					}
+				}else{//넘어온게 널일때 나올것
+					alert('없는 계정입니다.')
+					hidetext.style.display = 'block'; //인풋숨기기
+					resulttext.style.display = 'none'; //결과보이기
+				}
 				document.querySelector('#idtext').innerHTML=html;
 				document.querySelector('#idtext2').innerHTML=html2;
 				$('input[name=idput]').attr('value',ui);
-				}
+				$("#pwdchange").css({ 'pointer-events': '' }); //비밀번호바꾸기 활성화
 			}
+		}
 			xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
 			xhr.send(JSON.stringify(ndp));
 		}
 	hide2.onclick =function (){//비밀번호찾기화면 로직
-
+		var userId = document.querySelector('#userId').value;
 		var userPwd = document.querySelector('#userPwd').value;
 		var userNewPwd = document.querySelector('#userNewPwd').value;
 		
 		 if(userPwd == ""){
-            alert("계정 비밀번호를 입력하세요.")
+            alert("바꾸실 비밀번호를 입력하세요.")
             userDateOfBirth.value="";
             userDateOfBirth.focus();
             return false;
         }
 		 if(userNewPwd == ""){
-            alert("바꾸실 비밀번호를 입력하세요.")
+            alert("바꾸실 비밀번호를 다시 입력하세요.")
             userPhone.value="";
             userPhone.focus();
             return false;
         }
+		 if(userPwd !== userNewPwd){
+			 alert("일치시키세요")
+			 return false;
+		 }
 		hidetext2.style.display = 'none'; //숨기기
 		resulttext2.style.display = 'block'; //보이기
-		var i = {
-				userId,	userPwd, userNewPwd
+		var ipp = {
+				userPwd,userId
 		}
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST', '/changepwd');
+		xhr.open('POST', '/updatepwd');
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				if(x.responseText && x.responseText!=null){
+					
+					alert('등록완료');
+					location.href='/';
+				}
+			}
+		}
+		xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+		xhr.send(JSON.stringify(ipp));
 	}
 }
 </script>
