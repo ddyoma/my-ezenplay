@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.spboot.test.entity.PcInfo;
 
-@Service
 public interface PcInfoService {
 
 	List<PcInfo> getPcInfoList();

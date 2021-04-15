@@ -37,8 +37,6 @@ public class PayHistoryInfo {
 	 private String phDetails;
 	 @Column(name="ph_save")
 	 private Integer phSave;
-	 @Column(name="ph_total_amount")
-	 private Long phTotalAmount;
 	 
 	 @ManyToOne
 	 @JoinColumn(name="user_num")

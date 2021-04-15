@@ -18,7 +18,6 @@
 		<div class="row">
 			<div class="col-7 col-12-medium">
 			</div>
-			<jsp:include page="/WEB-INF/views/me/findid.jsp"></jsp:include>
 			
 			</div></div></div>
 

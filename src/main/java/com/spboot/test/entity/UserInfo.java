@@ -8,9 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,22 +23,23 @@ import lombok.Data;
 @Entity
 @Table(name="user_info")
 @Data
+@DynamicUpdate
 public class UserInfo {
 	
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="user_num")
    private Integer userNum;
-   @Column(name="user_id",unique = true)
+   @Column(name="user_id",unique = true,updatable=false)
    private String userId;
    @Column(name="user_pwd")
    private String userPwd;
    @Column(name="user_name")
    private String userName;   
-   @Column(name="user_gender")
+   @Column(name="user_gender", updatable= false)
    private String userGender;
-   @Column(name="user_date_of_birth")
-   private String userDateOfBirth;   
+   @Column(name="user_date_of_birth" , updatable= false)
+   private String userDateOfBirth;
    @Column(name="user_addr1")
    private String userAddr1;   
    @Column(name="user_addr2")
@@ -58,7 +63,13 @@ public class UserInfo {
    private String profilePath;
    @Column(name="action",insertable = false)
    private String action;
+   @Column(name="total_amount" ,insertable = false)
+   private Long totalAmount;
    
    @Transient
    private MultipartFile userFile;
+   
+   @ManyToOne
+   @JoinColumn(name = "grade_num")
+   private GradeInfo gradeInfo;
 }
