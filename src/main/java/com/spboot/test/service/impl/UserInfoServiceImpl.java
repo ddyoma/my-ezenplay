@@ -94,6 +94,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 					e1.printStackTrace();
 				}
 			}
+			log.info("userInfo=>{}",userInfo);
 			ui = uiRepo.save(userInfo);
 			return ui.getUserNum();
 		}

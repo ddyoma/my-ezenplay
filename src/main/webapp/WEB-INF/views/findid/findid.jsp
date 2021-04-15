@@ -33,7 +33,7 @@
 							<li class="nav-item"><a class="nav-link active"
 								data-toggle="tab" href="#infoPanel" role="tab">id찾기</a>
 							<li>
-							<li class="nav-item" ><a class="nav-link"  data-toggle="tab" id="tabtest"
+							<li class="nav-item" id="pwdchange"><a class="nav-link"  data-toggle="tab" id="tabtest"
 								href="#placementPanel" role="tab">비밀번호바꾸기</a>
 							<li>
 						</ul>
@@ -110,6 +110,7 @@
 </body>
 <script> //각 버튼 숨기고 보이기, id찾기
 window.onload =function(){
+	$("#pwdchange").css({ 'pointer-events': 'none' });
 	var hide = document.getElementById('hidebtn');
 	var hide2 = document.getElementById('hidebtn2');
 	var open = document.getElementById('openbtn');
@@ -178,6 +179,7 @@ window.onload =function(){
 				document.querySelector('#idtext').innerHTML=html;
 				document.querySelector('#idtext2').innerHTML=html2;
 				$('input[name=idput]').attr('value',ui);
+				$("#pwdchange").css({ 'pointer-events': '' }); //비밀번호바꾸기 활성화
 			}
 		}
 			xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');

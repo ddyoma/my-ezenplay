@@ -180,9 +180,18 @@ function update(){
 	if(document.querySelector('[name=file]').files[0]){
 		formData.append('userFile',document.querySelector('[name=file]').files[0]);
 	}else{
+		if(document.querySelector('#profile-i').innerHTML=='<img src="/resources/images/user/basic.png" id="profile-img">'){
+		formData.append('userProfile','basic.png');
+		formData.append('profilePath','basic.png');
+		}else{
 		formData.append('userProfile',document.querySelector('#userProfile').value);
 		formData.append('profilePath',document.querySelector('#profilePath').value);
+		}
 	}
 	formData.append('userNum',document.querySelector('#userNum').value);
 	xhr.send(formData);
+}
+
+function showImg(){
+	document.querySelector('#profile-i').innerHTML = '<img src="/resources/images/user/basic.png" id="profile-img"/>';
 }
