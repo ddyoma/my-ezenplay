@@ -1,7 +1,6 @@
 package com.spboot.test.entity;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,23 +22,21 @@ public class PayHistoryInfo {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name="ph_num")
 	 private Integer phNum;
-	 @Column(name="ph_type")
+	 @Column(name="ph_type",updatable = false)
 	 private String phType ;
-	 @Column(name="ph_date",insertable = false)
-	 private Date phDate ;
-	 @Column(name="ph_method")
+	 @Column(name="ph_date_time",insertable = false,updatable = false)
+	 private LocalDateTime phDateTime ;
+	 @Column(name="ph_method",updatable = false)
 	 private String phMethod ;
-	 @Column(name="ph_price")
+	 @Column(name="ph_price",updatable = false)
 	 private Integer phPrice ;
-	 @Column(name="ph_time")
-	 private Integer phTime;
-	 @Column(name="ph_details")
+	 @Column(name="ph_details",updatable = false)
 	 private String phDetails;
-	 @Column(name="ph_save")
+	 @Column(name="ph_save",updatable = false)
 	 private Integer phSave;
 	 
 	 @ManyToOne
-	 @JoinColumn(name="user_num")
+	 @JoinColumn(name="user_num",updatable = false)
 	 private UserInfo userInfo;
 
 }

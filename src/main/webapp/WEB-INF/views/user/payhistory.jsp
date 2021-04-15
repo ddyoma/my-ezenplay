@@ -15,100 +15,43 @@
  <table class="table">
     <thead>
       <tr>
-        <th>번호</th>
         <th>분류</th>
         <th>결제일</th>
         <th>결제수단</th>
         <th>결제금액</th>
         <th>상세</th>
-        <th>적립내역</th>
+        <th>마일리지적립</th>
       </tr>
     </thead>
-    
-    <tbody>
-      <tr class="table-active">
-        <td>1</td>
-        <td>시간충전</td>
-        <td>2021-04-13</td>
-        <td>현금</td>
-        <td>10000</td>
-        <td>시간충전12시간</td>
-        <td>적립내역</td>
-      </tr>      
-       <tr class="table-active">
-        <td>1</td>
-        <td>시간충전</td>
-        <td>2021-04-13</td>
-        <td>현금</td>
-        <td>10000</td>
-        <td>시간충전12시간</td>
-        <td>적립내역</td>
-      </tr> 
-       <tr class="table-active">
-        <td>1</td>
-        <td>시간충전</td>
-        <td>2021-04-13</td>
-        <td>현금</td>
-        <td>10000</td>
-        <td>시간충전12시간</td>
-        <td>적립내역</td>
-      </tr> 
-       <tr class="table-active">
-        <td>1</td>
-        <td>시간충전</td>
-        <td>2021-04-13</td>
-        <td>현금</td>
-        <td>10000</td>
-        <td>시간충전12시간</td>
-        <td>적립내역</td>
-      </tr> 
-       <tr class="table-active">
-        <td>1</td>
-        <td>시간충전</td>
-        <td>2021-04-13</td>
-        <td>현금</td>
-        <td>10000</td>
-        <td>시간충전12시간</td>
-        <td>적립내역</td>
-      </tr> 
-       <tr class="table-active">
-        <td>1</td>
-        <td>시간충전</td>
-        <td>2021-04-13</td>
-        <td>현금</td>
-        <td>10000</td>
-        <td>시간충전12시간</td>
-        <td>적립내역</td>
-      </tr> 
-       <tr class="table-active">
-        <td>1</td>
-        <td>시간충전</td>
-        <td>2021-04-13</td>
-        <td>현금</td>
-        <td>10000</td>
-        <td>시간충전12시간</td>
-        <td>적립내역</td>
-      </tr> 
-       <tr class="table-active">
-        <td>1</td>
-        <td>시간충전</td>
-        <td>2021-04-13</td>
-        <td>현금</td>
-        <td>10000</td>
-        <td>시간충전12시간</td>
-        <td>적립내역</td>
-      </tr> 
-       <tr class="table-active">
-        <td>1</td>
-        <td>시간충전</td>
-        <td>2021-04-13</td>
-        <td>현금</td>
-        <td>10000</td>
-        <td>시간충전12시간</td>
-        <td>적립내역</td>
-      </tr> 
-      
+    <tbody id="tBody">
     </tbody>
   </table>
+  <input type="hidden" id="userNum" value="${UserInfo.userNum}">
+<script>
+window.onload = function(){
+	var userNum = document.querySelector('#userNum').value;
+var xhr = new XMLHttpRequest();
+xhr.open('GET','/pay/user?userNum='+userNum);
+xhr.onreadystatechange = function(){
+	if(xhr.readyState==4&&xhr.status==200){
+		var res = JSON.parse(xhr.responseText);
+		var html = '';
+		for(var r of res){
+			console.log(r.phType);
+			html += '<tr class="table-active">';
+			html += '<td>'+r.phType+'</td>';
+			html += '<td>'+r.phDateTime+'</td>';
+			html += '<td>'+r.phMethod+'</td>';
+			html += '<td>'+r.phPrice+'</td>';
+			html += '<td>'+r.phDetails+'</td>';
+			html += '<td>'+r.phSave+'</td>';
+			html += '</tr>';
+		}
+		document.querySelector('#tBody').innerHTML = html;
+		}
+	}
+	xhr.send();
+}
+</script>
 </body>
 </html>

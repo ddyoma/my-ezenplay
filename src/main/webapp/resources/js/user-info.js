@@ -177,6 +177,9 @@ function update(){
 	formData.append('favoriteGame',document.querySelector('#favoriteGame').value);
 	formData.append('restOfTime',document.querySelector('#restOfTime>p').innerHTML);
 	formData.append('totalAmount',document.querySelector('#totalAmount').innerHTML);
+	if(document.querySelector('#profile-i').innerHTML=='<img src="/resources/images/user/basic.png" id="profile-img">'){
+		document.querySelector('[name=file]').value=null;
+	}
 	if(document.querySelector('[name=file]').files[0]){
 		formData.append('userFile',document.querySelector('[name=file]').files[0]);
 	}else{
