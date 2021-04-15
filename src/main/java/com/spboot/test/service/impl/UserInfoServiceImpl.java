@@ -2,7 +2,6 @@ package com.spboot.test.service.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Time;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,21 +31,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 		log.info("tmp=>{}", userInfo);
 		return userInfo;
 	}
-
 	@Override
-	public boolean checkId(String userId) {
-			
-			log.info("tmp=>{}", userId);
-			return uiRepo.existsByUserId(userId);
+	public UserInfo findId(UserInfo ui) {
+		UserInfo userInfo = uiRepo.findByUserNameAndUserDateOfBirthAndUserPhone(ui.getUserName(), ui.getUserDateOfBirth(), ui.getUserPhone());
+		log.info("tmp=>{}", userInfo);  
+		return userInfo;
 	}
 	@Override
 	public List<UserInfo> getList() {
 		return uiRepo.findAllByOrderByUserNumDesc();
-	}
-	
-	@Override
-	public UserInfo getUser(int userNum) {
-		return uiRepo.findByUserNum(userNum);
 	}
 
 	@Override
@@ -98,7 +91,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return 0;
 	}
 
-	private final String ROOT = "C:\\Users\\Administrator\\git\\aws-ezenplay\\src\\main\\webapp\\resources\\images\\user\\";  //경로수정하세요
+	private final String ROOT = System.getProperty("user.dir")+"\\src\\main\\webapp\\resources\\images\\user\\";
+
+	
+	@Override
+	public boolean checkId(String userId) {
+			
+			log.info("tmp=>{}", userId);
+			return uiRepo.existsByUserId(userId);
+	}
 
 	@Override
 	public Integer saveUserInfo(UserInfo user) {
@@ -123,6 +124,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return ui.getUserNum();
 	}
 
-
+	
 
 }
