@@ -74,8 +74,8 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 <!--  음식 메뉴 시작 -->
 
 <div id="content" class="p-4 p-md-5 pt-5">
-<a href="/views/food/food-insert"><button type="button" class="btn btn-success" style="margin-bottom:20px;">Register</button></a>
-<div id="foodList" class="row" ></div>	
+<a href="/views/food/food-insert"><button type="button" class="btn btn-success" style="margin-bottom:20px;">메뉴 등록</button></a><!--  음식 메뉴 등록 -->
+<div id="foodList" class="row" ></div>	<!--  음식 메뉴 리스트 -->
 </div>
 </div>
 <!--  음식 메뉴 종료 -->
@@ -117,6 +117,8 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					html += '		</div>';
 					html += '		<small class="text-muted">'+foods.foodCookTime+' mins</small>';
 					html += '		</div>';
+					html += '<button type="button" onclick="modify()" class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
+					html += '<button type="button" class="btn btn-danger" style="margin-top:20px; height:35px" >삭제</button>';
 					html += '	</div>';
 					html += '	</div>';
 					html += '	</div>';
@@ -146,14 +148,17 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var res = JSON.parse(xhr.responseText);
 				var html ='';
-				for(var foods of res){					
+				for(var foods of res){
+					
 					html += '<div class="col-md-4">';
 					html += '<div class="card mb-4 shadow-sm">';
+					html += '<form action="/views/food/food-update?foodNum='+foods.foodNum+'" method="GET">';
 					html += '	<img class="card-img-top"';
 					html += '		src="/resources/images/food/'+foods.foodImgName+'"';
 					html += 'alt="'+foods.foodImgName+'">';
+					
 					html += '	<div class="card-body">';
-					html += '	<p class="card-text">'+foods.foodDesc+'</p>';
+					html += '	<p class="card-text" id="foodDesc">'+foods.foodDesc+'</p>';
 					html += '	<div';
 					html += '		class="d-flex justify-content-between align-items-center">';
 					html += '		<div class="btn-group">';
@@ -164,9 +169,14 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					html += '		</div>';
 					html += '		<small class="text-muted">'+foods.foodCookTime+' mins</small>';
 					html += '		</div>';
+					html += '<button type="submit"  class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
+					html += '<button type="submit" class="btn btn-danger" style="margin-top:20px; height:35px" >삭제</button>';
+					
+					html += '	</div>';
+					html += '</form>';
 					html += '	</div>';
 					html += '	</div>';
-					html += '	</div>';
+					
 				}
 				document.querySelector('#foodList').innerHTML=html;
 			}
@@ -174,6 +184,11 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 
 		xhr.send();
 
+	}
+	
+	function modify(){
+		location.href="/views/food/food-update";
+		
 	}
 </script>
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->

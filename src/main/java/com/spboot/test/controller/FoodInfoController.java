@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,5 +40,10 @@ public class FoodInfoController {
 	public  FoodInfo insertFood(@ModelAttribute FoodInfo food) {
 		log.info("foodInfo=>{}",food);
 		return foodService.insertFoodInfo(food);
+	}
+	
+	@GetMapping("/views/food/food-update")
+	public @ResponseBody Optional<FoodInfo> getfoodInfo(@RequestParam int foodNum) {
+		return foodService.getFoodInfo(foodNum);
 	}
 }
