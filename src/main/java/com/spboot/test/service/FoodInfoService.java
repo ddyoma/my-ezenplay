@@ -8,10 +8,10 @@ import com.spboot.test.entity.FoodInfo;
 public interface FoodInfoService {
 	
 	List<FoodInfo> getFoodInfoList();
-	Optional<FoodInfo> getFoodInfo(int fiNum);
+	Optional<FoodInfo> getFoodInfo(int foodNum);
 	FoodInfo insertFoodInfo(FoodInfo food);
 	FoodInfo updateFoodInfo(FoodInfo food);
-	int deleteFoodInfo(int fiNum);
+	int deleteFoodInfo(int foodNum);
 	List<FoodInfo> getFoodInfos(String foodType);
 
 }
