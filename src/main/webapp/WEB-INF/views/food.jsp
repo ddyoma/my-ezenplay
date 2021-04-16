@@ -74,7 +74,7 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 <!--  음식 메뉴 시작 -->
 
 <div id="content" class="p-4 p-md-5 pt-5">
-<a href="/views/food/food-insert"><button type="button" class="btn btn-success" style="margin-bottom:20px;">메뉴 등록</button></a><!--  음식 메뉴 등록 -->
+<button type="button" class="btn btn-success" onclick="showPopup()" style="margin-bottom:20px;">메뉴 등록</button><!--  음식 메뉴 등록 -->
 <div id="foodList" class="row" ></div>	<!--  음식 메뉴 리스트 -->
 </div>
 </div>
@@ -150,6 +150,7 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					
 					html += '<div class="col-md-4">';
 					html += '<div class="card mb-4 shadow-sm">';
+					html += '<form action="/views/food/food-update?foodNum='+document.querySelector('#foodNum').value+'" method="GET">';
 					html += '<input type="hidden" id="foodNum" value="'+foods.foodNum+'">';
 					html += '	<img class="card-img-top"';
 					html += '		src="/resources/images/food/'+foods.foodImgName+'"';
@@ -166,9 +167,10 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					html += '		</div>';
 					html += '		<small class="text-muted">'+foods.foodCookTime+' mins</small>';
 					html += '		</div>';
-					html += '<button type="submit"  onclick="foodUpdate()" class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
+					html += '<button type="submit"  class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
 					html += '<button type="submit" class="btn btn-danger" style="margin-top:20px; height:35px" >삭제</button>';
 					html += '	</div>';
+					html += '   </form>';
 					html += '	</div>';
 					html += '	</div>';
 					
@@ -186,16 +188,20 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 		xhr.open('GET', '/food-update?foodNum='+document.querySelector('#foodNum').value);
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
+				window.open("/views/food/food-update", "food-update", "width=500, height=600, left=700, top=200"); 
 				var res = JSON.parse(xhr.responseText);
 				var html ='';
 				console.log(res);
-				location.href="/views/food/food-update";
 
 	
 			}
 			}
 		xhr.send();
 	}
+	
+	  function showPopup() {
+		  window.open("/views/food/food-insert", "food-register", "width=500, height=600, left=700, top=200"); 
+		  }
 
 </script>
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->

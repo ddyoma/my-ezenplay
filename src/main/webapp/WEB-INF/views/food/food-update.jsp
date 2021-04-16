@@ -52,5 +52,24 @@ function digit_check(evt){
         return false;
     }
 }
+
+window.onload = function(){
+	foodUpdate();
+} 
+
+function foodUpdate() {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/food-update?foodNum='+document.querySelector('#foodNum').value);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) { 
+			var res = JSON.parse(xhr.responseText);
+			var html ='';
+			console.log(res);
+
+
+		}
+		}
+	xhr.send();
+}
 </script>
 </html>
