@@ -26,7 +26,7 @@ public class ReviewInfoController {
 	
 	@PostMapping("/review/insert")
 	public  @ResponseBody Integer insertReview(@RequestBody ReviewInfo reviewInfo) {
-		reviewInfo =reviewService.insertReviewInfo(reviewInfo);
+//		reviewInfo =reviewService.insertReviewInfo(reviewInfo);
 		log.info("review=>{}",reviewInfo);
 		return reviewInfo.getRevNum();
 	}

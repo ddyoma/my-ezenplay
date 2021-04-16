@@ -18,4 +18,5 @@ public interface UserInfoService {
 	int deleteUserInfo(UserInfo ui);
 	boolean checkId(String userId);
 	UserInfo saveUserPwd(UserInfo userInfo);
+	int withdrawnUserInfo(UserInfo userInfo);
 }

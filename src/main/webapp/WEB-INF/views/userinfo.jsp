@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="/resources/css/inputcss.css"> <!-- input css -->
 <jsp:include page="/WEB-INF/views/home/maintemplethead.jsp"></jsp:include><!-- 상단바로고디자인 -->
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
-
 </head>
 <body>
 <div class="container emp-profile">
@@ -62,18 +61,16 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                        <button class="profile-my-btn" type="button" onclick="showImg()">기본이미지로변경</button>
-                            <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
+                       <button class="profile-my-btn" type="button" onclick="showImg()" style="margin-left: 50px;">기본이미지로변경</button><br>
+                         <p>Link</p>
+                            <a href="/views/voccenter">Go to review</a><br/>
+                            <a href="">Go to rating center</a><br/>
+                            <a style="cursor:pointer;" id="mycss" onclick="goRedfila()">Learn from redfila</a>
                             <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
-                        </div>
+                            <a style="cursor:pointer;"id="mycs" onclick="showPassword()">회원탈퇴</a><div class="password-field" id="hideP" style="display:none"><input type="password" name="userPwd" placeholder="password">
+                            <button type="button" onclick="return doDelete()">탈퇴</button>
+                            </div><br/>
+                        </div> 
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">

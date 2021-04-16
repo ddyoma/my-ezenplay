@@ -52,7 +52,7 @@ function showEmail(){
 // print
 function printName(){
 	const name = document.querySelector('[name=userName]').value;
-	document.querySelector("#userName").innerHTML = '<p>'+name+'</p>';
+	document.querySelector("#userName").innerHTML = '<p style="cursor:pointer">'+name+'</p>';
 	var userName = document.querySelector('#userName').style.display;
 	if(userName){
 		document.querySelector('#userName').style.display='';
@@ -61,7 +61,7 @@ function printName(){
 }
 function printPhone(){
 	const name = document.querySelector('[name=userPhone]').value;
-	document.querySelector("#userPhone").innerHTML = '<p>'+name+'</p>';
+	document.querySelector("#userPhone").innerHTML = '<p style="cursor:pointer">'+name+'</p>';
 	var userPhone = document.querySelector('#userPhone').style.display;
 	if(userPhone){
 		document.querySelector('#userPhone').style.display='';
@@ -70,7 +70,7 @@ function printPhone(){
 }
 function printAddr1(){
 	const name = document.querySelector('[name=userAddr1]').value;
-	document.querySelector("#userAddr1").innerHTML = '<p>'+name+'</p>';
+	document.querySelector("#userAddr1").innerHTML = '<p style="cursor:pointer">'+name+'</p>';
 	var userAddr1 = document.querySelector('#userAddr1').style.display;
 	if(userAddr1){
 		document.querySelector('#userAddr1').style.display='';
@@ -79,7 +79,7 @@ function printAddr1(){
 }
 function printAddr2(){
 	const name = document.querySelector('[name=userAddr2]').value;
-	document.querySelector("#userAddr2").innerHTML = '<p>'+name+'</p>';
+	document.querySelector("#userAddr2").innerHTML = '<p style="cursor:pointer">'+name+'</p>';
 	var userAddr2 = document.querySelector('#userAddr2').style.display;
 	if(userAddr2){
 		document.querySelector('#userAddr2').style.display='';
@@ -88,7 +88,7 @@ function printAddr2(){
 }
 function printEmail(){
 	const name = document.querySelector('[name=userEmail]').value;
-	document.querySelector("#userEmail").innerHTML = '<p>'+name+'</p>';
+	document.querySelector("#userEmail").innerHTML = '<p style="cursor:pointer">'+name+'</p>';
 	var userEmail = document.querySelector('#userEmail').style.display;
 	if(userEmail){
 		document.querySelector('#userEmail').style.display='';
@@ -197,4 +197,44 @@ function update(){
 
 function showImg(){
 	document.querySelector('#profile-i').innerHTML = '<img src="/resources/images/user/basic.png" id="profile-img"/>';
+}
+function goRedfila(){
+	window.open('https://m.blog.naver.com/PostList.nhn?blogId=redfila&currentPage=2','Dong-Dong');
+}
+function showPassword(){
+	if(document.querySelector('#hideP').style.display){
+		document.querySelector('#hideP').style.display='';
+	}else{
+		document.querySelector('#hideP').style.display='none';
+	}
+}
+function doDelete(){
+	var userP = document.querySelector('[name=userPwd]');
+	if(userP.value.trim().length==0){
+		alert('비밀번호를 입력해주세요!');
+		userP.focus();
+		return;
+	}
+	if(confirm('마일리지와 남은시간이 소멸됩니다. 정말탈퇴하시겠습니까?')){
+		var userPwd = document.querySelector('[name=userPwd]').value;
+		var userNum = document.querySelector('#userNum').value;
+		var restOfTime = document.querySelector('#restOfTime>p').innerHTML;
+		var userMileage = document.querySelector('#userMileage>p').innerHTML;
+		var xhr = new XMLHttpRequest();
+		var url = '?userPwd='+userPwd+'&userNum='+userNum+'&restOfTime='+restOfTime+'&userMileage='+userMileage;
+		xhr.open('DELETE','/withdrawn'+url);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				var res = JSON.parse(xhr.responseText);
+				if(res==1){
+					alert('회원탈퇴완료');
+					location.href='/';
+				}else{
+					alert('비밀번호가 틀립니다');
+					userP.focus();
+				}
+			}
+		}
+		xhr.send();
+	}
 }

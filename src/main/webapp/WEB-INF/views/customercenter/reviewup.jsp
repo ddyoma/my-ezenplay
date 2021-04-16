@@ -5,7 +5,6 @@
 				
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
             <div class="probox" style="background: #BDBDBD;"> <!-- 사진미등록자는 기본프로필화면으로보이게 -->
 						<img class="profileone" src="/resources/images/user/${UserInfo.profilePath}" onerror="this.style.display='none'"alt='' /> 
 					</div><br><br>
@@ -40,7 +39,6 @@
               <c:if test="${UserInfo ne null }">
               <div class="text-center"><button onclick="upload()" type="submit">등록</button></div>
               </c:if>
-            </form>
             </div>
 			
 				

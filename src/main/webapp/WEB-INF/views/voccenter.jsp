@@ -82,8 +82,7 @@ margin: auto;
           </div>
           
   		<jsp:include page="/WEB-INF/views/customercenter/reviewup.jsp"></jsp:include><!-- 리뷰등록 -->
-			<div>	
-          </div>
+
         </div>
 		 <jsp:include page="/WEB-INF/views/customercenter/q.jsp"></jsp:include><!-- f&q -->
 				  <br/><br/><br/>
