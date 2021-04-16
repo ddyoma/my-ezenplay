@@ -42,8 +42,8 @@ public class FoodInfoController {
 		return foodService.insertFoodInfo(food);
 	}
 	
-	@GetMapping("/views/food/food-update")
-	public @ResponseBody Optional<FoodInfo> getfoodInfo(@RequestParam int foodNum) {
+	@GetMapping("/food-update")
+	public @ResponseBody Optional<FoodInfo> getfoodInfo(@RequestParam Integer foodNum) {
 		return foodService.getFoodInfo(foodNum);
 	}
 }

@@ -43,6 +43,7 @@ margin: auto;
 <!-- 바디에 작성공간여기까지 -->
 	</div>
 </section><!-- End About Section -->
+<jsp:include page="/WEB-INF/views/customercenter/reviewslide.jsp"></jsp:include><!-- 리뷰슬라이드-->
 <jsp:include page="/WEB-INF/views/home/maintempletfootersection.jsp"></jsp:include><!-- 가운데바디2섹션 service형태라 안쓸듯 -->
 <jsp:include page="/WEB-INF/views/home/maintempletclient.jsp"></jsp:include><!-- client -->
  </main><!-- End #main -->

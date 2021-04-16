@@ -73,7 +73,14 @@ img {
 line-height: 100%;
 font-weight: bold ;
 }
-
+.margingood {
+  border: 10px solid red;
+  border-radius: 30px 0px;
+}
+p{word-break:break-all;
+}
+.card-inner{
+    margin-left: 4rem;
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -84,64 +91,85 @@ font-weight: bold ;
 
 
 <div class="container text-center my-3">
-    <h3>리뷰보기</h3>
+    <h3 style="cursor: pointer;" onclick="location.href='/views/customercenter/reviewlist'">리뷰보기</h3>
     
     <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
         <div class="carousel-inner w-100" role="listbox">
             <div class="carousel-item row no-gutters active">
-            <div class="col-3 float-left" id="margingood">
-			          <img src="http://newsroom.etomato.com/userfiles/black1(13).jpg" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-			          <br><div style="float:right;" class="col-md-6 text-warning" id= "revStar0"  ></div>
-			          <br><div id="fontw" style="float:left" >작성자</div><br><div style="float:left;" class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false" id="userId0" ></div>
-			          <br><div id="fontw" style="float:left;" >작성코멘트</div><br><small style="float:left;" id= "revComment0" class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Woman - New York</small>
-        		</div>
-                <div class="col-3 float-left">
-			          <img src="http://newsroom.etomato.com/userfiles/black1(13).jpg" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-			          <br>별점 :  <div  class="col-md-6 text-warning" id= "revStar1"></div>
-			          아이디 : <div><p class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false" id="userId1"></p></div>
-			          내용 <div id="revComment1"></div>
-        		</div>
-                <div class="col-3 float-left">
-			          <img src="http://newsroom.etomato.com/userfiles/black1(13).jpg" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-			          <br>별점 : <div class="col-md-6 text-warning" id= "revStar2"></div>
-			          아이디 : <p class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false" id="userId2"></p>
-			          내용 : <small id= "revComment2" class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Woman - New York</small>
-        		</div>
-                <div class="col-3 float-left">
-			          <img src="http://newsroom.etomato.com/userfiles/black1(13).jpg" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-			          <br>별점 : <div class="col-md-6 text-warning" id= "revStar3"></div>
-			          아이디 : <p class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false" id="userId3"></p>
-			          내용 : <small id= "revComment3" class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Woman - New York</small>
-        		</div>
-        		
+            
+            	<section id="services" class="services">
+				      <div class="container">
+				
+				
+				        <div class="row">
+				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+				            <div class="icon-box">
+				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				              <div id= "revStar0"></div>
+				              <h4><div id="userId0" style="cursor: pointer;" ></div></h4>
+				              <p id= "revComment0"></p>
+				            </div>
+				          </div>
+				
+				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+				            <div class="icon-box">
+				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				              <div id= "revStar1"></div>
+				               <h4><div id="userId1" style="cursor: pointer;" ></div></h4>
+				              <p id= "revComment1"></p>
+				            </div>
+				          </div>
+				
+				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+				            <div class="icon-box">
+				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				              <div id= "revStar2"></div>
+				              <h4><div id="userId2" style="cursor: pointer;" ></div></h4>
+				              <p id= "revComment2"></p>
+				            </div>
+				          </div>
+				          </div>
+				         </div>
+				  </section>
+               
             </div>
             <div class="carousel-item row no-gutters">
-                 <div class="col-3 float-left">
-			          <img src="http://newsroom.etomato.com/userfiles/black1(13).jpg" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-			          <br>별점 : <div class="col-md-6 text-warning" id= "revStar4"></div>
-			          아이디 : <p class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false" id="userId4"></p>
-			          내용 : <small id= "revComment4" class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Woman - New York</small>
-        		</div>
-                 <div class="col-3 float-left">
-			          <img src="http://newsroom.etomato.com/userfiles/black1(13).jpg" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-			          <br>별점 : <div class="col-md-6 text-warning" id= "revStar5"></div>
-			          아이디 : <p class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false" id="userId5"></p>
-			          내용 : <small id= "revComment5" class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Woman - New York</small>
-        		</div>
-                 <div class="col-3 float-left">
-			          <img src="http://newsroom.etomato.com/userfiles/black1(13).jpg" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-			          <br>별점 : <div class="col-md-6 text-warning" id= "revStar6"></div>
-			          아이디 : <p class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false" id="userId6"></p>
-			          내용 : <small id= "revComment6" class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Woman - New York</small>
-        		</div>
-                <div class="col-3 float-left">
-			          <img src="http://newsroom.etomato.com/userfiles/black1(13).jpg" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-			          <br>별점 : <div class="col-md-6 text-warning" id= "revStar7"></div>
-			          아이디 : <p class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false" id="userId7"></p>
-			          내용 : <small id= "revComment7" class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Woman - New York</small>
-        		</div>
+                <section id="services" class="services">
+				      <div class="container">
+				        <div class="row">
+				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+				            <div class="icon-box">
+				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				              <div id= "revStar3"></div>
+				               <h4><div id="userId3" style="cursor: pointer;" ></div></h4>
+				              <p id= "revComment3"></p>
+				            </div>
+				          </div>
+				
+				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+				            <div class="icon-box">
+				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				              <div id= "revStar4"></div>
+				               <h4><div id="userId4" style="cursor: pointer;" ></div></h4>
+				              <p id= "revComment4"></p>
+				            </div>
+				          </div>
+				
+				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+				            <div class="icon-box">
+				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				              <div id= "revStar5"></div>
+				               <h4><div id="userId5" style="cursor: pointer;" ></div></h4>
+				              <p id= "revComment5"></p>
+				            </div>
+				          </div>
+				          </div>
+				          </div>
+				  </section>
             </div>
         </div>
+        
+       <!-- End Services Section 직접적으로 움직이게해주는태그-->
         <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -153,5 +181,6 @@ font-weight: bold ;
     </div>
 
 </div>
+
 
 
