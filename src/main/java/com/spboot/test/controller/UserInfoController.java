@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 //github.com/cwyoon75/aws-ezenplay.git
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 //github.com/cwyoon75/aws-ezenplay.git
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -65,7 +65,7 @@ public class UserInfoController {
 	@PostMapping("/logout")
 	public @ResponseBody boolean logout(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		session.invalidate(); // 세션초기화
+		session.invalidate();
 		return true;
 	}
 
@@ -75,9 +75,14 @@ public class UserInfoController {
 		return uService.saveUserInfo(mf);
 	}
 
-	@PostMapping("/delete")
-	public @ResponseBody Integer deleteUser(@RequestBody UserInfo userInfo) {
-		return uService.deleteUserInfo(userInfo); 
+	@DeleteMapping("/withdrawn") //회원탈퇴
+	public Integer withdrawn(@ModelAttribute UserInfo userInfo,HttpServletRequest req) {
+		int result = uService.withdrawnUserInfo(userInfo);
+		 if(result==1) {
+			HttpSession s = req.getSession();
+			s.invalidate();
+		 }
+		return result;
 	}
 
 	@PostMapping("/update")

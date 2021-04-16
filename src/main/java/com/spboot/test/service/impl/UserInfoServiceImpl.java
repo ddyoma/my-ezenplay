@@ -2,6 +2,7 @@ package com.spboot.test.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,8 +144,23 @@ public class UserInfoServiceImpl implements UserInfoService {
 		UserInfo ui = uiRepo.save(user);
 		return ui.getUserNum();
 	}
-
-
 	
+	@Override
+	public int withdrawnUserInfo(UserInfo userInfo) {
+		UserInfo ui = uiRepo.findByUserNum(userInfo.getUserNum());
+		int result;
+		if(ui.getUserPwd().equals(userInfo.getUserPwd())) {
+			ui.setAction("0");
+			ui.setUserMileage(0);
+			Time t = new Time(0,0,0);
+			ui.setRestOfTime(t);
+			uiRepo.save(ui);
+			result = 1;
+		}else {
+			result = 0;
+		}
+		return result;
+	}
+
 
 }

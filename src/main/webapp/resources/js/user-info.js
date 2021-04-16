@@ -198,3 +198,43 @@ function update(){
 function showImg(){
 	document.querySelector('#profile-i').innerHTML = '<img src="/resources/images/user/basic.png" id="profile-img"/>';
 }
+function goRedfila(){
+	window.open('https://m.blog.naver.com/PostList.nhn?blogId=redfila&currentPage=2','Dong-Dong');
+}
+function showPassword(){
+	if(document.querySelector('#hideP').style.display){
+		document.querySelector('#hideP').style.display='';
+	}else{
+		document.querySelector('#hideP').style.display='none';
+	}
+}
+function doDelete(){
+	var userP = document.querySelector('[name=userPwd]');
+	if(userP.value.trim().length==0){
+		alert('비밀번호를 입력해주세요!');
+		userP.focus();
+		return;
+	}
+	if(confirm('마일리지와 남은시간이 소멸됩니다. 정말탈퇴하시겠습니까?')){
+		var userPwd = document.querySelector('[name=userPwd]').value;
+		var userNum = document.querySelector('#userNum').value;
+		var restOfTime = document.querySelector('#restOfTime>p').innerHTML;
+		var userMileage = document.querySelector('#userMileage>p').innerHTML;
+		var xhr = new XMLHttpRequest();
+		var url = '?userPwd='+userPwd+'&userNum='+userNum+'&restOfTime='+restOfTime+'&userMileage='+userMileage;
+		xhr.open('DELETE','/withdrawn'+url);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				var res = JSON.parse(xhr.responseText);
+				if(res==1){
+					alert('회원탈퇴완료');
+					location.href='/';
+				}else{
+					alert('비밀번호가 틀립니다');
+					userP.focus();
+				}
+			}
+		}
+		xhr.send();
+	}
+}
