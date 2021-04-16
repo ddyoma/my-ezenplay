@@ -23,7 +23,7 @@
 			</div>        	
         </div>
         <div class="form-group">
-        	<input type="text" class="form-control" name="foodName"  value="#foodDesc" placeholder="음식이름">
+        	<input type="text" class="form-control" name="foodName"  value="${foods.foodNum} " placeholder="음식이름">
         </div>
 		<div class="form-group">
             <input type="text" class="form-control" name="foodDesc"  placeholder="음식설명">
@@ -59,7 +59,7 @@ window.onload = function(){
 
 function foodUpdate() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/food-update?foodNum='+document.querySelector('#foodNum').value);
+	xhr.open('GET', '/food-update?foodNum='+foods.foodNum);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) { 
 			var res = JSON.parse(xhr.responseText);

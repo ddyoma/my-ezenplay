@@ -150,7 +150,7 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					
 					html += '<div class="col-md-4">';
 					html += '<div class="card mb-4 shadow-sm">';
-					html += '<form action="/views/food/food-update?foodNum='+document.querySelector('#foodNum').value+'" method="GET">';
+					html += '<form action="/views/food/food-update?foodNum='+foods.foodNum+'">';
 					html += '<input type="hidden" id="foodNum" value="'+foods.foodNum+'">';
 					html += '	<img class="card-img-top"';
 					html += '		src="/resources/images/food/'+foods.foodImgName+'"';
