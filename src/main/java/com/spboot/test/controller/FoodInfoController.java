@@ -1,13 +1,20 @@
 package com.spboot.test.controller;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,8 +49,9 @@ public class FoodInfoController {
 		return foodService.insertFoodInfo(food);
 	}
 	
-	@GetMapping("/views/food/food-update")
-	public @ResponseBody Optional<FoodInfo> getfoodInfo(@RequestParam Integer foodNum) {
+	@GetMapping("/food")
+	public @ResponseBody Optional<FoodInfo> getfoodInfo(Integer foodNum) {
 		return foodService.getFoodInfo(foodNum);
+	
 	}
 }
