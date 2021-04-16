@@ -8,47 +8,9 @@
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<style rel="stylesheet" href="/resources/css/join.css"></style>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
-<style>
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700);
-@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700);
-
-body {
-    background: #fff;
-	font-family: 'Roboto', sans-serif;
-	color:#333;
-	line-height: 22px;	
-}
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Roboto Condensed', sans-serif;
-	font-weight: 400;
-	margin-top:5px;
-	margin-bottom:5px;
-}
-h1, h2, h3 {
-	text-transform:uppercase;
-}
-input.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-    cursor: pointer;
-    opacity: 1;
-    filter: alpha(opacity=1);    
-}
-
-.form-inline .form-group{
-    margin-left: 0;
-    margin-right: 0;
-}
-.control-label {
-    color:#333333;
-}
-</style>
 
 <body>
  <!-- ======= Breadcrumbs ======= -->
@@ -59,67 +21,26 @@ input.upload {
           <li><a href="index.html">Home</a></li>
           <li>회원가입</li>
         </ol>
-        <h2>회원가입</h2>
-
       </div>
     </section><!-- End Breadcrumbs -->
-    
-<!-- ======= Contact Section ======= -->
-<!--
-<main>
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="row">
-	
 
-			
-			 <form method="POST" enctype="multipart/form-data" action="/memberjoin" >
-                  <div class="form-input">
-                      <label for="first_name" class="required">아이디</label>
-                      <input type="text" name="first_name" id="first_name" />
-                  </div>
-					ID : <input type="text" name="userId"  onchange="idChack=false;" ><button onclick="checkId()" type="button">중복확인</button><br>
-					비밀번호 : <input type="password" name="userPwd"><br>
-					비밀번호 확인 : <input type="password" name="#"><br>
-					이메일 : <input type="email" name="userEmail"><br>
-					이름 : <input type="text" name="userName"><br>
-					생년월일 : <input type="date" name="userDateOfBirth"><br>
-					성별 : <select class="custom-select" id="inputGroupSelect04" name="userGender"><option value="여성">여성</option><br>
-					<option value="남성">남성</option></select>
-					<br>
-										<input type="radio" value="남성">
-					<br>
-					프로필사진 : <input type="file" name="userFile">
-					<br>
-					<br>
-					폰번호 : <input type="text" name="userPhone"><br>
-					주소 : <input type="text" name="userAddr1"><br>
-					상세주소 : <input type="text" name="userAddr2"><br>
-					선호장르 : <select class="custom-select" id="inputGroupSelect05" name="favoriteGame"><option value="1">SF</option><option value="2">RPG</option></select><br>
-					<button type="button" onclick="insert()">전송</button>
-			</form>
-		</div>
-	</div>
-</section>
-</main>		
--->		
 
 
 <div class="container">
 	<div class="row">
     <div class="col-md-8">  
-        <h1 class="entry-title"><span>회원가입</span> </h1>
+		<h2 style="margin-left: 70px;">회원가입</h2><br><br><br>
          <form class="form-horizontal" enctype="multipart/form-data" action="/memberjoin" method="post">
          <div class="form-group">
-          <label class="control-label col-sm-3">아이디 입력 <span class="text-danger">*</span></label>
+          <label class="control-label col-sm-3" for="id">아이디 입력 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
-            <input type="text" class="form-control" name="userId" id="id" placeholder="4자리 이상" onchange="idChack=false;">
+            <input type="text" class="form-control" name="userId" id="id" placeholder="4자리~10자리" onchange="idChack=false;">
         <small>아이디 중복확인을 해주세요.</small>
           </div>
             <button onclick="checkId()" class="button" type="button" >중복확인</button>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3">비밀번호 입력 <span class="text-danger">*</span></label>
+          <label class="control-label col-sm-3" for="password">비밀번호 입력 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -129,7 +50,7 @@ input.upload {
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3">비밀번호 확인 <span class="text-danger">*</span></label>
+          <label class="control-label col-sm-3" for="password2">비밀번호 확인 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -138,22 +59,22 @@ input.upload {
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3">이름 <span class="text-danger">*</span></label>
+          <label class="control-label col-sm-3" for="name">이름 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
             <input type="text" class="form-control" name="userName" id="name" >
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3">이메일 입력 <span class="text-danger">*</span></label>
+          <label class="control-label col-sm-3" for="email">이메일 입력 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
               <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
               <input type="email" class="form-control" name="userEmail" id="email" placeholder="example@email.com">
             </div>
-            <small> 이메일 형식에 맞게 써주세요. </small> </div>
+            <small> 비밀번호 분실시 사용합니다. </small> </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3">생년월일 <span class="text-danger">*</span></label>
+          <label class="control-label col-sm-3" for="yyyy">생년월일 <span class="text-danger">*</span></label>
           <div class="col-xs-8">
             <div class="form-inline">
               <div class="form-group" >
@@ -164,7 +85,7 @@ input.upload {
               <div class="form-group">
                 <select name="mm" class="form-control" id="mm">
                   <option value="">월</option>
-                  <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">Jul</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>                </select>
+                  <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>                </select>
               </div>
               <div class="form-group">
                 <select name="dd" class="form-control" id="dd">
@@ -178,12 +99,12 @@ input.upload {
         <div class="form-group">
           <label class="control-label col-sm-3">성별 <span class="text-danger">*</span></label>
           <div class="col-md-8 col-sm-9">
-            <label><input name="userGender" type="radio" value="Male" id="gender"> 남 </label>   
-            <label><input name="userGender" type="radio" value="Female" id="gender"> 여 </label>
+            <label for="man"> 남 </label>	<input name="userGender" type="radio" value="Male" id="man">
+            <label for="woman"> 여 </label>	<input name="userGender" type="radio" value="Female" id="woman">
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3">주소 </label>
+          <label class="control-label col-sm-3" for="userAddr1">주소 </label>
           <div class="col-md-5 col-sm-8">
             <div>
                 <input type="text" name="userAddr1" id="userAddr1" class="form-control"  />                
@@ -191,7 +112,7 @@ input.upload {
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3">상세 주소 </label>
+          <label class="control-label col-sm-3" for="userAddr2">상세 주소 </label>
           <div class="col-md-5 col-sm-8">
             <div>
                 <input type="text" name="userAddr2" id="userAddr2" class="form-control"  />                
@@ -199,7 +120,7 @@ input.upload {
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3">전화번호 <span class="text-danger">*</span></label>
+          <label class="control-label col-sm-3" for="phone1">전화번호 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
           	<div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
@@ -232,9 +153,9 @@ input.upload {
         </div>
         <div class="col-xs-offset-3 col-xs-8"> 
             <input type="button" value="회원가입" style="border-radius:6px; font-s" class="btn btn-success" onclick="checkVD()" >
-            <button type="button" onclick="checkVD()">전송</button>
            </div>
       </form>
+      <br><br><br>
     </div>
 </div>
 </div>
@@ -280,6 +201,7 @@ function checkId(){
 		}
 		return true
 	}	
+	
 	function checkVD() {
 		if (!validation('#id', 4, 10, '아이디를 다시 입력해주세요.')) {
 			return false;
@@ -287,47 +209,67 @@ function checkId(){
 		if (!validation('#password', 6, 20, '비밀번호를 다시 입력해주세요.')) {
 			return false;
 		}
-		var pwd2 = document.querySelector('#pwd2');
-		if (pwd.value != pwd2.value) {
+		if (!validation('#password2', 6, 20, '비밀번호를 확인해주세요.')) {
+			return false;
+		}		
+		var userPwd = document.querySelector('[name=userPwd]');
+		var userPwd2 = document.querySelector('[name=userPwd2]');
+		if (userPwd.value.trim() != userPwd2.value.trim()) {
 			alert('비밀번호를 똑같이 다시 입력해주세요.');
-			pwd2.value = "";
-			pwd2.focus();
+			userPwd2.value = "";
+			userPwd2.focus();
 			return false;
 		}
 		if (!validation('#name', 3, 10, '이름을 다시 입력해주세요.')) {
 			return false;
 		}
-		if (!validation('#userAddr1', 10, 100, '주소를 다시 입력해주세요.')) {
+		var email = document.querySelector('#email').value;
+		if(!email){
+			alert('이메일을 입력해주세요');
 			return false;
 		}
-		if (!validation('#userAddr2', 10, 100, '주소를 다시 입력해주세요.')) {
+		var yyyy = document.querySelector('[name=yyyy]');
+		var yValue = yyyy.options[yyyy.selectedIndex];
+		if(yValue.value.length==0){
+			alert('출생년도를 선택해주세요');
 			return false;
 		}
-		if (!validation('#"phone1"', 7, 10, '폰번호를 다시 입력해주세요.')) {
+		var mm = document.querySelector('[name=mm]');
+		var mValue = mm.options[mm.selectedIndex];
+		if(mValue.value.length==0){
+			alert('월을 선택해주세요');
 			return false;
 		}
-		var phone2 = document.querySelector('#"phone1"');
-		if (isNaN(phone2.value.trim())) {
-			alert('폰번호를 다시 입력해주세요.');
-			phone2.value = "";
-			phone2.focus();
+		var dd = document.querySelector('[name=dd]');
+		var dValue = dd.options[dd.selectedIndex];
+		if(dValue.value.length==0){
+			alert('일을 선택해주세요');
 			return false;
+		}
 		
-
-		if (!validation('#hint', 1, 10, '질문을 다시 선택해주세요.')) {
+		var gender = document.querySelector('[name=userGender]:checked');
+		if(!gender){
+			alert('성별을 입력해주세요.');
 			return false;
 		}
-
-		if (!validation('#answer', 2, 10, '답변을 다시 선택해주세요.')) {
+		
+		if (!validation('#userAddr1', 3, 20, '주소는 3글자 이상입니다.')) {
 			return false;
 		}
-		var genres = document.querySelectorAll('[name=ui_genre]:checked');
-		if(genres.length==0){
-			alert('좋아하는 장르를 1개 이상 선택해주세요.');
-			document.querySelector('#genre1').focus();
+		if (!validation('#userAddr2', 5, 50, '상세주소는 5글자 이상입니다.')) {
+			return false;
+		}
+		if (!validation('#phone1', 9, 11, '전화번호를 다시 입력해주세요.')) {
+			return false;
+		}
+		var genre = document.querySelector('[name=genre]');
+		var genreV = genre.options[genre.selectedIndex];
+		if(genreV.value.length==0){
+			alert('좋아하는 장르를 선택해주세요');
 			return false;
 		}
 		return true;
+
 	}
 </script>
 </body>
