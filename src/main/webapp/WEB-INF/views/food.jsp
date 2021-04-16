@@ -146,15 +146,19 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var res = JSON.parse(xhr.responseText);
 				var html ='';
+				var id = 0;
 				for(var foods of res){
-					
+					id = id+1;
+					var foodNum = foods.foodNum;
 					html += '<div class="col-md-4">';
 					html += '<div class="card mb-4 shadow-sm">';
-					html += '<form action="/views/food/food-update?foodNum='+foods.foodNum+'">';
-					html += '<input type="hidden" id="foodNum" value="'+foods.foodNum+'">';
+					html += '<form method="GET" name="food'+id+'" action="/views/food/food-update?foodNum='+foodNum+'">';
+					html += '<input type="hidden" name="foodNum" value="'+foodNum+'">'
+					html += '<div id="img">';
 					html += '	<img class="card-img-top"';
 					html += '		src="/resources/images/food/'+foods.foodImgName+'"';
 					html += 'alt="'+foods.foodImgName+'">';
+					html += '</div>';
 					html += '	<div class="card-body">';
 					html += '	<p class="card-text" id="">'+foods.foodDesc+'</p>';
 					html += '	<div';
@@ -167,7 +171,7 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					html += '		</div>';
 					html += '		<small class="text-muted">'+foods.foodCookTime+' mins</small>';
 					html += '		</div>';
-					html += '<button type="submit"  class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
+					html += '<button type="button" onclick="update('+id+')"  class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
 					html += '<button type="submit" class="btn btn-danger" style="margin-top:20px; height:35px" >삭제</button>';
 					html += '	</div>';
 					html += '   </form>';
@@ -182,7 +186,9 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 		xhr.send();
 
 	}
-	
+	function update(obj){
+		document.querySelector('[name=food'+obj+']').submit();
+	}
 	function foodUpdate() {
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', '/food-update?foodNum='+document.querySelector('#foodNum').value);

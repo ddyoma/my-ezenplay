@@ -19,11 +19,10 @@
   				<option value='간식'>간식</option>
  				 <option value='음료수'>음료수</option>
 			</select>
-				
 			</div>        	
         </div>
         <div class="form-group">
-        	<input type="text" class="form-control" name="foodName"  value="${foods.foodNum} " placeholder="음식이름">
+        	<input type="text" class="form-control" name="foodName"  value="" placeholder="음식이름">
         </div>
 		<div class="form-group">
             <input type="text" class="form-control" name="foodDesc"  placeholder="음식설명">
@@ -54,20 +53,31 @@ function digit_check(evt){
 }
 
 window.onload = function(){
-	foodUpdate();
-} 
-
-function foodUpdate() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/food-update?foodNum='+foods.foodNum);
+	xhr.open('GET','/food?foodNum='+${param.foodNum});
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4&&xhr.status==200){
+			var res = JSON.parse(xhr.responseText);
+			for(var key in res){
+				var input = document.querySelector('[name='+key+']');
+				if(res[key]!=null&&input!=null){
+					input.value = res[key];
+				}
+			}
+		}
+	}
+	xhr.send();
+}
+
+function foodUpdate() { //여기부터하시면됌
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/food-update?foodNum='+foods.foodNum);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) { 
 			var res = JSON.parse(xhr.responseText);
 			var html ='';
 			console.log(res);
-
-
-		}
+			}
 		}
 	xhr.send();
 }
