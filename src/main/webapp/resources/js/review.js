@@ -35,17 +35,7 @@ window.onload = function(){
 	}
 	xhr.send();
 
-	var atag = document.getElementById('userId0');
-	var atag = document.getElementById('userId1');
-	var atag = document.getElementById('userId2');
-	var atag = document.getElementById('userId3');
-	var atag = document.getElementById('userId4');
-	var atag = document.getElementById('userId5');
-
-	atag.onclick =function(){
-		alert('날호출');
-		
-	}
+	
 
 }
 

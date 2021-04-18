@@ -39,12 +39,15 @@
 <div class="container">
 	<h2 class="text-center">리뷰리스트</h2>
 	<input type="hidden" id="sessionid" value="${UserInfo.userId }">
-	
+	<div style="display:none;">
+<jsp:include page="/WEB-INF/views/customercenter/reviewup.jsp"></jsp:include><!-- 리뷰등록 --></div>
+
 	<div class="card">
 	    <div class="card-body" id="cardlist">
 				    </div>
 				</div>
 			</div>
+			
         </div>
        </div>
       </section>
@@ -52,8 +55,9 @@
 
 </body>
 <script><!-- 리뷰리스트바디 -->
+var hiddennum = '';
 window.onload = function(){
-	
+
 	   var delup =document.querySelector('#delup');
 	   var uid = document.querySelector('#sessionid').value; //세션아이디와 등록자아이디 비교
 	   alert(uid);
@@ -61,23 +65,24 @@ window.onload = function(){
 		xhr.open('GET', '/review/list');
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState == 4 && xhr.status == 200){
-				console.log(xhr.responseText);
+				
 				var res = JSON.parse(xhr.responseText);
-				for(var i = 0;i<=5;i++){
+				for(var i = 0;i<=100;i++){
+					
 
 				var r = res[i]; 
-	           
-			   var html ='';
-	         for(r of res){
+				console.log(r);
+			   	var html ='';
+	         	for(r of res){
 	            html += '<div class="card card-inner">';
 	            html += ' <div class="card-body" style="margin-top:30px;">';
 	            html += '   <div class="row">';
 	            if(r.userInfo.profilePath == null){
-	            	 html += '		<img src="/resources/images/user/basic.png'+'"';
-		 	            html += ' width="100" height ="100" style="border-radius: 50px;"/>';
+	         	html += '		<img src="/resources/images/user/basic.png'+'"';
+		 	    html += ' width="100" height ="100" style="border-radius: 50px;"/>';
 	            }else{
-	            	 html += '		<img src="/resources/images/user/'+r.userInfo.profilePath +'"';
-	 	            html += ' width="100" height ="100" style="border-radius: 50px;"/>';
+	           	html += '		<img src="/resources/images/user/'+r.userInfo.profilePath +'"';
+	 	        html += ' width="100" height ="100" style="border-radius: 50px;"/>';
 	            }
 	                      
 	            html += '            <div class="col-md-10">';
@@ -90,26 +95,66 @@ window.onload = function(){
 	            html += '                  <p><a href=""><strong id="userId">' 
 	            html += r.userInfo.userId;
 	            html += '</strong></a></p>';
-	            html += '                         <div id="revComment">';
+	            html += '                         <div id="revComment" >';
 	            html += r.revComment+'</div>';
 	            html += '                              <br/><p id="delup" style="'
 	            if(uid == r.userInfo.userId){
-	               html += 'display:block;">'; //세션아이디 일치시 취소업데이트버튼보이
+	               html += 'display:block;">'; //세션아이디 일치시 취소업데이트버튼보이기
 	            }else{
 	               html += 'display:none;">';
 	            }
-	            html += '                                <a class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> 삭제하기</a> ';
-	            html += '                        <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> 수정하기</a>';
-	            html += ' </p></div></div></div></div><br/>'
+	           	html += ' <input type="hidden" id="hiddennum" value="'+r.revNum+'">';
+
+	            html += '                        <a  onclick="javascript:ondelete('+r.revNum+');" class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> 삭제하기</a> ';
+	            html += '                        <a  onclick="javascript:onready();" class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> 수정하기</a>';
+	            html += '                        <a  style="display:none; onclick="javascript:onupdate('+r.revNum+','+r.revComment+','+r.revStar+');" class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> 수정완료</a>';
+	            html += ' </p></div></div></div></div>';
+	            	 html += '<jsp:include page="'+'/WEB-INF/views/customercenter/reviewup.jsp'+'"></jsp:include>';
+	            	 html += '<br/>';
+
+	           
 
 	         }
+	         
 			      document.querySelector('#cardlist').innerHTML=html;
 			
 				}
 			}
 		}
 		xhr.send();
-}</script>
+	}
+var revNums = '';
+var revComments = '';
+var revStars = '';
+function ondelete(revNums){ //앵커태그 펑션 매개변수로 revNum넘기기.
+	var xhr = new XMLHttpRequest();
+	//xhr.open('DELETE', '/review/delete');
+	xhr.open('GET', '/review/delete?revNum='+revNums);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			alert(xhr.responseText);
+			var res = JSON.parse(xhr.responseText);
+			if(res!=0){
+				alert('삭제성공');
+				location.href = '/views/customercenter/reviewlist';
+			}else{
+				alert('삭제실패');
+			}
+		}
+		
+	}
+	xhr.send(revNums);
+}
+
+
+
+
+
+function onready(){ //팝업으로 가기
+	window.open('/views/customercenter/reviewupdate', 'windowPop', 'width=400, height=600, left=400, top=400, resizable = yes')
+}
+
+</script>
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 <jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
 </html>

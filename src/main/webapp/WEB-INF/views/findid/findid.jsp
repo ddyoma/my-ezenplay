@@ -169,7 +169,6 @@ window.onload =function(){
 					console.log(res);
 					html += '<p class="form-text">찾으시는 ID는'+res.userId+'입니다.</p>';
 					html2 += '<p class="form-text">찾으셨던 ID는'+res.userId+'입니다.</p>';
-					html2 += '<p class="form-text">찾으셨던 ID는'+res.userNum+'입니다.</p>';
 					var ui = res.userId;
 				}else{//넘어온게 널일때 나올것
 					alert('없는 계정입니다.')

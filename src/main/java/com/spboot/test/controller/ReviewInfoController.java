@@ -35,8 +35,9 @@ public class ReviewInfoController {
 		reviewInfo = reviewService.updateReviewInfo(reviewInfo);
 		return reviewInfo.getRevNum();
 	}
-	@DeleteMapping("/review/delete")
+	@GetMapping("/review/delete")
 	public @ResponseBody int deleteReviewInfo(@RequestParam int revNum) {
+		log.info("delete=>{}",revNum);
 		return reviewService.deleteReviewInfo(revNum);
 	}
 	@GetMapping("review/view")
