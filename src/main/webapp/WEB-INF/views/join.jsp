@@ -74,7 +74,7 @@
             <small> 비밀번호 분실시 사용합니다. </small> </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3" for="yyyy">생년월일 <span class="text-danger">*</span></label>
+          <label class="control-label col-sm-3">생년월일 <span class="text-danger">*</span></label>
           <div class="col-xs-8">
             <div class="form-inline">
               <div class="form-group" >
@@ -85,12 +85,12 @@
               <div class="form-group">
                 <select name="mm" class="form-control" id="mm">
                   <option value="">월</option>
-                  <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>                </select>
+                  <option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>                </select>
               </div>
               <div class="form-group">
                 <select name="dd" class="form-control" id="dd">
                   <option value="">일</option>
-                  <option value="1" >1 </option><option value="2" >2 </option><option value="3" >3 </option><option value="4" >4 </option><option value="5" >5 </option><option value="6" >6 </option><option value="7" >7 </option><option value="8" >8 </option><option value="9" >9 </option><option value="10" >10 </option><option value="11" >11 </option><option value="12" >12 </option><option value="13" >13 </option><option value="14" >14 </option><option value="15" >15 </option><option value="16" >16 </option><option value="17" >17 </option><option value="18" >18 </option><option value="19" >19 </option><option value="20" >20 </option><option value="21" >21 </option><option value="22" >22 </option><option value="23" >23 </option><option value="24" >24 </option><option value="25" >25 </option><option value="26" >26 </option><option value="27" >27 </option><option value="28" >28 </option><option value="29" >29 </option><option value="30" >30 </option><option value="31" >31 </option>                </select>
+                  <option value="01" >1 </option><option value="02" >2 </option><option value="03" >3 </option><option value="04" >4 </option><option value="05" >5 </option><option value="06" >6 </option><option value="07" >7 </option><option value="08" >8 </option><option value="09" >9 </option><option value="10" >10 </option><option value="11" >11 </option><option value="12" >12 </option><option value="13" >13 </option><option value="14" >14 </option><option value="15" >15 </option><option value="16" >16 </option><option value="17" >17 </option><option value="18" >18 </option><option value="19" >19 </option><option value="20" >20 </option><option value="21" >21 </option><option value="22" >22 </option><option value="23" >23 </option><option value="24" >24 </option><option value="25" >25 </option><option value="26" >26 </option><option value="27" >27 </option><option value="28" >28 </option><option value="29" >29 </option><option value="30" >30 </option><option value="31" >31 </option>                </select>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@
           <label class="control-label col-sm-3">선호 장르 </label>
           <div class="col-md-5 col-sm-8">
         <div class="input-group">
-                <select name="genre" class="form-control" id="genre">
+                <select name="favoriteGame" class="form-control" id="genre">
                   <option value=""></option>
                   <option value="1" >fps </option><option value="2" >aos </option><option value="3" >rpg </option>
                  </select>
@@ -152,7 +152,7 @@
           <div class="col-xs-offset-3 col-md-8 col-sm-9"><span class="text-muted"><span class="label label-danger">Note:-</span> By clicking Sign Up, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Policy</a>, including our <a href="#">Cookie Use</a>.</span> </div>
         </div>
         <div class="col-xs-offset-3 col-xs-8"> 
-            <input type="button" value="회원가입" style="border-radius:6px; font-s" class="btn btn-success" onclick="checkVD()" >
+            <button type="button" style="border-radius:6px; font-s" class="btn btn-success" onclick="checkVD()" >회원가입</button>
            </div>
       </form>
       <br><br><br>
@@ -164,30 +164,29 @@
 <jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
 
 <script>
+var idCheck = false;
 function checkId(){
-		var userId = document.querySelector('#id').value;
-		if(userId.trim().length<4){
-			alert('아이디는 4글자 이상입니다.');
-			return;
-		
+	var userId = document.querySelector('#id').value;
+	if(userId.trim().length<4){
+		alert('아이디는 4글자 이상입니다.');
+	}else { 
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/checkId'); 
+		xhr.open('POST', '/check'); 
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState==4 && xhr.status==200){
 				console.log(xhr.responseText);
 				var res = JSON.parse(xhr.responseText);
-				if(res.result==1){
+				if(res==1){
 					alert('해당아이디로는 가입이 불가능');
 					document.querySelector('#id').value = '';
 					document.querySelector('#id').focus();
 				}else{
 					alert('가입가능한 아이디입니다.');
-					idChack = true;
-					
+					idCheck = true;
 				}
 			}
-			xhr.send();
 		}
+		xhr.send(userId);
 	}
 }
 	function validation(id, min, max, msg ){
@@ -203,74 +202,48 @@ function checkId(){
 	}	
 	
 	function checkVD() {
-		if (!validation('#id', 4, 10, '아이디를 다시 입력해주세요.')) {
-			return false;
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST','/memberjoin');
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				if(xhr.responseTest && xhr.responseText!=null){
+					alert('회원가입 성공');
+					location.href='/';
+				}
+			}
 		}
-		if (!validation('#password', 6, 20, '비밀번호를 다시 입력해주세요.')) {
-			return false;
-		}
-		if (!validation('#password2', 6, 20, '비밀번호를 확인해주세요.')) {
-			return false;
-		}		
+		var formData = new FormData();
+		var userId = document.querySelector('[name=userId]');
 		var userPwd = document.querySelector('[name=userPwd]');
-		var userPwd2 = document.querySelector('[name=userPwd2]');
-		if (userPwd.value.trim() != userPwd2.value.trim()) {
-			alert('비밀번호를 똑같이 다시 입력해주세요.');
-			userPwd2.value = "";
-			userPwd2.focus();
-			return false;
-		}
-		if (!validation('#name', 3, 10, '이름을 다시 입력해주세요.')) {
-			return false;
-		}
-		var email = document.querySelector('#email').value;
-		if(!email){
-			alert('이메일을 입력해주세요');
-			return false;
-		}
+		var userEmail = document.querySelector('[name=userEmail]');
+		var userName = document.querySelector('[name=userName]');
+		
 		var yyyy = document.querySelector('[name=yyyy]');
-		var yValue = yyyy.options[yyyy.selectedIndex];
-		if(yValue.value.length==0){
-			alert('출생년도를 선택해주세요');
-			return false;
-		}
 		var mm = document.querySelector('[name=mm]');
-		var mValue = mm.options[mm.selectedIndex];
-		if(mValue.value.length==0){
-			alert('월을 선택해주세요');
-			return false;
-		}
 		var dd = document.querySelector('[name=dd]');
-		var dValue = dd.options[dd.selectedIndex];
-		if(dValue.value.length==0){
-			alert('일을 선택해주세요');
-			return false;
-		}
 		
-		var gender = document.querySelector('[name=userGender]:checked');
-		if(!gender){
-			alert('성별을 입력해주세요.');
-			return false;
+		var userGender = document.querySelector('[name=userGender]');
+		var userFile = document.querySelector('[name=userFile]');
+		var userPhone = document.querySelector('[name=userPhone]');
+		var userAddr1 = document.querySelector('[name=userAddr1]');
+		var userAddr2 = document.querySelector('[name=userAddr2]');
+		var favoriteGame = document.querySelector('[name=favoriteGame]');
+		formData.append('userId',userId.value);
+		formData.append('userPwd',userPwd.value);
+		formData.append('userEmail',userEmail.value);
+		if(userFile.files[0]){
+			formData.append('userFile',userFile.files[0]);
 		}
-		
-		if (!validation('#userAddr1', 3, 20, '주소는 3글자 이상입니다.')) {
-			return false;
-		}
-		if (!validation('#userAddr2', 5, 50, '상세주소는 5글자 이상입니다.')) {
-			return false;
-		}
-		if (!validation('#phone1', 9, 11, '전화번호를 다시 입력해주세요.')) {
-			return false;
-		}
-		var genre = document.querySelector('[name=genre]');
-		var genreV = genre.options[genre.selectedIndex];
-		if(genreV.value.length==0){
-			alert('좋아하는 장르를 선택해주세요');
-			return false;
-		}
-		return true;
-
+		formData.append('userName',userName.value);
+		formData.append('userDateOfBirth',yyyy.value+mm.value+dd.value);
+		formData.append('userGender',userGender.value);
+		formData.append('userPhone',userPhone.value);
+		formData.append('userAddr1',userAddr1.value);
+		formData.append('userAddr2',userAddr2.value);
+		formData.append('favoriteGame',favoriteGame.value);
+		xhr.send(formData);
 	}
+	
 </script>
 </body>
 </html>
