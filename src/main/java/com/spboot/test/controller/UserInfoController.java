@@ -68,6 +68,11 @@ public class UserInfoController {
 		session.invalidate();
 		return true;
 	}
+	@PostMapping("/updatepwd")
+	public UserInfo updatepwd(@RequestBody UserInfo ui) {
+		
+		return uService.saveUserPwd(ui); //페스워드만 바꾸기화면  비밀번호변경하기는 아이디찾기전에는 막아두기
+	}
 
 	@PostMapping("/memberjoin")
 	public Integer upload(@ModelAttribute UserInfo mf) {

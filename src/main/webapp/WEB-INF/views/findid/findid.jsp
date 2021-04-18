@@ -215,7 +215,7 @@ window.onload =function(){
 		xhr.open('POST', '/updatepwd');
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				if(x.responseText && x.responseText!=null){
+				if(xhr.responseText && xhr.responseText!=null){
 					
 					alert('등록완료');
 					location.href='/';

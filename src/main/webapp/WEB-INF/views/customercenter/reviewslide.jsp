@@ -104,7 +104,7 @@ p{word-break:break-all;
 				        <div class="row">
 				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
 				            <div class="icon-box">
-				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				            <div id="iconbox0"></div>
 				              <div id= "revStar0"></div>
 				              <h4><div id="userId0" style="cursor: pointer;" ></div></h4>
 				              <p id= "revComment0"></p>
@@ -113,16 +113,16 @@ p{word-break:break-all;
 				
 				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
 				            <div class="icon-box">
-				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				            <div id="iconbox1"></div>
 				              <div id= "revStar1"></div>
-				               <h4><div id="userId1" style="cursor: pointer;" ></div></h4>
+				              <h4><div id="userId1" style="cursor: pointer;" ></div></h4>
 				              <p id= "revComment1"></p>
 				            </div>
 				          </div>
 				
 				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
 				            <div class="icon-box">
-				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				            <div id="iconbox2"></div>
 				              <div id= "revStar2"></div>
 				              <h4><div id="userId2" style="cursor: pointer;" ></div></h4>
 				              <p id= "revComment2"></p>
@@ -139,27 +139,27 @@ p{word-break:break-all;
 				        <div class="row">
 				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
 				            <div class="icon-box">
-				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				            <div id="iconbox3"></div>
 				              <div id= "revStar3"></div>
-				               <h4><div id="userId3" style="cursor: pointer;" ></div></h4>
+				              <h4><div id="userId3" style="cursor: pointer;" ></div></h4>
 				              <p id= "revComment3"></p>
 				            </div>
 				          </div>
 				
 				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
 				            <div class="icon-box">
-				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				            <div id="iconbox4"></div>
 				              <div id= "revStar4"></div>
-				               <h4><div id="userId4" style="cursor: pointer;" ></div></h4>
+				              <h4><div id="userId4" style="cursor: pointer;" ></div></h4>
 				              <p id= "revComment4"></p>
 				            </div>
 				          </div>
 				
 				          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
 				            <div class="icon-box">
-				              <img src="/resources/images/voccenter/cat.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+				            <div id="iconbox5"></div>
 				              <div id= "revStar5"></div>
-				               <h4><div id="userId5" style="cursor: pointer;" ></div></h4>
+				              <h4><div id="userId5" style="cursor: pointer;" ></div></h4>
 				              <p id= "revComment5"></p>
 				            </div>
 				          </div>

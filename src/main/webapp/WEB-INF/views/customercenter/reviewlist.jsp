@@ -39,6 +39,7 @@
 <div class="container">
 	<h2 class="text-center">리뷰리스트</h2>
 	<input type="hidden" id="sessionid" value="${UserInfo.userId }">
+	
 	<div class="card">
 	    <div class="card-body" id="cardlist">
 				    </div>
@@ -52,8 +53,10 @@
 </body>
 <script><!-- 리뷰리스트바디 -->
 window.onload = function(){
+	
 	   var delup =document.querySelector('#delup');
 	   var uid = document.querySelector('#sessionid').value; //세션아이디와 등록자아이디 비교
+	   alert(uid);
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', '/review/list');
 		xhr.onreadystatechange = function(){

@@ -6,26 +6,30 @@ window.onload = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
+
 			for(var i = 0;i<=5;i++){
 
 			var r = res[i];
-
-			
+			var h2 = '';
 			var h = '';
 				for(var j = 0;j<r.revStar;j++)
 				{
 					h+= '<i class="fa fa-star"></i>';
+
 				}
-				
-					
-				
-			
+				if(r.userInfo.profilePath == null){
+				h2 += '		<img src="/resources/images/user/basic.png'+'"';
+		 	            h2 += ' width="100" height ="100" style="border-radius: 50px;"/>';
+				}else{
+				h2 += '<img src="/resources/images/user/'+ r.userInfo.profilePath+'"';
+				h2 += 'class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">';
+			}
+
+			//alert(r.userInfo.profilePath);
+			document.querySelector('#iconbox'+i).innerHTML=h2;
 			$('#revComment'+i).text(r.revComment);
 			$('#userId'+i).text(r.userInfo.userId);
 			$('#revStar'+i).html(h);
-
-		
-		
 			}
 		}
 	}
