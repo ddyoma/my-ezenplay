@@ -173,8 +173,8 @@ window.onload =function(){
 					var ui = res.userId;
 				}else{//넘어온게 널일때 나올것
 					alert('없는 계정입니다.')
-					hidetext.style.display = 'block'; //인풋숨기기
-					resulttext.style.display = 'none'; //결과보이기
+					hidetext.style.display = 'block'; //다시인풋보이게
+					resulttext.style.display = 'none'; //결과안보이게
 				}
 				document.querySelector('#idtext').innerHTML=html;
 				document.querySelector('#idtext2').innerHTML=html2;
