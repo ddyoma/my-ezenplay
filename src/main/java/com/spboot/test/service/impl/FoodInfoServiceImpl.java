@@ -55,6 +55,20 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 
 	@Override
 	public FoodInfo updateFoodInfo(FoodInfo food) {
+		
+		
+		MultipartFile mf = food.getFoodFile();
+		if(mf!=null) {
+			String foodImgName = mf.getOriginalFilename();
+			food.setFoodImgName(foodImgName);
+			File file = new File(ROOT+foodImgName);
+			try {
+				mf.transferTo(file);   
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return foodRepo.save(food);
 	}
 

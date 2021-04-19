@@ -152,7 +152,7 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					var foodNum = foods.foodNum;
 					html += '<div class="col-md-4">';
 					html += '<div class="card mb-4 shadow-sm">';
-					html += '<form method="GET" name="food'+id+'" action="/views/food/food-update?foodNum='+foodNum+'">';
+					html += '<form method="GET"  action="/views/food/food-update">';
 					html += '<input type="hidden" name="foodNum" value="'+foodNum+'">'
 					html += '<div id="img">';
 					html += '	<img class="card-img-top"';
@@ -171,7 +171,7 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					html += '		</div>';
 					html += '		<small class="text-muted">'+foods.foodCookTime+' mins</small>';
 					html += '		</div>';
-					html += '<button type="button" onclick="update('+id+')"  class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
+					html += '<button type="submit"   class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
 					html += '<button type="submit" class="btn btn-danger" style="margin-top:20px; height:35px" >삭제</button>';
 					html += '	</div>';
 					html += '   </form>';
@@ -186,9 +186,7 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 		xhr.send();
 
 	}
-	function update(obj){
-		document.querySelector('[name=food'+obj+']').submit();
-	}
+
 	function foodUpdate() {
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', '/food-update?foodNum='+document.querySelector('#foodNum').value);

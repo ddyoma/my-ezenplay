@@ -35,9 +35,9 @@ margin: auto;
 
         <ol>
           <li><a href="index.html">Home</a></li>
-          <li>Contact</li>
+          <li>고객센터</li>
         </ol>
-        <h2>Contact</h2>
+        <h2>고객센터</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -52,24 +52,24 @@ margin: auto;
           <div class="col-lg-6">
             <div class="info-box mb-4">
               <i class="bx bx-map"></i>
-              <h3>Our Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <h3>Address</h3>
+              <p>서울특별시 중랑구 망우로 319 4층 명진빌딩</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6">
             <div class="info-box  mb-4">
               <i class="bx bx-envelope"></i>
-              <h3>Email Us</h3>
-              <p>contact@example.com</p>
+              <h3>Email</h3>
+              <p>ezenpc@teamproject.com</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6">
             <div class="info-box  mb-4">
               <i class="bx bx-phone-call"></i>
-              <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
+              <h3>Call</h3>
+              <p>0507-1420-0421</p>
             </div>
           </div>
 
