@@ -202,6 +202,73 @@ function checkId(){
 	}	
 	
 	function checkVD() {
+
+		
+		if (!validation('#id', 4, 10, '아이디를 다시 입력해주세요.')) {
+			return false;
+		}
+		if (!validation('#password', 6, 20, '비밀번호를 다시 입력해주세요.')) {
+			return false;
+		}
+		if (!validation('#password2', 6, 20, '비밀번호를 확인해주세요.')) {
+			return false;
+		}		
+		var userPwd = document.querySelector('[name=userPwd]');
+		var userPwd2 = document.querySelector('[name=userPwd2]');
+		if (userPwd.value.trim() != userPwd2.value.trim()) {
+			alert('비밀번호를 똑같이 다시 입력해주세요.');
+			userPwd2.value = "";
+			userPwd2.focus();
+			return false;
+		}
+		if (!validation('#name', 3, 10, '이름을 다시 입력해주세요.')) {
+			return false;
+		}
+		var email = document.querySelector('#email').value;
+		if(!email){
+			alert('이메일을 입력해주세요');
+			return false;
+		}
+		var yyyy = document.querySelector('[name=yyyy]');
+		var yValue = yyyy.options[yyyy.selectedIndex];
+		if(yValue.value.length==0){
+			alert('출생년도를 선택해주세요');
+			return false;
+		}
+		var mm = document.querySelector('[name=mm]');
+		var mValue = mm.options[mm.selectedIndex];
+		if(mValue.value.length==0){
+			alert('월을 선택해주세요');
+			return false;
+		}
+		var dd = document.querySelector('[name=dd]');
+		var dValue = dd.options[dd.selectedIndex];
+		if(dValue.value.length==0){
+			alert('일을 선택해주세요');
+			return false;
+		}
+		
+		var gender = document.querySelector('[name=userGender]:checked');
+		if(!gender){
+			alert('성별을 입력해주세요.');
+			return false;
+		}
+		
+		if (!validation('#userAddr1', 3, 20, '주소는 3글자 이상입니다.')) {
+			return false;
+		}
+		if (!validation('#userAddr2', 5, 50, '상세주소는 5글자 이상입니다.')) {
+			return false;
+		}
+		if (!validation('#phone1', 9, 11, '전화번호를 다시 입력해주세요.')) {
+			return false;
+		}
+		var favoriteGame = document.querySelector('[name=favoriteGame]');
+		var favoriteGameV = favoriteGame.options[favoriteGame.selectedIndex];
+		if(favoriteGameV.value.length==0){
+			alert('좋아하는 장르를 선택해주세요');
+			return false;
+		}
 		if(!idCheck){
 			alert('중복확인 해주세요.');
 			return false;
@@ -211,12 +278,8 @@ function checkId(){
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState==4 && xhr.status==200){
 				var res = JSON.parse(xhr.responseText);
-				if(res.result==1){
 					alert('회원가입 성공');
 					location.href='/';
-				}else{
-					alert('회원가입 실패');
-				}
 			}
 		}
 		var formData = new FormData();
