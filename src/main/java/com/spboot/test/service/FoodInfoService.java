@@ -13,5 +13,6 @@ public interface FoodInfoService {
 	FoodInfo updateFoodInfo(FoodInfo food);
 	int deleteFoodInfo(int foodNum);
 	List<FoodInfo> getFoodInfos(String foodType);
+	List<FoodInfo> searchFoodInfo(String foodName);
 
 }

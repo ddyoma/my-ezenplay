@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!--<c:if test="${UserInfo eq null }">
-<script>
- alert('좌석현황 열람 권한이 없습니다.');
-location.href='/';
-</script>
-</c:if>-->
+<c:if test="${UserInfo.userNum ne 1 }">
+<style>
+#updateButton,#deleteButton,#insertButton{
+display:none;
+}
+</style>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,27 +55,19 @@ location.href='/';
 <div class="icon">
 <span class="icon-paper-plane"></span>
 </div>
-<input type="text" class="form-control" placeholder="Food Name">
+<input type="text" name="foodSearch" class="form-control" placeholder="Food Name">
 </div>
 </form>
-<button type="button" class="btn btn-outline-light">Search</button>
+<button type="button"  onclick="foodSearch()" class="btn btn-outline-light">Search</button>
 </div>
-<div class="footer">
-<p>
-Copyright &copy;
-<script>
-document.write(new Date().getFullYear());
-</script>
-All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-</p>
-</div>
+
 </div>
 </nav>
 <!-- 사이드 바 종료 -->
 <!--  음식 메뉴 시작 -->
 
 <div id="content" class="p-4 p-md-5 pt-5">
-<button type="button" class="btn btn-success" onclick="showPopup()" style="margin-bottom:20px;">메뉴 등록</button><!--  음식 메뉴 등록 -->
+<button type="button"  id="insertButton" class="btn btn-success" onclick="showPopup()" style="margin-bottom:20px;">메뉴 등록</button><!--  음식 메뉴 등록 -->
 <div id="foodList" class="row" ></div>	<!--  음식 메뉴 리스트 -->
 </div>
 </div>
@@ -86,9 +79,12 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 </main>
 </body>
 <script>
+
+
 	window.onload = function(){
-		foodList()
+		foodList();
 	}
+	
 	
 	function foodList(){
 		var xhr = new XMLHttpRequest();
@@ -97,9 +93,12 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var res = JSON.parse(xhr.responseText);
 				var html ='';
+				var id = 0;
 				for(var foods of res){
+					id = id+1;
 					html += '<div class="col-md-4">';
 					html += '<div class="card mb-4 shadow-sm">';
+					html += '<input type="hidden" name="foodNum" id="foodId'+id+'" value="'+foods.foodNum+'">'
 					html += '	<img class="card-img-top"';
 					html += '		src="/resources/images/food/'+foods.foodImgName+'"';
 					html += 'alt="'+foods.foodImgName+'">';
@@ -115,8 +114,8 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					html += '		</div>';
 					html += '		<small class="text-muted">'+foods.foodCookTime+' mins</small>';
 					html += '		</div>';
-					html += '<button type="submit"  class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
-					html += '<button type="submit" class="btn btn-danger" style="margin-top:20px; height:35px" >삭제</button>';
+					html += '<button type="button" id="updateButton" onclick="showUpdatePopup('+id+')" class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px;">수정</button>';
+					html += '<button type="button" id="deleteButton" onclick="foodDelete('+id+')" class="btn btn-danger" style="margin-top:20px; height:35px;" >삭제</button>';
 					html += '	</div>';
 					html += '	</div>';
 					html += '	</div>';
@@ -149,11 +148,9 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 				var id = 0;
 				for(var foods of res){
 					id = id+1;
-					var foodNum = foods.foodNum;
 					html += '<div class="col-md-4">';
 					html += '<div class="card mb-4 shadow-sm">';
-					html += '<form method="GET"  action="/views/food/food-update">';
-					html += '<input type="hidden" name="foodNum" value="'+foodNum+'">'
+					html += '<input type="hidden" name="foodNum" id="foodId'+id+'" value="'+foods.foodNum+'">'
 					html += '<div id="img">';
 					html += '	<img class="card-img-top"';
 					html += '		src="/resources/images/food/'+foods.foodImgName+'"';
@@ -171,10 +168,9 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 					html += '		</div>';
 					html += '		<small class="text-muted">'+foods.foodCookTime+' mins</small>';
 					html += '		</div>';
-					html += '<button type="submit"   class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px">수정</button>';
-					html += '<button type="submit" class="btn btn-danger" style="margin-top:20px; height:35px" >삭제</button>';
+					html += '<button type="button"  id="updateButton" onclick="showUpdatePopup('+id+')" class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px;" >수정</button>';
+					html += '<button type="button"  id="deleteButton"" onclick="foodDelete('+id+')" class="btn btn-danger" style="margin-top:20px; height:35px;" >삭제</button>';
 					html += '	</div>';
-					html += '   </form>';
 					html += '	</div>';
 					html += '	</div>';
 					
@@ -187,25 +183,94 @@ All rights reserved | This template is made with <i class="icon-heart" aria-hidd
 
 	}
 
-	function foodUpdate() {
+	
+	function foodDelete(obj){
+		var foodNum = document.querySelector('#foodId'+obj+'').value;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/food-update?foodNum='+document.querySelector('#foodNum').value);
+		xhr.open('DELETE', '/food-delete?foodNum='+foodNum);
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				window.open("/views/food/food-update", "food-update", "width=500, height=600, left=700, top=200"); 
 				var res = JSON.parse(xhr.responseText);
-				var html ='';
-				console.log(res);
+				if(res==1){
+					alert("삭제가 실패하였습니다.");
+					
+				}else{
+					alert("삭제 되었습니다.");
+					location.href="";
+				}
+
+			}
+		}
+		
+
+		xhr.send();
+		
+	}
+		
+
 
 	
-			}
-			}
-		xhr.send();
-	}
-	
 	  function showPopup() {
-		  window.open("/views/food/food-insert", "food-register", "width=500, height=600, left=700, top=200"); 
+		  var popup = window.open("/views/food/food-insert", "food-register", "width=500, height=620, left=700, top=200" );
+		  
+		  popup.onbeforeunload = function(){
+			  location.reload(true);       
+		    }; 
 		  }
+	  
+	  function showUpdatePopup(obj) {
+		  var foodNum = document.querySelector('#foodId'+obj+'').value;
+		  var popup = window.open("/views/food/food-update?foodNum="+foodNum+"", "food-register", "width=500, height=620, left=700, top=200");
+		  
+		  popup.onbeforeunload = function(){
+			  location.reload(true);       
+		    }; 
+		  }
+	  
+	  function foodSearch(){
+		 	var foodAnswer = document.querySelector('[name=foodSearch]').value;
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/food-search?foodName='+foodAnswer);
+			xhr.onreadystatechange = function() {
+				var res = JSON.parse(xhr.responseText);
+				var html ='';
+				var id = 0;
+				for(var foods of res){
+					id = id+1;
+					html += '<div class="col-md-4">';
+					html += '<div class="card mb-4 shadow-sm">';
+					html += '<input type="hidden" name="foodNum" id="foodId'+id+'" value="'+foods.foodNum+'">'
+					html += '<div id="img">';
+					html += '	<img class="card-img-top"';
+					html += '		src="/resources/images/food/'+foods.foodImgName+'"';
+					html += 'alt="'+foods.foodImgName+'">';
+					html += '</div>';
+					html += '	<div class="card-body">';
+					html += '	<p class="card-text" id="">'+foods.foodDesc+'</p>';
+					html += '	<div';
+					html += '		class="d-flex justify-content-between align-items-center">';
+					html += '		<div class="btn-group">';
+					html += '			<button type="button"';
+					html += '			class="btn btn-sm btn-outline-secondary">'+foods.foodName+'</button>';
+					html += '		<button type="button"';
+					html += '				class="btn btn-sm btn-outline-secondary">'+foods.foodPrice+'원</button>';
+					html += '		</div>';
+					html += '		<small class="text-muted">'+foods.foodCookTime+' mins</small>';
+					html += '		</div>';
+					html += '<button type="button"  id="updateButton" onclick="showUpdatePopup('+id+')" id="su" class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px; display:none;">수정</button>';
+					html += '<button type="button"  id="deleteButton" onclick="foodDelete('+id+')" class="btn btn-danger" style="margin-top:20px; height:35px;" >삭제</button>';
+					html += '	</div>';
+					html += '	</div>';
+					html += '	</div>';
+					
+				}
+				document.querySelector('#foodList').innerHTML=html;
+				
+				
+			}
+			xhr.send();
+		  
+	  }
 
 </script>
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->

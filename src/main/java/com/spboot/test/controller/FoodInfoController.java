@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,9 @@ public class FoodInfoController {
 	
 	@GetMapping("/food-info")
 	public @ResponseBody List<FoodInfo> foodInfos(@RequestParam String foodType){
+		if(foodType==null) {
+			return foodService.getFoodInfoList();
+		}
 		return foodService.getFoodInfos(foodType);
 	}
 	
@@ -48,6 +52,18 @@ public class FoodInfoController {
 	
 	@PostMapping("/food-update")
 	public @ResponseBody FoodInfo updateFoodInfo(@ModelAttribute FoodInfo foodInfo) {
+		
 		return foodService.updateFoodInfo(foodInfo);
 	}
+	
+	@DeleteMapping("/food-delete")
+	public @ResponseBody int deleteFoodInfo(@RequestParam Integer foodNum) {
+		return foodService.deleteFoodInfo(foodNum);
+	}
+	
+	@GetMapping("/food-search")
+	public @ResponseBody List<FoodInfo> searchFoodInfo(@RequestParam String foodName){
+		return foodService.searchFoodInfo(foodName);
+	}
+	
 }

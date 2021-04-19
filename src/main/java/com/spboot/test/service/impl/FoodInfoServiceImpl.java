@@ -90,6 +90,11 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 		return foodRepo.findAllByFoodTypeOrderByFoodNumDesc(foodType);
 	}
 
+	@Override
+	public List<FoodInfo> searchFoodInfo(String foodName) {
+		return foodRepo.findAllByFoodNameContainsOrderByFoodNumDesc(foodName);
+	}
+
 
 
 }
