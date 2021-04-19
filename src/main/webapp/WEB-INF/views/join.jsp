@@ -99,8 +99,8 @@
         <div class="form-group">
           <label class="control-label col-sm-3">성별 <span class="text-danger">*</span></label>
           <div class="col-md-8 col-sm-9">
-            <label for="man"> 남 </label>	<input name="userGender" type="radio" value="Male" id="man">
-            <label for="woman"> 여 </label>	<input name="userGender" type="radio" value="Female" id="woman">
+            <label for="man"> 남 </label>	<input name="userGender" type="radio" value="남성" id="man">
+            <label for="woman"> 여 </label>	<input name="userGender" type="radio" value="여성" id="woman">
           </div>
         </div>
         <div class="form-group">
@@ -202,13 +202,20 @@ function checkId(){
 	}	
 	
 	function checkVD() {
+		if(!idCheck){
+			alert('중복확인 해주세요.');
+			return false;
+		}
 		var xhr = new XMLHttpRequest();
 		xhr.open('POST','/memberjoin');
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState==4 && xhr.status==200){
-				if(xhr.responseTest && xhr.responseText!=null){
+				var res = JSON.parse(xhr.responseText);
+				if(res.result==1){
 					alert('회원가입 성공');
 					location.href='/';
+				}else{
+					alert('회원가입 실패');
 				}
 			}
 		}
@@ -243,7 +250,6 @@ function checkId(){
 		formData.append('favoriteGame',favoriteGame.value);
 		xhr.send(formData);
 	}
-	
 </script>
 </body>
 </html>
