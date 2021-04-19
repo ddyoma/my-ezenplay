@@ -35,18 +35,19 @@ margin: auto;
     
 <!-- ======= Contact Section ======= -->
   <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+       
             <div class="probox" style="background: #BDBDBD;"> <!-- 사진미등록자는 기본프로필화면으로보이게 -->
-						<img class="profileone" src="/resources/images/user/${UserInfo.profilePath}" onerror="this.src='/resources/images/user/basic.png';"alt='' /> 
+						<img class="profileone" src="" onerror="this.src='/resources/images/user/basic.png';"alt='' /> 
 					</div><br><br>
               <div class="form-row">
                 <div class="col form-group">
-                <input hidden="text" name="userNum" value="${UserInfo.userNum}" id="userNum">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"  value="${UserInfo.userId}" readonly />
+                <input type="hidden" name="userNum"  id="userNum">
+                
+                  <input type="text" name="userId" class="form-control" id="userId" placeholder="Your Name"   readonly />
                   <div class="validate"></div>
                 </div>
                 <div class="col form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"  value="${UserInfo.userEmail}" readonly />
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"   readonly />
                   <div class="validate"></div>
                 </div>
               </div>
@@ -60,40 +61,62 @@ margin: auto;
                 <div class="validate"></div>
               </div>
 
-              
+     
               
              <a  onclick="upload()" class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> 수정하기</a>
-            </form>
+           
+            
             </div>
+
 
 </body>
 <script>
-
+window.onload = function(){
+	var cuturl = document.URL;
+	var cuturl2 = new URL(cuturl);
+	var revNums = cuturl2.searchParams.get("revNums"); //주소컷
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/review/view?revNum='+revNums);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var res = JSON.parse(xhr.responseText);
+			$('[name=message]').text(res.revComment);
+			$('[name=userNum]').val(res.userInfo.userNum); //input
+			$('[name=userId]').val(res.userInfo.userId);
+			
+			}
+			
+			
+			
+		}
+	xhr.send();
+	}
+	
+	
 
 
 function upload(){ 
+	var reviewp = {
+			revNum : '${param.revNums}',//주소컷
+			revComment : document.querySelector('[name=message]').value,
+			revStar : $('#count').text(),
+			userInfo : {userNum : document.querySelector('[name=userNum]').value
+				}}
+	alert(reviewp.revComment);
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/review/update');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			alert(xhr.responseText);
-			var res = JSON.parse(xhr.responseText);
-			if(res!=0){
-				alert('업데이트완료');
-				location.href = '/views/customercenter/reviewlist';
-			}else{
-				alert('업데이트실패');
+			if(xhr.responseText && xhr.responseText!=null){
+				console.log(xhr.responseText);
+				alert('수정완료');
+				close();
 			}
 		}
-		
-	}
-	var param = {
-			revComment : document.querySelector('[name=message]').value,
-			revStar : $('#count').text(),
-			userInfo : {userNum : document.querySelector('[name=userNum]').value}
 	}
 	xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
-	xhr.send(JSON.stringify(param));
+	xhr.send(JSON.stringify(reviewp));
 }
 
 
