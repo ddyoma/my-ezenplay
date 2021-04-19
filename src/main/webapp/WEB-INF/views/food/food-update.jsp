@@ -9,7 +9,7 @@
 
 
 <div class="signup-form" >
-    <form method="POST" action="/views/food/food-result" enctype="multipart/form-data">
+    <form method="POST" name="foodForm" action="/food-updater" enctype="multipart/form-data">
 		<h2>메뉴수정</h2>
 		<hr>
         <div class="form-group">
@@ -21,8 +21,9 @@
 			</select>
 			</div>        	
         </div>
+        <input type="hidden" name="foodNum">
         <div class="form-group">
-        	<input type="text" class="form-control" name="foodName"  value="" placeholder="음식이름">
+        	<input type="text" class="form-control" name="foodName"  placeholder="음식이름">
         </div>
 		<div class="form-group">
             <input type="text" class="form-control" name="foodDesc"  placeholder="음식설명">
@@ -35,11 +36,11 @@
             <input type="number" class="form-control" name="foodCookTime" onkeypress="return digit_check(event)" placeholder="소요시간">
         </div>      
        	<div class="form-group">
-            <input type="file" class="form-control" name="foodFile">
+            <input type="file" class="form-control" name="foodFile" >
         </div>     
 
 		<div class="form-group">
-            <button type="submit" class="btn btn-primary btn-lg">등록</button>
+            <button type="button" onclick="foodUpdate()"  class="btn btn-primary btn-lg">등록</button>
         </div>
     </form>
 </div>
@@ -54,7 +55,7 @@ function digit_check(evt){
 
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/food?foodNum='+${param.foodNum});
+	xhr.open('GET','/food-update?foodNum='+${param.foodNum});
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&&xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
@@ -69,17 +70,38 @@ window.onload = function(){
 	xhr.send();
 }
 
-function foodUpdate() { //여기부터하시면됌
+
+
+function foodUpdate() {
+	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/food-update?foodNum='+foods.foodNum);
+	xhr.open('POST', '/food-update');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) { 
 			var res = JSON.parse(xhr.responseText);
-			var html ='';
 			console.log(res);
+			self.close();
+
+			
 			}
 		}
-	xhr.send();
+	var formData = new FormData();
+	var foodNum = document.querySelector('[name=foodNum]');
+	var foodType = document.querySelector('[name=foodType]');
+	var foodName = document.querySelector('[name=foodName]');
+	var foodDesc = document.querySelector('[name=foodDesc]');
+	var foodPrice = document.querySelector('[name=foodPrice]');
+	var foodCookTime = document.querySelector('[name=foodCookTime]');
+	var foodFile = document.querySelector('[name=foodFile]');
+	formData.append('foodNum',foodNum.value);
+	formData.append('foodType',foodType.value);
+	formData.append('foodName',foodName.value);
+	formData.append('foodDesc',foodDesc.value);
+	formData.append('foodPrice',foodPrice.value);
+	formData.append('foodCookTime',foodCookTime.value);
+	formData.append('foodFile',foodFile.files[0]);
+	
+	xhr.send(formData);
 }
 </script>
 </html>
