@@ -85,7 +85,7 @@
 				<div class="d-flex justify-content-center">
 				<c:if test="${UserInfo ne null }">
 					<div class="brand_logo_container">
-						<img src="/resources/images/user/${UserInfo.profilePath }" class="brand_logo" alt="Logo">
+						<img src="/resources/images/user/${UserInfo.profilePath }" onerror="this.src='/resources/images/user/basic.png';" class="brand_logo" alt="Logo">
 					</div>
 				</c:if>
 				</div>
@@ -122,7 +122,7 @@
 						Don't have an account? <a href="/views/join" class="ml-2">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
+						<a href="/views/findidpwd">Forgot your password?</a>
 					</div></div>
 					</c:if>
 					<c:if test="${UserInfo ne null }">

@@ -169,12 +169,11 @@ window.onload =function(){
 					console.log(res);
 					html += '<p class="form-text">찾으시는 ID는'+res.userId+'입니다.</p>';
 					html2 += '<p class="form-text">찾으셨던 ID는'+res.userId+'입니다.</p>';
-					html2 += '<p class="form-text">찾으셨던 ID는'+res.userNum+'입니다.</p>';
 					var ui = res.userId;
 				}else{//넘어온게 널일때 나올것
 					alert('없는 계정입니다.')
-					hidetext.style.display = 'block'; //인풋숨기기
-					resulttext.style.display = 'none'; //결과보이기
+					hidetext.style.display = 'block'; //다시인풋보이게
+					resulttext.style.display = 'none'; //결과안보이게
 				}
 				document.querySelector('#idtext').innerHTML=html;
 				document.querySelector('#idtext2').innerHTML=html2;
@@ -215,7 +214,7 @@ window.onload =function(){
 		xhr.open('POST', '/updatepwd');
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				if(x.responseText && x.responseText!=null){
+				if(xhr.responseText && xhr.responseText!=null){
 					
 					alert('등록완료');
 					location.href='/';
