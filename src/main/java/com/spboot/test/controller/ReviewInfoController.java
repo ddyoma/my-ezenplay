@@ -31,9 +31,9 @@ public class ReviewInfoController {
 		return reviewInfo.getRevNum();
 	}
 	@PostMapping("/review/update")
-	public @ResponseBody Integer update(@ModelAttribute ReviewInfo reviewInfo) {
-		reviewInfo = reviewService.updateReviewInfo(reviewInfo);
-		return reviewInfo.getRevNum();
+	public @ResponseBody ReviewInfo update(@RequestBody ReviewInfo reviewInfo) {
+		log.info("review=>{}",reviewInfo);
+		return reviewService.updateReviewInfo(reviewInfo);
 	}
 	@GetMapping("/review/delete")
 	public @ResponseBody int deleteReviewInfo(@RequestParam int revNum) {
@@ -48,5 +48,6 @@ public class ReviewInfoController {
 	public @ResponseBody List<ReviewInfo> getReviewInfos(){
 		return reviewService.getReviewList();
 	}
+	
 	
 }

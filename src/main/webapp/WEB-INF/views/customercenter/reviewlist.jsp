@@ -57,7 +57,7 @@
 <script><!-- 리뷰리스트바디 -->
 var hiddennum = '';
 window.onload = function(){
-
+	
 	   var delup =document.querySelector('#delup');
 	   var uid = document.querySelector('#sessionid').value; //세션아이디와 등록자아이디 비교
 	   alert(uid);
@@ -84,7 +84,6 @@ window.onload = function(){
 	           	html += '		<img src="/resources/images/user/'+r.userInfo.profilePath +'"';
 	 	        html += ' width="100" height ="100" style="border-radius: 50px;"/>';
 	            }
-	                      
 	            html += '            <div class="col-md-10">';
 	                       html += '               <p class="text-secondary text-left" id="revStar" style="align:"bottom"">'
 	            for(var j = 0;j<r.revStar;j++)
@@ -99,15 +98,15 @@ window.onload = function(){
 	            html += r.revComment+'</div>';
 	            html += '                              <br/><p id="delup" style="'
 	            if(uid == r.userInfo.userId){
+	            	
 	               html += 'display:block;">'; //세션아이디 일치시 취소업데이트버튼보이기
 	            }else{
 	               html += 'display:none;">';
 	            }
 	           	html += ' <input type="hidden" id="hiddennum" value="'+r.revNum+'">';
 
-	            html += '                        <a  onclick="javascript:ondelete('+r.revNum+');" class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> 삭제하기</a> ';
-	            html += '                        <a  onclick="javascript:onready();" class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> 수정하기</a>';
-	            html += '                        <a  style="display:none; onclick="javascript:onupdate('+r.revNum+','+r.revComment+','+r.revStar+');" class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> 수정완료</a>';
+	            html += '                        <a   onclick="javascript:ondelete('+r.revNum+');" class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> 삭제하기</a> ';
+	            html += '                        <a   onclick="javascript:onready('+r.revNum+','+r.revComment+','+r.revStar+');" class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> 수정하기</a>';
 	            html += ' </p></div></div></div></div>';
 	            	 html += '<jsp:include page="'+'/WEB-INF/views/customercenter/reviewup.jsp'+'"></jsp:include>';
 	            	 html += '<br/>';
@@ -150,8 +149,11 @@ function ondelete(revNums){ //앵커태그 펑션 매개변수로 revNum넘기�
 
 
 
-function onready(){ //팝업으로 가기
-	window.open('/views/customercenter/reviewupdate', 'windowPop', 'width=400, height=600, left=400, top=400, resizable = yes')
+function onready(revNums,revComments,revStars){ //팝업으로 가기
+	var openChild;
+	openChild = window.open("<c:url value='/views/customercenter/reviewupdate.do?revNums="+revNums+"'/>", 'child', 'width=400, height=600, left=400, top=400, resizable = yes')
+
+	
 }
 
 </script>

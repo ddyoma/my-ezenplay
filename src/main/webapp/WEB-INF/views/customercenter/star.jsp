@@ -25,7 +25,7 @@
        </h1>
    </div>
    
-   <script>		   jQuery(document).ready(function($){//별스크립
+   <script>		   jQuery(document).ready(function($){//ë³ì¤í¬ë¦½
        
 	      $(".btnrating").on('click',(function(e) {
 	      

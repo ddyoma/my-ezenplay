@@ -34,8 +34,11 @@ public class ReviewInfoServiceImpl implements ReviewInfoService {
 	}
 
 	@Override
-	public ReviewInfo updateReviewInfo(ReviewInfo revNum) {
-		return revRepo.save(revNum);
+	public ReviewInfo updateReviewInfo(ReviewInfo review) {
+		ReviewInfo rinfo = revRepo.findByRevNum(review.getRevNum());
+		rinfo.setRevStar(review.getRevStar());
+		rinfo.setRevComment(review.getRevComment());
+		return revRepo.save(rinfo);
 	}
 
 	@Override
