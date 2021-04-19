@@ -60,7 +60,7 @@ window.onload = function(){
 	
 	   var delup =document.querySelector('#delup');
 	   var uid = document.querySelector('#sessionid').value; //세션아이디와 등록자아이디 비교
-
+	   alert(uid);
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', '/review/list');
 		xhr.onreadystatechange = function(){
@@ -84,7 +84,6 @@ window.onload = function(){
 	           	html += '		<img src="/resources/images/user/'+r.userInfo.profilePath +'"';
 	 	        html += ' width="100" height ="100" style="border-radius: 50px;"/>';
 	            }
-	                      
 	            html += '            <div class="col-md-10">';
 	                       html += '               <p class="text-secondary text-left" id="revStar" style="align:"bottom"">'
 	            for(var j = 0;j<r.revStar;j++)
@@ -99,6 +98,7 @@ window.onload = function(){
 	            html += r.revComment+'</div>';
 	            html += '                              <br/><p id="delup" style="'
 	            if(uid == r.userInfo.userId){
+	            	
 	               html += 'display:block;">'; //세션아이디 일치시 취소업데이트버튼보이기
 	            }else{
 	               html += 'display:none;">';
@@ -152,9 +152,7 @@ function ondelete(revNums){ //앵커태그 펑션 매개변수로 revNum넘기�
 function onready(revNums,revComments,revStars){ //팝업으로 가기
 	var openChild;
 	openChild = window.open("<c:url value='/views/customercenter/reviewupdate.do?revNums="+revNums+"'/>", 'child', 'width=400, height=600, left=400, top=400, resizable = yes')
-	openChild.document.getElementById("revNum").value = revNums;
-	openChild.document.getElementById("revComment").value = revComments;
-	openChild.document.getElementById("revStars").value = revStar;
+
 	
 }
 

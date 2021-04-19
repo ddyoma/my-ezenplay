@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
-
+<!-- 팝업창입니다. -->
 <html>
 <head>
 
@@ -37,7 +37,7 @@ margin: auto;
   <div class="col-lg-6">
        
             <div class="probox" style="background: #BDBDBD;"> <!-- 사진미등록자는 기본프로필화면으로보이게 -->
-						<img class="profileone" src="" onerror="this.src='/resources/images/user/basic.png';"alt='' /> 
+						<img class="profileone"  id= "poto" src="" onerror="this.src='/resources/images/user/basic.png';"alt='' /> 
 					</div><br><br>
               <div class="form-row">
                 <div class="col form-group">
@@ -75,7 +75,7 @@ window.onload = function(){
 	var cuturl = document.URL;
 	var cuturl2 = new URL(cuturl);
 	var revNums = cuturl2.searchParams.get("revNums"); //주소컷
-	
+	var photo = '';
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/review/view?revNum='+revNums);
 	xhr.onreadystatechange = function(){
@@ -84,6 +84,10 @@ window.onload = function(){
 			$('[name=message]').text(res.revComment);
 			$('[name=userNum]').val(res.userInfo.userNum); //input
 			$('[name=userId]').val(res.userInfo.userId);
+			photo = res.userInfo.profilePath;
+			var img_src = '/resources/images/user/' +photo;
+			document.getElementById("poto").src = img_src;//이미지src변경
+			
 			
 			}
 			
