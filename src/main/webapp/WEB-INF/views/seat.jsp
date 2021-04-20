@@ -114,7 +114,7 @@ color: #fff;
       <div class="div2" id="square5">40</div>
     </div>
     <div class="divbox5">
-      <div class="div2" id="square4">41</div>
+      <div class="div2"  id="square4">41</div>
       <div class="div2" id="square3">42</div>
       <div class="div2" id="square2">43</div>
       <div class="div2" id="square1">44</div>
@@ -133,8 +133,8 @@ color: #fff;
               </div>
               <div id="seatment" style ="display:none" ><!-- 좌석상세 뜨게할부분 -->
               
-               <ul><li>좌석번호 <span>(25)</span></li></ul>
-               <span>상세설명</span>
+               <ul><li>좌석번호 <span id="numberseat">좌석번호</span></li></ul>
+               <span id="seatview">상세설명</span>
               </div>
               
               </div><!-- End sidebar recent posts-->
@@ -168,7 +168,7 @@ color: #fff;
  
 		
   var div2 = document.getElementsByClassName("div2");
-  var seatnumber = document.getElementsByClassName("div2").value;
+
 
   var sidement = document.getElementById("sidement"); //골라줘
   var seatment = document.getElementById("seatment"); //시트정보
@@ -177,8 +177,6 @@ color: #fff;
     // console.log(this);
     // 콘솔창을 보면 둘다 동일한 값이 나온다
     console.log(event.target.classList);
-
-
     sidement.style.display = "none"; //클릭시 골라줘안보이기
     seatment.style.display = "block"; //선택시 시트정보보이기
     if (event.target.classList[1] === "clicked") { //1개선택
@@ -193,9 +191,27 @@ color: #fff;
     }
   }
 
+ $('.div2').click(function(){ //클래스 div2에서 클릭한 밸류값가져오기
+	var pcNum = $(this).text();
+	alert(pcNum);
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/pc/view?pcNum='+pcNum);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+				var res = JSON.parse(xhr.responseText);
+					console.log(res);
+			}$('#numberseat').text(res.pcSeatNum);
+			$('#seatview').text(res.pcSpec);
+		}
+	xhr.send();
+});
+  
+ 
   function init() {
     for (var i = 0; i < div2.length; i++) {
       div2[i].addEventListener("click", handleClick); //핸들클릭펑션을 클릭시 진행
+
 
     }
   }
