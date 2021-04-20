@@ -40,7 +40,8 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 	@Override
 	public ReservationInfo insert(ReservationInfo res) {
 		PcCurrentStatus pc = PCRepo.findByPcInfoPcSeatNum(res.getPcInfo().getPcSeatNum());
-		 if(pc.getPcSeatResult()==0&&pc.getReservationInfo().getResNum()==null&&PCRepo.findByUserInfoUserNum(res.getUserInfo().getUserNum())==null) { //한명의회원이 하나의좌석만예약가능
+		PcCurrentStatus pc1 = PCRepo.findByUserInfoUserNum(res.getUserInfo().getUserNum());
+		 if(pc.getPcSeatResult()==0&&pc.getReservationInfo()==null&&pc1==null) { //한명의회원이 하나의좌석만예약가능
 			 res.setResResult(1);
 			 ReservationInfo r = resRepo.save(res);
 			 pc.setPcSeatResult(2);

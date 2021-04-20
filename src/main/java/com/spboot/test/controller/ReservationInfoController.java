@@ -39,6 +39,7 @@ public class ReservationInfoController {
 	
 	@DeleteMapping("/res/delete/{resNum}")
 	public Integer deleteRes(@PathVariable Integer resNum) {
+		log.info("resNum=>{}",resNum);
 		return resService.delete(resNum);
 	}
 }

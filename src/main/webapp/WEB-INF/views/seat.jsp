@@ -136,7 +136,7 @@ color: #fff;
                <ul><li>좌석번호 <span id="numberseat">좌석번호</span></li></ul>
                <span id="seatview">상세설명</span>
               </div>
-              
+               	<div style="cursor:pointer" onclick="gores()">좌석예약</div>
               </div><!-- End sidebar recent posts-->
 
             </div><!-- End sidebar -->
@@ -165,10 +165,15 @@ color: #fff;
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   <script> 
- 
+
+  
 		
   var div2 = document.getElementsByClassName("div2");
 
+  function gores(){
+		var pcSeatNum = document.querySelector('.div2.clicked').innerHTML;
+		window.open( '/views/reservation?pcSeatNum='+pcSeatNum ,'reservation', 'width = 500, height = 300, top = 100, left = 200,status=no ');
+	}
 
   var sidement = document.getElementById("sidement"); //골라줘
   var seatment = document.getElementById("seatment"); //시트정보

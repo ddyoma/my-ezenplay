@@ -70,7 +70,6 @@
                             <a style="cursor:pointer;"id="mycs" onclick="showPassword()">회원탈퇴</a><div class="password-field" id="hideP" style="display:none"><input type="password" name="userPwd" placeholder="password">
                             <button type="button" onclick="return doDelete()">탈퇴</button>
                             </div><br/>
-                        <a style="cursor:pointer" onclick="gores()">go to reservation</a><br>
                         <a style="cursor:pointer" onclick="cancelRes()">예약취소</a>
                         </div>
                     </div>
