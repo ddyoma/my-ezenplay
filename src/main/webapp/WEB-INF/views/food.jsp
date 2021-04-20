@@ -80,6 +80,51 @@ display:none;
 </body>
 <script>
 
+function foodMotion(){
+	
+	var url = "";
+	var method = "";
+	var xhr = new XMLHttpRequest();
+	xhr.open(method, url);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var res = JSON.parse(xhr.responseText);
+			var html ='';
+			var id = 0;
+			for(var foods of res){
+				id = id+1;
+				html += '<div class="col-md-4">';
+				html += '<div class="card mb-4 shadow-sm">';
+				html += '<input type="hidden" name="foodNum" id="foodId'+id+'" value="'+foods.foodNum+'">'
+				html += '	<img class="card-img-top"';
+				html += '		src="/resources/images/food/'+foods.foodImgName+'"';
+				html += 'alt="'+foods.foodImgName+'">';
+				html += '	<div class="card-body">';
+				html += '	<p class="card-text">'+foods.foodDesc+'</p>';
+				html += '	<div';
+				html += '		class="d-flex justify-content-between align-items-center">';
+				html += '		<div class="btn-group">';
+				html += '			<button type="button"';
+				html += '			class="btn btn-sm btn-outline-secondary">'+foods.foodName+'</button>';
+				html += '		<button type="button"';
+				html += '				class="btn btn-sm btn-outline-secondary">'+foods.foodPrice+'원</button>';
+				html += '		</div>';
+				html += '		<small class="text-muted">'+foods.foodCookTime+' mins</small>';
+				html += '		</div>';
+				html += '<button type="button" id="updateButton" onclick="showUpdatePopup('+id+')" class="btn btn-success" style="margin-top:20px; margin-right:5px; height:35px;">수정</button>';
+				html += '<button type="button" id="deleteButton" onclick="foodDelete('+id+')" class="btn btn-danger" style="margin-top:20px; height:35px;" >삭제</button>';
+				html += '	</div>';
+				html += '	</div>';
+				html += '	</div>';
+			}
+			document.querySelector('#foodList').innerHTML=html;
+		}
+	}
+
+	xhr.send();
+
+}
+
 
 	window.onload = function(){
 		foodList();
