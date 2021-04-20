@@ -37,7 +37,7 @@ window.onload = function(){
 
 	
 
-}
+
 
 // window.onload = function(){
 // 	var xhr = new XMLHttpRequest();
@@ -92,4 +92,4 @@ function upload(){
 	}
 	xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));
-}
+}}

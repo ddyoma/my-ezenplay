@@ -10,4 +10,5 @@ public interface FoodInfoRepository extends JpaRepository<FoodInfo, Integer> {
 
 	public List<FoodInfo> findAllByOrderByFoodNumDesc();
 	public List<FoodInfo> findAllByFoodTypeOrderByFoodNumDesc(String foodType);
+	public List<FoodInfo> findAllByFoodNameContainsOrderByFoodNumDesc(String foodName);
 }

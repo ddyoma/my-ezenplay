@@ -43,6 +43,7 @@
             <button type="button" onclick="foodUpdate()"  class="btn btn-primary btn-lg">등록</button>
         </div>
     </form>
+   
 </div>
 </body>
 <script>
@@ -55,7 +56,7 @@ function digit_check(evt){
 
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/food-update?foodNum='+${param.foodNum});
+	xhr.open('GET','/food-update?foodNum='+ ${param.foodNum});
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&&xhr.status==200){
 			var res = JSON.parse(xhr.responseText);

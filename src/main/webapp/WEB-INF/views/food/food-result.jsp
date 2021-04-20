@@ -8,9 +8,7 @@
 </head>
 <body>
 <script>
-window.onload = function(){
-	location.href="/views/food";
-} 
+self.close();
 </script>
 
 </body>
