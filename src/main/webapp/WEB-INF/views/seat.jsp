@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
-
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/home/maintemplethead.jsp"></jsp:include><!-- 상단바로고디자인 -->
@@ -110,10 +109,18 @@ color: #fff;
       <div class="div2" id="line4">39</div>
       <div class="div2" id="line4">40</div>
     </div>
+    <div class="divbox5">
+      <div class="div2" id="line5">41</div>
+      <div class="div2" id="line5">42</div>
+      <div class="div2" id="line5">43</div>
+      <div class="div2" id="line5">44</div>
+      <div class="div2" id="line5">45</div>
+      
+    </div>
 	</div>
 </div>
 	<div id="popup" style="display:block">
-	<jsp:include page="/WEB-INF/views/customercenter/reviewup.jsp"></jsp:include><!-- 리뷰등록 -->
+	보여랑
 	</div>
 </div>		 
 </section><!-- End Contact Section -->
@@ -128,6 +135,8 @@ color: #fff;
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   <script> 
+ 
+		
   var div2 = document.getElementsByClassName("div2");
 
   function handleClick(event) {
@@ -156,8 +165,26 @@ color: #fff;
 
   init();
   
+  
+  
+  window.onload = function(){
+		//  ('[id^=test]')<싹다가져오기
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/pc/list');
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					console.log(xhr.responseText);
+					var res = JSON.parse(xhr.responseText);
+
+					
+					alert("잘돼요");
+					}
+				}
+			xhr.send();
+			}
+			
   </script>
-<script src="/resources/js/review.js"></script><!-- 리뷰리스트와인서트 -->
+
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 <jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
 
