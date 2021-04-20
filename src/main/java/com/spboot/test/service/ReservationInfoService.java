@@ -4,14 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.spboot.test.entity.PcCurrentStatus;
 import com.spboot.test.entity.ReservationInfo;
 
 public interface ReservationInfoService {
 	
 	List<ReservationInfo> getList(ReservationInfo resNum);
-	ReservationInfo get(int resNum);
+	List<ReservationInfo> getUserRes(Integer resNum);
 	ReservationInfo insert(ReservationInfo resNum);
 	ReservationInfo update(ReservationInfo resNum);
-	int delete(int resNum);
+	Integer delete(int resNum);
 	
 }

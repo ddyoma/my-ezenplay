@@ -34,4 +34,6 @@ public class PcCurrentStatus {
 	 @ManyToOne
 	 @JoinColumn(name="res_num")
 	 private ReservationInfo reservationInfo;
+	 
+	 
 }

@@ -172,6 +172,7 @@ function update(){
 	formData.append('userPhone',document.querySelector('#userPhone>p').innerHTML);
 	formData.append('userAddr1',document.querySelector('#userAddr1>p').innerHTML);
 	formData.append('userAddr2',document.querySelector('#userAddr2>p').innerHTML);
+
 	formData.append('userEmail',document.querySelector('#userEmail>p').innerHTML);
 	formData.append('userName',document.querySelector('#userName>p').innerHTML);
 	formData.append('favoriteGame',document.querySelector('#favoriteGame').value);
@@ -224,7 +225,7 @@ function doDelete(){
 		var url = '?userPwd='+userPwd+'&userNum='+userNum+'&restOfTime='+restOfTime+'&userMileage='+userMileage;
 		xhr.open('DELETE','/withdrawn'+url);
 		xhr.onreadystatechange = function(){
-			if(xhr.readyState==4&&xhr.status==200){
+			if(xhr.readyState==4&& xhr.status==200){
 				var res = JSON.parse(xhr.responseText);
 				if(res==1){
 					alert('회원탈퇴완료');
@@ -237,4 +238,13 @@ function doDelete(){
 		}
 		xhr.send();
 	}
+}
+function gores(){
+	window.open( '/views/reservation' ,'reservation', 'width = 500, height = 300, top = 100, left = 200,status=no ');
+	
+}
+
+function cancelRes(){
+	var userNum = document.querySelector('#userNum').value;
+	window.open('/views/res-cancel?userNum='+userNum,'res-cancel','width=600,height=700,top=100,align=center')
 }
