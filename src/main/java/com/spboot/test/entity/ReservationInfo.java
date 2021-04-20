@@ -10,9 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 import lombok.Data;
 
@@ -23,19 +27,23 @@ public class ReservationInfo {
 
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  @Column(name="res_num")
+	  @Column(name="res_num",updatable = false)
 	  private Integer resNum;
 	  @DateTimeFormat(pattern = "yyyy-MM-dd")
-	  @Column(name="res_date")
+	  @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+	  @Column(name="res_date",insertable=false,updatable = false)
 	  private Date resDate;
-	  @Column(name="res_time")
+	  @DateTimeFormat(pattern = "HH:mm:ss")
+	  @Column(name="res_time",updatable = false)
 	  private Time resTime;
+	  @Column(name="res_result")
+	  private Integer resResult;
 	  
 	  @ManyToOne
 	  @JoinColumn(name="user_num")
 	  private UserInfo userInfo;
 	  
-	  @ManyToOne
+	  @OneToOne
 	  @JoinColumn(name="pc_seat_num")
 	  private PcInfo pcInfo;
 }

@@ -989,14 +989,14 @@ section {
 .portfolio #portfolio-flters li {
   cursor: pointer;
   display: inline-block;
-  padding: 8px 20px 12px 20px;
-  font-size: 15px;
+  padding: 20px 20px 20px 20px;
+  font-size: 10px;
   font-weight: 500;
   line-height: 1;
   color: #444444;
-  margin: 0 4px 8px 4px;
+  margin: 0;
   transition: all ease-in-out 0.3s;
-  border-radius: 50px;
+ 
   background: #f2f2f2;
 }
 
@@ -1686,7 +1686,7 @@ section {
 }
 
 .blog .entry-single {
-  margin-bottom: 30px;
+  margin-bottom: 300px;
 }
 
 .blog .blog-author {
@@ -1877,6 +1877,8 @@ section {
   padding: 30px;
   margin: 0 0 60px 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform:translate(0px,-220px);
+  width : 250px;
 }
 
 .blog .sidebar .sidebar-title {

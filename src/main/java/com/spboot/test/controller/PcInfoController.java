@@ -40,8 +40,8 @@ public class PcInfoController {
 		return pService.deletePcInfo(pcNum);
 	}
 	@GetMapping("pc/view")
-	public @ResponseBody PcInfo getPcInfo(@RequestParam int revNum) {
-		return pService.getPcInfo(revNum);
+	public @ResponseBody PcInfo getPcInfo(@RequestParam int pcNum) {
+		return pService.getPcInfo(pcNum);
 	}
 	@GetMapping("/pc/list")
 	public @ResponseBody List<PcInfo> getPcInfos(){

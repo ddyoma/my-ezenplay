@@ -37,7 +37,6 @@ xhr.onreadystatechange = function(){
 		var res = JSON.parse(xhr.responseText);
 		var html = '';
 		for(var r of res){
-			console.log(r.phType);
 			html += '<tr class="table-active">';
 			html += '<td>'+r.phType+'</td>';
 			html += '<td>'+r.phDateTime+'</td>';
