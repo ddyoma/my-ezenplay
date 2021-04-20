@@ -28,7 +28,7 @@ public class ReservationInfoController {
 	
 	@PostMapping("/res/insert")
 	public ReservationInfo insertRes(@RequestBody ReservationInfo res) {
-		log.info("res=>{}",res);
+		log.info("res=>{}",res); 
 		return resService.insert(res);
 	}
 	
