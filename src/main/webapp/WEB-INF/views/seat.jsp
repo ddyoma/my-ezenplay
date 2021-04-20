@@ -30,7 +30,7 @@ margin: 3px;
 }
 .seatbox{ 
 display:inline;
-transform:translate(400px,120px);
+transform:translate(400px,80px);
 }
 
 .clicked {
@@ -63,6 +63,7 @@ color: #fff;
 
         <div class="row">
  <div class="seatbox">
+<h2>좌석현황</h2>
             <div class="divbox1">
       <div class="div2" id="square44">1</div>
       <div class="div2" id="square43">2</div>
@@ -119,9 +120,9 @@ color: #fff;
       <div class="div2" id="square1">44</div>
       <div class="div2" id="square0">45</div>
       
-    </div>
+    </div></div>
 	</div><!-- 박스종료 -->
-          <div class="col-lg-8 entries">
+          <div class="col-lg-3 entries">
 				<div class="col-lg-4">
 
             <div class="sidebar">
@@ -140,26 +141,19 @@ color: #fff;
 
             </div><!-- End sidebar -->
 
-          </div>
+       
 
           
         </div>
 
       </div>
     </section>
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="row">
+   
         
         <!-- 여기서부터 내용입력 -->
         
        
 	
-</div>
-
-	
-</div>		 
-</section><!-- End Contact Section -->
 </main><!-- End #main -->
 
   
@@ -174,6 +168,8 @@ color: #fff;
  
 		
   var div2 = document.getElementsByClassName("div2");
+  var seatnumber = document.getElementsByClassName("div2").value;
+
   var sidement = document.getElementById("sidement"); //골라줘
   var seatment = document.getElementById("seatment"); //시트정보
   function handleClick(event) {
@@ -181,11 +177,12 @@ color: #fff;
     // console.log(this);
     // 콘솔창을 보면 둘다 동일한 값이 나온다
     console.log(event.target.classList);
+
+
     sidement.style.display = "none"; //클릭시 골라줘안보이기
     seatment.style.display = "block"; //선택시 시트정보보이기
     if (event.target.classList[1] === "clicked") { //1개선택
     	event.target.classList.remove("clicked"); //한번더누르면 선택해제
-    	alert("선택해제");
     	sidement.style.display = "block"; //선택해제후골라줘보이기
     	seatment.style.display = "none"; //선택해제후시트정보안보이기
     } else {
