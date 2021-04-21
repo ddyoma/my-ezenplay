@@ -98,19 +98,22 @@ function reload(){
 }
 
 function doCancel(){
-	confirm('정말 취소하시겠습니까?');
-	var resNum = document.querySelector('#hi>[name=resNum]').innerHTML;
-	var xhr = new XMLHttpRequest();
-	xhr.open('DELETE','/res/delete/'+resNum);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState==4&&xhr.status==200){
-			if(xhr.responseText){
-				alert('예약이 취소되었습니다.');
-				location.href=location.href;
+	if(confirm('정말 취소하시겠습니까?')){
+		var resNum = document.querySelector('#hi>[name=resNum]').innerHTML;
+		var xhr = new XMLHttpRequest();
+		xhr.open('DELETE','/res/delete/'+resNum);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				if(xhr.responseText){
+					alert('예약이 취소되었습니다.');
+					location.href=location.href;
+				}
 			}
 		}
+		xhr.send();
+	}else{
+		return;
 	}
-	xhr.send();
 }
 </script>
 </body>
