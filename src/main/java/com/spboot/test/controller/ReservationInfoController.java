@@ -1,12 +1,9 @@
 package com.spboot.test.controller;
 
-import java.text.ParseException;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +24,7 @@ public class ReservationInfoController {
 	private ReservationInfoService resService;
 	
 	@PostMapping("/res/insert")
-	public ReservationInfo insertRes(@RequestBody ReservationInfo res) {
+	public String insertRes(@RequestBody ReservationInfo res) {
 		log.info("res=>{}",res);
 		return resService.insert(res);
 	}

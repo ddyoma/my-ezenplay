@@ -63,14 +63,13 @@
                         <div class="profile-work">
                        <button class="profile-my-btn" type="button" onclick="showImg()" style="margin-left: 50px;">기본이미지로변경</button><br>
                          <p>Link</p>
-                            <a href="/views/voccenter">Go to review</a><br/>
-                            <a href="">Go to rating center</a><br/>
+                            <a href="/views/voccenter">리뷰쓰기</a><br/>
                             <a style="cursor:pointer;" id="mycss" onclick="goRedfila()">Learn from redfila</a>
                             <p>SKILLS</p>
+                       		 <a style="cursor:pointer" onclick="cancelRes()">예약취소</a><br>
                             <a style="cursor:pointer;"id="mycs" onclick="showPassword()">회원탈퇴</a><div class="password-field" id="hideP" style="display:none"><input type="password" name="userPwd" placeholder="password">
                             <button type="button" onclick="return doDelete()">탈퇴</button>
-                            </div><br/>
-                        <a style="cursor:pointer" onclick="cancelRes()">예약취소</a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -164,7 +163,6 @@
         </div>
         <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 		<jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
-
 <script src="/resources/js/user-info.js"></script>
 </body>
 </html>
