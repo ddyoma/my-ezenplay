@@ -202,8 +202,6 @@ function checkId(){
 	}	
 	
 	function checkVD() {
-
-		
 		if (!validation('#id', 4, 10, '아이디를 다시 입력해주세요.')) {
 			return false;
 		}
@@ -221,7 +219,7 @@ function checkId(){
 			userPwd2.focus();
 			return false;
 		}
-		if (!validation('#name', 3, 10, '이름을 다시 입력해주세요.')) {
+		if (!validation('#name', 2, 10, '이름을 다시 입력해주세요.')) {
 			return false;
 		}
 		var email = document.querySelector('#email').value;
@@ -278,8 +276,8 @@ function checkId(){
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState==4 && xhr.status==200){
 				var res = JSON.parse(xhr.responseText);
-					alert('회원가입 성공');
-					location.href='/';
+				alert('회원가입 성공');
+				location.href='/';
 			}
 		}
 		var formData = new FormData();
@@ -287,11 +285,9 @@ function checkId(){
 		var userPwd = document.querySelector('[name=userPwd]');
 		var userEmail = document.querySelector('[name=userEmail]');
 		var userName = document.querySelector('[name=userName]');
-		
 		var yyyy = document.querySelector('[name=yyyy]');
 		var mm = document.querySelector('[name=mm]');
 		var dd = document.querySelector('[name=dd]');
-		
 		var userGender = document.querySelector('[name=userGender]');
 		var userFile = document.querySelector('[name=userFile]');
 		var userPhone = document.querySelector('[name=userPhone]');
