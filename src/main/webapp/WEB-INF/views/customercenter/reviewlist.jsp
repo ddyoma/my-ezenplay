@@ -82,6 +82,7 @@ window.onload = function(){
 		 	    html += ' width="100" height ="100" style="border-radius: 50px;"/>';
 	            }else{
 	           	html += '		<img src="/resources/images/user/'+r.userInfo.profilePath +'"';
+	           //	html += 'onerror="this.src='+'\' +/resources/images/user/basic.png+'+\';"';
 	 	        html += ' width="100" height ="100" style="border-radius: 50px;"/>';
 	            }
 	            html += '            <div class="col-md-10">';
