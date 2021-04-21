@@ -29,7 +29,7 @@ public class PcCurrentStatusController {
 	
 	@PostMapping("/pc-status")
 	public Integer insert(@RequestBody PcCurrentStatus pcStatus) {//정보를 저장하는 로직
-		log.info("pcStatus=>{}",pcStatus);
+		
 		pcStatusRepo.save(pcStatus);
 		return pcStatus.getPcStatusNum();
 	}
