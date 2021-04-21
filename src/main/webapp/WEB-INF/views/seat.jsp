@@ -31,13 +31,25 @@ margin: 3px;
 .seatbox{ 
 display:inline;
 transform:translate(400px,80px);
+ transition: all ease-in-out 0.3s; 
 }
 
 .clicked {
 color: #fff;
 background-color: #f45454;
 }
+#seatreserve{
 
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #f45454;
+
+color: #fff;
+ transition: all ease-in-out 0.3s; 
+ cursor: pointer;
+   font-size: 15px;
+}
 </style>
 <body>
  <!-- ======= Breadcrumbs ======= -->
@@ -60,7 +72,7 @@ background-color: #f45454;
 
         <div class="row">
  <div class="seatbox">
-<h2>좌석현황</h2>
+<h2>pc현황</h2>
             <div class="divbox1">
       <div class="div2" id="square44">1</div>
       <div class="div2" id="square43">2</div>
@@ -124,16 +136,15 @@ background-color: #f45454;
 
             <div class="sidebar">
 
-              <h3 class="sidebar-title">좌석정보</h3>
+              <h3 class="sidebar-title">SEAT</h3>
               <div id="sidement" style ="display:block" >
               	<p >좌석을골라주세요</p>
               </div>
-              <div id="seatment" style ="display:none" ><!-- 좌석상세 뜨게할부분 -->
-              
-               <ul><li>좌석번호 <span id="numberseat">좌석번호</span></li></ul>
-               <span id="seatview">상세설명</span>
-              </div>
-               	<div style="cursor:pointer" onclick="gores()">좌석예약</div>
+              <div id="seatment" style ="display:none; float:left;" ><!-- 좌석상세 뜨게할부분 -->
+               <h1><span id="numberseat"style ="float:left;" >좌석번호</span></h1><h5>번</h5>
+              <br/><br/><br/><span id="seatview">상세설명</span>
+              </div><br/><br/><br/><br/><br/><br/>
+               	<div id="seatreserve" style="cursor:pointer" onclick="gores()">예약하러가기</div>
               </div><!-- End sidebar recent posts-->
 
             </div><!-- End sidebar -->
@@ -226,7 +237,6 @@ background-color: #f45454;
 	  	xhr.onreadystatechange = function(){
 	   	if(xhr.readyState == 4 && xhr.status == 200){
 	    var res = JSON.parse(xhr.responseText);
-	    console.log(res);
 			    for(var pc of res){
 							  if(pc.pcSeatResult == 2){
 								  $(function() {
