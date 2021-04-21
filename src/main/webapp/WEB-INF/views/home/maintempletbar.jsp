@@ -70,4 +70,5 @@ ${UserInfo.userName}님 환영합니다.
       </nav><!-- .nav-menu -->
     </div>
   </header><!-- End Header -->
+  <script src="/resources/js/logindi.js"></script><!-- 로그인로그아웃로직 -->
 
