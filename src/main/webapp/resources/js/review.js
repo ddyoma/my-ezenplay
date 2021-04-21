@@ -36,6 +36,7 @@ window.onload = function(){
 	xhr.send();
 
 	
+}
 
 
 
@@ -92,4 +93,4 @@ function upload(){
 	}
 	xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));
-}}
+}
