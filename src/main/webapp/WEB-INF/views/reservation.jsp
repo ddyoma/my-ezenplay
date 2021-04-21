@@ -35,7 +35,7 @@ html {overflow:hidden;status:hidden;}
             <input type="time" id="resTime" class="form__input" style="float:right;width:70%"/>
         </div>
         </div>
-        <input type="hidden" id="userNum" value=1 />
+        <input type="hidden" id="userNum" value="${UserInfo.userNum}" />
         <button class="btn" type="button" onclick="resOk()" style="cursor:pointer">예약완료</button>
     </form>
 </div>
@@ -46,11 +46,19 @@ function resOk(){
 	xhr.open('POST','/res/insert');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&&xhr.status==200){
-			if(xhr.responseText){
-				alert('예약완료!');
-				location.href='';
-			}else{
-				alert('예약이 완료된 좌석입니다.');
+			var res = xhr.responseText;
+			if(res=='좌석은 하나만 예약 가능합니다.'){
+				alert('좌석은 하나만 예약 가능합니다.');
+				opener.document.location.reload();
+				window.close();
+			}else if(res=='이미 예약된 좌석입니다.'){
+				alert('이미 예약된 좌석입니다.');
+				opener.document.location.reload();
+				window.close();
+			}else if(res=='예약이 완료되었습니다!'){
+				alert('예약이 완료되었습니다!');
+				opener.document.location.reload();
+				window.close();
 			}
 		}
 	}
