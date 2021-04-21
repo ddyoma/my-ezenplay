@@ -31,15 +31,24 @@ margin: 3px;
 .seatbox{ 
 display:inline;
 transform:translate(400px,80px);
+ transition: all ease-in-out 0.3s; 
 }
 
 .clicked {
 color: #fff;
 background-color: #f45454;
 }
-.seatused {
-background-color: #545454;
+#seatreserve{
+
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #f45454;
+
 color: #fff;
+ transition: all ease-in-out 0.3s; 
+ cursor: pointer;
+   font-size: 15px;
 }
 </style>
 <body>
@@ -63,7 +72,7 @@ color: #fff;
 
         <div class="row">
  <div class="seatbox">
-<h2>좌석현황</h2>
+<h2>pc현황</h2>
             <div class="divbox1">
       <div class="div2" id="square44">1</div>
       <div class="div2" id="square43">2</div>
@@ -127,16 +136,15 @@ color: #fff;
 
             <div class="sidebar">
 
-              <h3 class="sidebar-title">좌석정보</h3>
+              <h3 class="sidebar-title">SEAT</h3>
               <div id="sidement" style ="display:block" >
               	<p >좌석을골라주세요</p>
               </div>
-              <div id="seatment" style ="display:none" ><!-- 좌석상세 뜨게할부분 -->
-              
-               <ul><li>좌석번호 <span id="numberseat">좌석번호</span></li></ul>
-               <span id="seatview">상세설명</span>
-              </div>
-               	<div style="cursor:pointer" onclick="gores()">좌석예약</div>
+              <div id="seatment" style ="display:none; float:left;" ><!-- 좌석상세 뜨게할부분 -->
+               <h1><span id="numberseat"style ="float:left;" >좌석번호</span></h1><h5>번</h5>
+              <br/><br/><br/><span id="seatview">상세설명</span>
+              </div><br/><br/><br/><br/><br/><br/>
+               	<div id="seatreserve" style="cursor:pointer" onclick="gores()">예약하러가기</div>
               </div><!-- End sidebar recent posts-->
 
             </div><!-- End sidebar -->
@@ -178,10 +186,10 @@ color: #fff;
   var sidement = document.getElementById("sidement"); //골라줘
   var seatment = document.getElementById("seatment"); //시트정보
   function handleClick(event) {
-    console.log(event.target);
+    //console.log(event.target);
     // console.log(this);
     // 콘솔창을 보면 둘다 동일한 값이 나온다
-    console.log(event.target.classList);
+    //console.log(event.target.classList);
     sidement.style.display = "none"; //클릭시 골라줘안보이기
     seatment.style.display = "block"; //선택시 시트정보보이기
     if (event.target.classList[1] === "clicked") { //1개선택
@@ -196,28 +204,25 @@ color: #fff;
     }
   }
 
- $('.div2').click(function(){ //클래스 div2에서 클릭한 밸류값가져오기
-	var pcNum = $(this).text();
-	alert(pcNum);
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/pc/view?pcNum='+pcNum);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
-				var res = JSON.parse(xhr.responseText);
+ $('.div2').click(function(){//사이드 뷰 전용
+		var pcNum = $(this).text();
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', '/pc-status/reserve?pcNum='+pcNum);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+					var res = JSON.parse(xhr.responseText);
 					console.log(res);
-			}$('#numberseat').text(res.pcSeatNum);
-			$('#seatview').text(res.pcSpec);
-		}
-	xhr.send();
-});
-  
+				}
+			$('#numberseat').text(res.pcInfo.pcSeatNum);
+			$('#seatview').text(res.pcInfo.pcSpec);
+			}
+		xhr.send();
+	});
+	   
  
   function init() {
     for (var i = 0; i < div2.length; i++) {
       div2[i].addEventListener("click", handleClick); //핸들클릭펑션을 클릭시 진행
-
-
     }
   }
   init();
@@ -225,25 +230,36 @@ color: #fff;
   
   
   window.onload = function(){ //좌석list뽑아오기
-		//  ('[id^=test]')<싹다가져오기
-		var i = 0;
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', '/pc/list');
-			xhr.onreadystatechange = function(){
-				if(xhr.readyState == 4 && xhr.status == 200){
-					console.log(xhr.responseText);
-					var res = JSON.parse(xhr.responseText);
-					
-					for(var pc of res){
-						console.log(pc.pcSeatNum);
-						$('#square'+i).text(pc.pcSeatNum);
-						i++;
+	
+	  var i=0;
+	  var xhr = new XMLHttpRequest();
+ 		xhr.open('GET', '/pc-status/list');
+	  	xhr.onreadystatechange = function(){
+	   	if(xhr.readyState == 4 && xhr.status == 200){
+	    var res = JSON.parse(xhr.responseText);
+			    for(var pc of res){
+							  if(pc.pcSeatResult == 2){
+								  $(function() {
+									    $('.div2').css({
+									        "background-color": "#545454",//예약시 기본색변경
+									        "pointer-events": "none" //클릭금지
+									    });
+									});
+								  
+								 // div2[i].style.backgroundColor = "#545454"; 
+								 // event.target.classList.add("seatused");
+							  }
+								  $('#square'+i).text(pc.pcInfo.pcSeatNum);
+								  i++;
+			    			}
 					}
-					}
-				}
-			xhr.send();
 			}
-			
+	xhr.send();
+	}
+  
+  
+  
+  
   </script>
 
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->

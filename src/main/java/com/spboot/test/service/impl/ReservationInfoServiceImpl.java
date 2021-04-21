@@ -1,6 +1,9 @@
 package com.spboot.test.service.impl;
 
-import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,9 +42,19 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 
 	@Override
 	public String insert(ReservationInfo res) {
-		PcCurrentStatus pc = PCRepo.findByPcInfoPcSeatNum(res.getPcInfo().getPcSeatNum());
-		PcCurrentStatus pc1 = PCRepo.findByUserInfoUserNum(res.getUserInfo().getUserNum());
-		String msg;
+		Calendar cal= Calendar.getInstance();
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String resDate = sdf.format(cal.getTime());
+			resDate = resDate +" "+res.getResTime();
+			sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			cal.setTime(d);
+			cal.add(Calendar.MINUTE, 31);
+			String now = sdf.format(cal.getTime());
+			String msg= "";
+			if(resDate.compareTo(now)>0) {
+		PcCurrentStatus pc = PCRepo.findByPcInfoPcSeatNum(res.getPcInfo().getPcSeatNum()); //자리예약되있는지
+		PcCurrentStatus pc1 = PCRepo.findByUserInfoUserNum(res.getUserInfo().getUserNum()); //사용자가 예약한적있는지
 		if(pc1==null) {
 			if(pc.getPcSeatResult()==0&&pc.getReservationInfo()==null) { //한명의회원이 하나의좌석만예약가능
 				 res.setResResult(1);
@@ -60,6 +73,9 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 		}else {
 			msg ="좌석은 하나만 예약 가능합니다."; //사용자가 하나의좌석 이상을 예약했을때
 		}
+	}else {
+		msg="예약가능한 시간이 아닙니다.";
+	}
 		return msg;
 	}
 
@@ -86,6 +102,4 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 		}
 		return null;
 	}
-
-
 }

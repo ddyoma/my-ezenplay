@@ -29,13 +29,13 @@ public class PcCurrentStatusController {
 	
 	@PostMapping("/pc-status")
 	public Integer insert(@RequestBody PcCurrentStatus pcStatus) {//정보를 저장하는 로직
-		log.info("pcStatus=>{}",pcStatus);
+		
 		pcStatusRepo.save(pcStatus);
 		return pcStatus.getPcStatusNum();
 	}
 	@GetMapping("/pc-status/list")
 	public @ResponseBody List<PcCurrentStatus> getPcInfos(){
-		return pcStatusRepo.findAll();
+		return pcStatusRepo.findAllByOrderByPcStatusNumDesc();
 	}
 	@GetMapping("/pc-status/reserve")
 	public @ResponseBody PcCurrentStatus findOneByPcNum(@RequestParam Integer pcNum){

@@ -1,9 +1,12 @@
 package com.spboot.test.controller;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,5 +41,23 @@ public class ReservationInfoController {
 	public Integer deleteRes(@PathVariable Integer resNum) {
 		log.info("resNum=>{}",resNum);
 		return resService.delete(resNum);
+	}
+	
+	@GetMapping("/time/{rTime}")
+	public Integer getTime(@PathVariable String rTime) {
+		String time = rTime +":00";
+		Calendar cal= Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String resDate = sdf.format(cal.getTime());
+		resDate = resDate +" "+time;
+		Date d = new Date();
+		sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		cal.setTime(d);
+		cal.add(Calendar.MINUTE, 31);
+		String now = sdf.format(cal.getTime());
+		if(resDate.compareTo(now)>0) {
+			return 1;
+		}
+		return 0;
 	}
 }
