@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 
-        <div class="row">
+        <div style="margin-top:0px;" class="row">
         <br>
          	<h2>　  EZENPLAY만의 특별한 마일리지 제도</h2>
          	<br>

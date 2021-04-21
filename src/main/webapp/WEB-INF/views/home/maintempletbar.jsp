@@ -57,7 +57,7 @@ ${UserInfo.userName}님 환영합니다.
 					<c:if test="${UserInfo ne null }">
 					
                      <li class="drop-down" id="loginButton"><a href="/views/userinfo" >
-                     <img src="/resources/images/user/${UserInfo.profilePath }" onerror="this.src='/resources/images/user/basic.png';" class="brand_logo" alt="Logo" style="border-radius: 20px; width: 35px; height: 35px;">
+                     <img src="/resources/images/user/${UserInfo.profilePath }" onerror="this.src='/resources/images/user/basic.png';" class="brand_logo" alt="Logo" style="border-radius: 20px; width: 20px; height: 20px;">
                      ${UserInfo.userName }님 반갑습니다</a>
             <ul>
               <li><a href="/views/userinfo">내 정보보기</a></li>
