@@ -11,7 +11,7 @@ public interface ReservationInfoService {
 	
 	List<ReservationInfo> getList(ReservationInfo resNum);
 	List<ReservationInfo> getUserRes(Integer resNum);
-	ReservationInfo insert(ReservationInfo resNum);
+	String insert(ReservationInfo resNum);
 	ReservationInfo update(ReservationInfo resNum);
 	Integer delete(int resNum);
 	
