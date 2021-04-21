@@ -35,7 +35,7 @@ public class PcCurrentStatusController {
 	}
 	@GetMapping("/pc-status/list")
 	public @ResponseBody List<PcCurrentStatus> getPcInfos(){
-		return pcStatusRepo.findAll();
+		return pcStatusRepo.findAllByOrderByPcStatusNumDesc();
 	}
 	@GetMapping("/pc-status/reserve")
 	public @ResponseBody PcCurrentStatus findOneByPcNum(@RequestParam Integer pcNum){
