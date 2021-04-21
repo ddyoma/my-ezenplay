@@ -3,11 +3,14 @@
 
 
         <div class="row">
-          <div class="col-lg-6">
-            <img src="/resources/assets/img/about.jpg" class="img-fluid" alt="">
-          </div>
+        <br>
+         	<h3>　  EZENPLAY만의 특별한 마일리지 제도</h3>
+         	<br>
+            <img src="/resources/images/home/ezenpc5.PNG" class="img-fluid" alt="">
+          
           <div class="col-lg-6 pt-4 pt-lg-0 content">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+          <br>
+            
             <p class="font-italic">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.

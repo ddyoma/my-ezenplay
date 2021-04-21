@@ -43,9 +43,10 @@ margin: auto;
 <!-- 바디에 작성공간여기까지 -->
 	</div>
 </section><!-- End About Section -->
+
 <jsp:include page="/WEB-INF/views/customercenter/reviewslide.jsp"></jsp:include><!-- 리뷰슬라이드-->
-<jsp:include page="/WEB-INF/views/home/maintempletfootersection.jsp"></jsp:include><!-- 가운데바디2섹션 service형태라 안쓸듯 -->
-<jsp:include page="/WEB-INF/views/home/maintempletclient.jsp"></jsp:include><!-- client -->
+
+
  </main><!-- End #main -->
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 <jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
@@ -53,5 +54,5 @@ margin: auto;
 
 
 </body>
-
+<script src="/resources/js/review.js"></script><!-- 리뷰리스트와인서트 -->
 </html>

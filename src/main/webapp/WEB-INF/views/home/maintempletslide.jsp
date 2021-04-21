@@ -11,7 +11,7 @@
         <div class="carousel-inner" role="listbox">
 
           <!-- Slide 1 -->
-          <div class="carousel-item active" style="background: url(/resources/images/home/ezenpc1.jpg">
+          <div class="carousel-item active" style="background: url(/resources/images/home/ezenpc2.jpg">
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Welcome to <span>EZENPLAY</span></h2>
@@ -23,7 +23,7 @@ With differentiated service and know-how, we will give you an impression beyond 
           </div>
 
           <!-- Slide 2 -->
-          <div class="carousel-item" style="background: url(/resources/images/home/ezenpc2.jpg)">
+          <div class="carousel-item" style="background: url(/resources/images/home/ezenpc1.jpg)">
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated fanimate__adeInDown">The special <span>EZENPLAY</span></h2>
