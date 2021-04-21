@@ -49,14 +49,22 @@ ${UserInfo.userName}님 환영합니다.
           <li><a href="/views/timecharge">시간충전</a></li>
           <li><a href="/views/voccenter">고객센터</a></li>
           
-          
-          
-                     <li class="drop-down" id="loginButton"><a href="/views/login">로그인/회원가입</a>
+          <c:if test="${UserInfo eq null }">
+          	<li><a href="/views/login">로그인/회원가입</a></li>			
+			</c:if>
+					
+					
+					<c:if test="${UserInfo ne null }">
+					
+                     <li class="drop-down" id="loginButton"><a href="/views/userinfo" >
+                     <img src="/resources/images/user/${UserInfo.profilePath }" onerror="this.src='/resources/images/user/basic.png';" class="brand_logo" alt="Logo" style="border-radius: 20px; width: 35px; height: 35px;">
+                     ${UserInfo.userName }님 반갑습니다</a>
             <ul>
-              <li><a href="about.html">정보수정</a></li>
-              <li><a href="team.html">로그아웃</a></li>
+              <li><a href="/views/userinfo">내 정보보기</a></li>
+              <li><a href="/views/index" onclick="logout()">로그아웃</a></li>
             </ul>
           </li>
+          </c:if>
           
         </ul>
       </nav><!-- .nav-menu -->

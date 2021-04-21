@@ -38,8 +38,7 @@ margin: auto;
    <!-- 바디에 작성할공간여기부터 -->
    
 
-<jsp:include page="/WEB-INF/views/home/maintempletbodysection.jsp"></jsp:include><!-- 가운데바디1섹션 -->
-<jsp:include page="/WEB-INF/views/home/login.jsp"></jsp:include><!-- 로그인창 -->
+<jsp:include page="/WEB-INF/views/home/maintempletbodysection.jsp"></jsp:include><!-- 마일리지 부분 -->
 <!-- 바디에 작성공간여기까지 -->
 	</div>
 </section><!-- End About Section -->
@@ -54,5 +53,6 @@ margin: auto;
 
 
 </body>
+<jsp:include page="/WEB-INF/views/customercenter/star.jsp"></jsp:include><!-- 별-->
 <script src="/resources/js/review.js"></script><!-- 리뷰리스트와인서트 -->
 </html>

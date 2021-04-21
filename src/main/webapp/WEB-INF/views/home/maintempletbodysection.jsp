@@ -4,27 +4,17 @@
 
         <div class="row">
         <br>
-         	<h3>　  EZENPLAY만의 특별한 마일리지 제도</h3>
+         	<h2>　  EZENPLAY만의 특별한 마일리지 제도</h2>
          	<br>
             <img src="/resources/images/home/ezenpc5.PNG" class="img-fluid" alt="">
           
           <div class="col-lg-6 pt-4 pt-lg-0 content">
           <br>
-            
-            <p class="font-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
             <ul>
-              <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="icofont-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="icofont-check-circled"></i> 결제 금액의 %를 마일리지로 돌려드립니다!</li>
+              <li><i class="icofont-check-circled"></i> 일정 사용금액 달성시 등급이 상승합니다!</li>
+              <li><i class="icofont-check-circled"></i> 마일리지는 현금처럼 사용하실 수 있습니다!</li>
             </ul>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
           </div>
         </div>
 
