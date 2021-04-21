@@ -18,6 +18,7 @@ html {overflow:hidden;status:hidden;}
     
     <form class="form" method="Post" action="/res/insert">
         
+        <input type="text" value="현재시간+31분 이후부터 예약가능합니다." style="width:100%" disabled>
         <div>
         <div class="form__group">
         	<input type="text" value="좌석번호"  class="form__input" style="float: left;width:30%;color:#191919;" readonly/>
@@ -32,7 +33,7 @@ html {overflow:hidden;status:hidden;}
         	<input type="text" value="예약시간"  class="form__input" style="float: left;width:30%; color:#191919;" readonly/>
         </div>
         <div class="form__group">
-            <input type="time" id="resTime" class="form__input" style="float:right;width:70%"/>
+            <input type="time" id="resTime" class="form__input" onchange="doFocus()" style="float:right;width:70%"/>
         </div>
         </div>
         <input type="hidden" id="userNum" value="${UserInfo.userNum}" />
@@ -47,16 +48,8 @@ function resOk(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&&xhr.status==200){
 			var res = xhr.responseText;
-			if(res=='좌석은 하나만 예약 가능합니다.'){
-				alert('좌석은 하나만 예약 가능합니다.');
-				opener.document.location.reload();
-				window.close();
-			}else if(res=='이미 예약된 좌석입니다.'){
-				alert('이미 예약된 좌석입니다.');
-				opener.document.location.reload();
-				window.close();
-			}else if(res=='예약이 완료되었습니다!'){
-				alert('예약이 완료되었습니다!');
+			if(res){
+				alert(res);
 				opener.document.location.reload();
 				window.close();
 			}
@@ -72,6 +65,22 @@ function resOk(){
 	xhr.send(JSON.stringify(param));
 }
 
+function doFocus(){
+	var r = document.querySelector('#resTime').value;
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/time/'+r);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4&& xhr.status==200){
+			var res = xhr.responseText;
+			if(res==0){
+				alert('예약할 수 없는 시간입니다!');
+				return;
+			}
+		}
+	}
+	xhr.send();
+}
 </script>
 </body>
 </html>
