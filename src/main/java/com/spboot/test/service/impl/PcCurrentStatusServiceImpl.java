@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spboot.test.entity.PcCurrentStatus;
 import com.spboot.test.repository.PcCurrentStatusRepository;
@@ -27,12 +29,18 @@ public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 		if(opPc.isEmpty()) return null;
 		return opPc.get();
 	}
-
+	@Override
+	public PcCurrentStatus findOneByPcNum(Integer pcNum){
+		return PCRepo.findByPcInfoPcSeatNum(pcNum);
+	}
 	@Override
 	public PcCurrentStatus insertPcCurrentStatus(PcCurrentStatus pcStatus) {
 		return PCRepo.save(pcStatus);
 	}
-
+	@Override
+	public List<PcCurrentStatus> getPcInfos(){
+		return PCRepo.findAllByOrderByPcStatusNumDesc();
+	}
 	@Override
 	public PcCurrentStatus updatePcCurrentStatus(PcCurrentStatus pcStatus) {
 		return PCRepo.save(pcStatus);

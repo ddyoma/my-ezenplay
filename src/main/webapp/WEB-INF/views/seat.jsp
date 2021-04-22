@@ -228,12 +228,11 @@ color: #fff;
   init();
   
   
-  
   window.onload = function(){ //좌석list뽑아오기
 	
 	  var i=0;
 	  var xhr = new XMLHttpRequest();
- 		xhr.open('GET', '/pc-status/list');
+ 		xhr.open('GET', '/pc-sttatus/list');
 	  	xhr.onreadystatechange = function(){
 	   	if(xhr.readyState == 4 && xhr.status == 200){
 	    var res = JSON.parse(xhr.responseText);
@@ -256,6 +255,7 @@ color: #fff;
 			}
 	xhr.send();
 	}
+ 
   
   
   

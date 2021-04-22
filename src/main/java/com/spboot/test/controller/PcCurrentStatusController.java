@@ -29,19 +29,19 @@ public class PcCurrentStatusController {
 	
 	@PostMapping("/pc-status")
 	public Integer insert(@RequestBody PcCurrentStatus pcStatus) {//정보를 저장하는 로직
-		
-		pcStatusRepo.save(pcStatus);
-		return pcStatus.getPcStatusNum();
+		PcCurrentStatus pc = pService.insertPcCurrentStatus(pcStatus);
+		return pc.getPcStatusNum();
 	}
 	@GetMapping("/pc-status/list")
 	public @ResponseBody List<PcCurrentStatus> getPcInfos(){
-		return pcStatusRepo.findAllByOrderByPcStatusNumDesc();
+		return pService.getPcInfos();
 	}
 	@GetMapping("/pc-status/reserve")
 	public @ResponseBody PcCurrentStatus findOneByPcNum(@RequestParam Integer pcNum){
-	
-		return pcStatusRepo.findByPcInfoPcSeatNum(pcNum);
+		return pService.findOneByPcNum(pcNum);
 	}
+	
+	
 	@GetMapping("/pc-status/user/{userNum}")
 	public List<PcCurrentStatus> findAllByUiNum(@PathVariable Integer userNum){
 	//	return pcStatusRepo.findAllByUserUserNumOrderByPcStatusNumDesc(userNum);
