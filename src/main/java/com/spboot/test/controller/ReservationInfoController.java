@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Data
 class ThisDate{
-	  @JsonFormat(shape = Shape.STRING, pattern = "HH:mm", timezone = "Asia/Seoul")
+	  @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	  private Date date;
 }
 @RestController
@@ -71,5 +71,12 @@ public class ReservationInfoController {
 			return sendNow;
 		}
 		return null;
+	}
+	
+	@GetMapping("/callNow")
+	public ThisDate getDate() {
+		ThisDate td = new ThisDate();
+		td.setDate(new Date());
+		return td;
 	}
 }

@@ -89,7 +89,7 @@ function doFocus(){
 }
 
 function set(){
-	var thirtyM = new Date(Date.now()+1000*60*31);
+	var thirtyM = new Date(Date.now()+1000*60*32);
 	var thirtyMm = thirtyM.getMinutes();
 	if(thirtyMm<10){
 		thirtyMm = "0" + thirtyMm;
