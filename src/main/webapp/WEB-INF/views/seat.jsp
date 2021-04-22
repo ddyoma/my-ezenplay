@@ -139,7 +139,8 @@ color: #fff;
 
               <h3 class="sidebar-title">SEAT</h3>
               <div id="sidement" style ="display:block" >
-              	<p >좌석을골라주세요</p>
+              	<p>좌석을 골라주세요</p>
+              	<p>당일 예약만 가능합니다(00시기준초기화)</p>
               </div>
               <div id="seatment" style ="display:none; float:left;" ><!-- 좌석상세 뜨게할부분 -->
                <h1><span id="numberseat"style ="float:left;" >좌석번호</span></h1><h5>번</h5>
