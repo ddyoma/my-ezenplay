@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spboot.test.entity.PcCurrentStatus;
-import com.spboot.test.repository.PcCurrentStatusRepository;
+
 import com.spboot.test.service.PcCurrentStatusService;
 
 import lombok.extern.slf4j.Slf4j;
