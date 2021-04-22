@@ -21,8 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PcCurrentStatusController {
 
-	@Autowired
-	private PcCurrentStatusRepository pcStatusRepo;
 	
 	@Autowired
 	private PcCurrentStatusService pService;
@@ -44,13 +42,11 @@ public class PcCurrentStatusController {
 	
 	@GetMapping("/pc-status/user/{userNum}")
 	public List<PcCurrentStatus> findAllByUiNum(@PathVariable Integer userNum){
-	//	return pcStatusRepo.findAllByUserUserNumOrderByPcStatusNumDesc(userNum);
 		return null;
 	}
 	
 	@GetMapping("/pc-status/pc/{pcSeatNum}")
 	public List<PcCurrentStatus> findAllByPcSeatNum(@PathVariable Integer pcSeatNum){
-	//return pcStatusRepo.findAllByPcPcSeatNumOrderByPcStatusNumDesc(pcSeatNum);
 		return null;
 	}
 }
