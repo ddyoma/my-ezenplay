@@ -90,7 +90,11 @@ function doFocus(){
 
 function set(){
 	var thirtyM = new Date(Date.now()+1000*60*31);
-	document.querySelector('#resTime').value = thirtyM.getHours()+":"+thirtyM.getMinutes();
+	var thirtyMm = thirtyM.getMinutes();
+	if(thirtyMm<10){
+		thirtyMm = "0" + thirtyMm;
+	}
+	document.querySelector('#resTime').value = thirtyM.getHours()+":"+thirtyMm;
 }
 </script>
 </body>
