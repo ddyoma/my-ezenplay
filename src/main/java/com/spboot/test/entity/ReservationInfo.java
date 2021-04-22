@@ -43,7 +43,7 @@ public class ReservationInfo {
 	  @JoinColumn(name="user_num")
 	  private UserInfo userInfo;
 	  
-	  @OneToOne
+	  @ManyToOne
 	  @JoinColumn(name="pc_seat_num")
 	  private PcInfo pcInfo;
 }

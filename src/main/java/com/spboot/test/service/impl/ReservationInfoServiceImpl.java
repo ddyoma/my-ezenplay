@@ -35,7 +35,6 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 
 	@Override
 	public List<ReservationInfo> getUserRes(Integer resNum) {
-		log.info("u=>{}",resRepo.findByUserInfoUserNumOrderByResNumDesc(resNum));
 		return resRepo.findByUserInfoUserNumOrderByResNumDesc(resNum);
 	}
 
