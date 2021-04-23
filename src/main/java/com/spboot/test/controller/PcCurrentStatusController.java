@@ -36,7 +36,7 @@ public class PcCurrentStatusController {
 		return pc.getPcStatusNum();
 	}
 	@GetMapping("/pc-status/list")
-	public @ResponseBody List<PcCurrentStatus> getPcInfos(){
+	public @ResponseBody List<PcCurrentStatus> getPcInfos(){ //리스트로직
 		return pService.getPcInfos();
 	}
 	@GetMapping("/pc-status/reserve")

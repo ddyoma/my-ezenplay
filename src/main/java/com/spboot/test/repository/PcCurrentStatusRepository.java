@@ -2,16 +2,18 @@ package com.spboot.test.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.spboot.test.entity.PcCurrentStatus;
-import com.spboot.test.entity.ReservationInfo;
 
 public interface PcCurrentStatusRepository extends JpaRepository<PcCurrentStatus, Integer> {
-
+	@EntityGraph(attributePaths = {"pcInfo","userInfo"})
+	@Query("select  pcs from PcCurrentStatus pcs")
 	List<PcCurrentStatus> findAllByOrderByPcStatusNumDesc();
 	PcCurrentStatus findByPcInfoPcSeatNum(Integer pcSeatNum);
 	PcCurrentStatus findByUserInfoUserNum(Integer userNum);
 	//PcCurrentStatus findAllByPcPcSeatNumOrderByPcStatusNumDesc(Integer pcSeatNum);
-	//PcCurrentStatus findAllByUserUserNumOrderByPcStatusNumDesc(Integer userNum);
+	//PcCurrentStatus findAllByUserUserNumOrderByPcStatusNumDesc(Integer userNum);대ㅏ박
 }

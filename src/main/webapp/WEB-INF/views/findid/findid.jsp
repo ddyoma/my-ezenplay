@@ -46,6 +46,7 @@
 									<label for="campaignName">회원정보를 입력하세요</label><br>
 									이름 : <input type="text" class="form-text" id='userName' ></input>
 									생년월일 : <input type="date" class="form-text" id='userDateOfBirth' ></input>
+									전화번호 : <input type="email" class="form-text" id='userEmail' ></input>
 									전화번호 : <input type="text" class="form-text" id='userPhone' ></input>
 									</div>
 									<button class="btn btn-secondary" id="hidebtn">찾기</button>

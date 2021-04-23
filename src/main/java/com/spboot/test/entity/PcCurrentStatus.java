@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,8 +37,8 @@ public class PcCurrentStatus {
 //		@JoinColumn(name = "pc_seat_num")
 //		@JsonBackReference
 //		private PcInfo pcInfo;
-//	 
-	 @ManyToOne
+//
+	 @OneToOne   //(fetch = FetchType.EAGER)
 	 @JoinColumn(name="pc_seat_num")
 	 private PcInfo pcInfo;
 	 

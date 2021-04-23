@@ -198,7 +198,7 @@ color: #fff;
   var div2 = document.getElementsByClassName("div2");
 
 function gores(){
-	var userNum = ${UserInfo.userNum};
+	var userNum=  '${UserInfo.userNum}'?'${UserInfo.userNum}':1;
 	if(userNum){
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET','/time-compare/'+userNum);
@@ -221,7 +221,7 @@ function gores(){
 }
   
   function cancelRes(){
-	  var userNum=  ${UserInfo.userNum};
+	  var userNum=  '${UserInfo.userNum}'?'${UserInfo.userNum}':1;
 		window.open('/views/res-cancel?userNum='+userNum,'res-cancel','width=600,height=700,top=100,align=center')
 	}
 
@@ -259,8 +259,8 @@ function gores(){
   
   
   window.onload = function(){ //좌석list뽑아오기
-	var usernumber=  ${UserInfo.userNum};
-	var listnumber = '';
+	var usernumber=  '${UserInfo.userNum}'?'${UserInfo.userNum}':1;
+	var listnumber = ''; 
 	  var i=0;
 	  var xhr = new XMLHttpRequest();
  		xhr.open('GET', '/pc-status/list');
@@ -269,12 +269,7 @@ function gores(){
 	    var res = JSON.parse(xhr.responseText);
 	    console.log(res);
 			    for(var pc of res){
-			    	if(pc.userInfo){ //널아닐때
-			    		listnumber = pc.userInfo.userNum; 
-			    		if(usernumber == listnumber){ //버튼노출
-			    			deletebt.style.display = "block"; 
-			    			}
-			    		}
+			    	
 					  $('#square'+i).text(pc.pcInfo.pcSeatNum);
 					  		
 							  if(pc.pcSeatResult == 2){
