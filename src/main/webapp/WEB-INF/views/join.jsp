@@ -189,126 +189,138 @@ function checkId(){
 		xhr.send(userId);
 	}
 }
-	function validation(id, min, max, msg ){
-		var obj = document.querySelector(id);
-		if((min && obj.value.trim().length < min) 
-				|| (max && obj.value.trim().length > max)){
-			alert(msg);
-			obj.value = '';
-			obj.focus();
-			return false;
-		}
-		return true
-	}	
-	
-	function checkVD() {
-		if (!validation('#id', 4, 10, '아이디를 다시 입력해주세요.')) {
-			return false;
-		}
-		if (!validation('#password', 6, 20, '비밀번호를 다시 입력해주세요.')) {
-			return false;
-		}
-		if (!validation('#password2', 6, 20, '비밀번호를 확인해주세요.')) {
-			return false;
-		}		
-		var userPwd = document.querySelector('[name=userPwd]');
-		var userPwd2 = document.querySelector('[name=userPwd2]');
-		if (userPwd.value.trim() != userPwd2.value.trim()) {
-			alert('비밀번호를 똑같이 다시 입력해주세요.');
-			userPwd2.value = "";
-			userPwd2.focus();
-			return false;
-		}
-		if (!validation('#name', 2, 10, '이름을 다시 입력해주세요.')) {
-			return false;
-		}
-		var email = document.querySelector('#email').value;
-		if(!email){
-			alert('이메일을 입력해주세요');
-			return false;
-		}
-		var yyyy = document.querySelector('[name=yyyy]');
-		var yValue = yyyy.options[yyyy.selectedIndex];
-		if(yValue.value.length==0){
-			alert('출생년도를 선택해주세요');
-			return false;
-		}
-		var mm = document.querySelector('[name=mm]');
-		var mValue = mm.options[mm.selectedIndex];
-		if(mValue.value.length==0){
-			alert('월을 선택해주세요');
-			return false;
-		}
-		var dd = document.querySelector('[name=dd]');
-		var dValue = dd.options[dd.selectedIndex];
-		if(dValue.value.length==0){
-			alert('일을 선택해주세요');
-			return false;
-		}
-		
-		var gender = document.querySelector('[name=userGender]:checked');
-		if(!gender){
-			alert('성별을 입력해주세요.');
-			return false;
-		}
-		
-		if (!validation('#userAddr1', 3, 20, '주소는 3글자 이상입니다.')) {
-			return false;
-		}
-		if (!validation('#userAddr2', 5, 50, '상세주소는 5글자 이상입니다.')) {
-			return false;
-		}
-		if (!validation('#phone1', 9, 11, '전화번호를 다시 입력해주세요.')) {
-			return false;
-		}
-		var favoriteGame = document.querySelector('[name=favoriteGame]');
-		var favoriteGameV = favoriteGame.options[favoriteGame.selectedIndex];
-		if(favoriteGameV.value.length==0){
-			alert('좋아하는 장르를 선택해주세요');
-			return false;
-		}
-		if(!idCheck){
-			alert('중복확인 해주세요.');
-			return false;
-		}
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST','/memberjoin');
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState==4 && xhr.status==200){
-				var res = JSON.parse(xhr.responseText);
-				alert('회원가입 성공');
-				location.href='/';
-			}
-		}
-		var formData = new FormData();
-		var userId = document.querySelector('[name=userId]');
-		var userPwd = document.querySelector('[name=userPwd]');
-		var userEmail = document.querySelector('[name=userEmail]');
-		var userName = document.querySelector('[name=userName]');
-		var yyyy = document.querySelector('[name=yyyy]');
-		var mm = document.querySelector('[name=mm]');
-		var dd = document.querySelector('[name=dd]');
-		var userGender = document.querySelector('[name=userGender]');
-		var userFile = document.querySelector('[name=userFile]');
-		var userPhone = document.querySelector('[name=userPhone]');
-		var userAddr1 = document.querySelector('[name=userAddr1]');
-		var userAddr2 = document.querySelector('[name=userAddr2]');
-		var favoriteGame = document.querySelector('[name=favoriteGame]');
-		formData.append('userId',userId.value);
-		formData.append('userPwd',userPwd.value);
-		formData.append('userEmail',userEmail.value);
-		if(userFile.files[0]){
-			formData.append('userFile',userFile.files[0]);
-		}
-		formData.append('userName',userName.value);
-		formData.append('userDateOfBirth',yyyy.value+mm.value+dd.value);
-		formData.append('userGender',userGender.value);
-		formData.append('userPhone',userPhone.value);
-		formData.append('userAddr1',userAddr1.value);
-		formData.append('userAddr2',userAddr2.value);
-		formData.append('favoriteGame',favoriteGame.value);
-		xhr.send(formData);
+var idRegExp = /^[a-zA-z0-9]{4,12}$/;
+function idCheck2(){
+	if(!idRegExp('#id')){
+		alert('아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다.');
+		form.userId.value = "";
+		form.userId.focus();
+		return false;
 	}
+	return true;
+}
+
+function validation(id, min, max, msg ){
+	var obj = document.querySelector(id);
+	if((min && obj.value.trim().length < min) 
+			|| (max && obj.value.trim().length > max)){
+		alert(msg);
+		obj.value = '';
+		obj.focus();
+		return false;
+	}
+	return true
+}
+
+function checkVD() {
+	if (!validation('#id', 4, 12, '아이디를 입력해주세요.')) {
+		return false;
+	}
+	if(!idCheck){
+		alert('중복확인 해주세요.');
+		return false;
+	}
+	if (!validation('#password', 6, 20, '비밀번호를 다시 입력해주세요.')) {
+		return false;
+	}
+	if (!validation('#password2', 6, 20, '비밀번호를 확인해주세요.')) {
+		return false;
+	}		
+	var userPwd = document.querySelector('[name=userPwd]');
+	var userPwd2 = document.querySelector('[name=userPwd2]');
+	if (userPwd.value.trim() != userPwd2.value.trim()) {
+		alert('비밀번호를 똑같이 다시 입력해주세요.');
+		userPwd2.value = "";
+		userPwd2.focus();
+		return false;
+	}
+	if (!validation('#name', 2, 10, '이름을 다시 입력해주세요.')) {
+		return false;
+	}
+	var email = document.querySelector('#email').value;
+	if(!email){
+		alert('이메일을 입력해주세요');
+		return false;
+	}
+	var yyyy = document.querySelector('[name=yyyy]');
+	var yValue = yyyy.options[yyyy.selectedIndex];
+	if(yValue.value.length==0){
+		alert('출생년도를 선택해주세요');
+		return false;
+	}
+	var mm = document.querySelector('[name=mm]');
+	var mValue = mm.options[mm.selectedIndex];
+	if(mValue.value.length==0){
+		alert('월을 선택해주세요');
+		return false;
+	}
+	var dd = document.querySelector('[name=dd]');
+	var dValue = dd.options[dd.selectedIndex];
+	if(dValue.value.length==0){
+		alert('일을 선택해주세요');
+		return false;
+	}
+	
+	var gender = document.querySelector('[name=userGender]:checked');
+	if(!gender){
+		alert('성별을 입력해주세요.');
+		return false;
+	}
+	
+	if (!validation('#userAddr1', 3, 20, '주소는 3글자 이상입니다.')) {
+		return false;
+	}
+	if (!validation('#userAddr2', 5, 50, '상세주소는 5글자 이상입니다.')) {
+		return false;
+	}
+	if (!validation('#phone1', 9, 11, '전화번호를 다시 입력해주세요.')) {
+		return false;
+	}
+	var favoriteGame = document.querySelector('[name=favoriteGame]');
+	var favoriteGameV = favoriteGame.options[favoriteGame.selectedIndex];
+	if(favoriteGameV.value.length==0){
+		alert('좋아하는 장르를 선택해주세요');
+		return false;
+	}
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST','/memberjoin');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			var res = JSON.parse(xhr.responseText);
+			alert('회원가입 성공');
+			location.href='/';
+		}
+	}
+	var formData = new FormData();
+	var userId = document.querySelector('[name=userId]');
+	var userPwd = document.querySelector('[name=userPwd]');
+	var userEmail = document.querySelector('[name=userEmail]');
+	var userName = document.querySelector('[name=userName]');
+	var yyyy = document.querySelector('[name=yyyy]');
+	var mm = document.querySelector('[name=mm]');
+	var dd = document.querySelector('[name=dd]');
+	var userGender = document.querySelector('[name=userGender]');
+	var userFile = document.querySelector('[name=userFile]');
+	var userPhone = document.querySelector('[name=userPhone]');
+	var userAddr1 = document.querySelector('[name=userAddr1]');
+	var userAddr2 = document.querySelector('[name=userAddr2]');
+	var favoriteGame = document.querySelector('[name=favoriteGame]');
+	formData.append('userId',userId.value);
+	formData.append('userPwd',userPwd.value);
+	formData.append('userEmail',userEmail.value);
+	if(userFile.files[0]){
+		formData.append('userFile',userFile.files[0]);
+	}
+	formData.append('userName',userName.value);
+	formData.append('userDateOfBirth',yyyy.value+mm.value+dd.value);
+	formData.append('userGender',userGender.value);
+	formData.append('userPhone',userPhone.value);
+	formData.append('userAddr1',userAddr1.value);
+	formData.append('userAddr2',userAddr2.value);
+	formData.append('favoriteGame',favoriteGame.value);
+	xhr.send(formData);
+}
 </script>
 </body>
 </html>

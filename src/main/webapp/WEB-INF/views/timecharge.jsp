@@ -248,12 +248,11 @@ function charge() {
 				    pg : 'inicis', // version 1.1.0부터 지원.
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
-				    name : '주문명:결제테스트',
+				    name : '유저_시간충전',
 				    amount : price.value,
 				    buyer_email : 'iamport@siot.do',
 				    buyer_name : '사용자',
 				    buyer_tel : '010-1234-5678',
-				    buyer_postcode : '123-456',
 				    m_redirect_url : 'https://www.ezenplay.com/payments/complete'
 				}, function(rsp) {
 				    if ( rsp.success ) {
@@ -277,12 +276,11 @@ function charge() {
 				    pg : 'inicis', // version 1.1.0부터 지원.
 				    pay_method : 'phone',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
-				    name : '주문명:결제테스트',
+				    name : '유저_시간충전',
 				    amount : price.value,
 				    buyer_email : 'iamport@siot.do',
 				    buyer_name : '사용자',
 				    buyer_tel : '010-1234-5678',
-				    buyer_postcode : '123-456',
 				    m_redirect_url : 'https://www.ezenplay.com/views/charge/complet'
 				}, function(rsp) {
 				    if ( rsp.success ) {
