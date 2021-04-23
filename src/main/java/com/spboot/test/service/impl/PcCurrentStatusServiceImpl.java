@@ -95,9 +95,11 @@ public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 	}
 	@Override
 	public Integer getUser(Integer userNum) {
-		PcCurrentStatus pc = pcRepo.findByUserInfoUserNum(userNum);
-		if(pc.getPcSeatResult()==1) {
-			return 1;
+		if(pcRepo.findByUserInfoUserNum(userNum)!=null){
+			PcCurrentStatus pc = pcRepo.findByUserInfoUserNum(userNum);
+			if(pc.getPcSeatResult()==1) {
+				return 1;
+			}
 		}
 		return 0;
 	}
