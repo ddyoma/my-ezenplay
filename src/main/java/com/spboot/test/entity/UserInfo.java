@@ -73,5 +73,5 @@ public class UserInfo {
    @ManyToOne
    @JoinColumn(name = "grade_num")
    private GradeInfo gradeInfo;
-
+   
 }

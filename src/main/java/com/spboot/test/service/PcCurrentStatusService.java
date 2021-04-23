@@ -13,5 +13,7 @@ public interface PcCurrentStatusService {
 	PcCurrentStatus insertPcCurrentStatus(PcCurrentStatus pcStatus);
 	PcCurrentStatus updatePcCurrentStatus(PcCurrentStatus pcStatus);
 	int deletePcCurrentStatus(int pcStatusNum);
+	List<PcCurrentStatus> getPcInfos();
+	PcCurrentStatus findOneByPcNum(Integer pcNum);
 	
 }

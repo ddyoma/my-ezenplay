@@ -63,7 +63,7 @@
                         <div class="profile-work">
                        <button class="profile-my-btn" type="button" onclick="showImg()" style="margin-left: 50px;">기본이미지로변경</button><br>
                          <p>Link</p>
-                            <a href="/views/voccenter">리뷰쓰기</a><br/>
+                            <a href="/views/voccenter">My review</a><br/>
                             <a style="cursor:pointer;" id="mycss" onclick="goRedfila()">Learn from redfila</a>
                             <p>SKILLS</p>
                        		 <a style="cursor:pointer" onclick="cancelRes()">예약취소</a><br>

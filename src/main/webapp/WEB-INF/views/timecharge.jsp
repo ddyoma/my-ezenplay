@@ -29,14 +29,14 @@ div.main {
 }
 
 div.left {
-	margin-top: 80px;
+	margin-top: 100px;
 	width: 70%;
 	float: left;
 	background: #ededed;
 }
 
 div.right {
-	margin-top: 80px;
+	margin-top: 100px;
 	width: 30%;
 	float: right;
 }
@@ -160,19 +160,19 @@ div.right {
 						<div class="btn-group">
 							<div class="row-1">
 								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="amount" id="jb-radio-1" value="1000"
+									class="btn btn" name="Amt" id="jb-radio-1" value="1000"
 									onclick="txInput('priceArea',this.value)"> 1000원
 								</label>
 							</div>
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="amount" id="jb-radio-2" value="2000"
+									class="btn btn" name="Amt" id="jb-radio-2" value="2000"
 									onclick="txInput('priceArea',this.value)"> 2000원
 								</label>
 							</div>
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="amount" id="jb-radio-3" value="3000"
+									class="btn btn" name="Amt" id="jb-radio-3" value="3000"
 									onclick="txInput('priceArea',this.value)"> 3000원
 								</label>
 							</div>
@@ -180,19 +180,19 @@ div.right {
 						<div class="row-2">
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="amount" id="jb-radio-4" value="5000"
+									class="btn btn" name="Amt" id="jb-radio-4" value="5000"
 									onclick="txInput('priceArea',this.value)"> 5000원
 								</label>
 							</div>
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="amount" id="jb-radio-5" value="10000"
+									class="btn btn" name="Amt" id="jb-radio-5" value="10000"
 									onclick="txInput('priceArea',this.value)"> 10000원
 								</label>
 							</div>
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="amount" id="jb-radio-6" value="20000"
+									class="btn btn" name="Amt" id="jb-radio-6" value="20000"
 									onclick="txInput('priceArea',this.value)"> 20000원
 								</label>
 							</div>
@@ -213,14 +213,14 @@ div.right {
 							<table>
 								<tr>
 									<th>결제수단 :</th>
-									<td><input type="text" id="payArea" name="Area" readOnly></td>
+									<td><input type="text" class="box" id="payArea" name="payArea" readOnly></td>
 								</tr>
 								<tr>
 									<th>걸제금액 :</th>
-									<td><input type="text" id="priceArea" name="Area" readOnly></td>
+									<td><input type="text" class="box" id="priceArea" name="priceArea" readOnly></td>
 								</tr>
 							</table>
-							<button type="button" class="charge" id="radioButton"
+							<button type="button" class="charge" id="radioButton" value="r"
 								onclick="charge()">충전하기</button>
 							<button type="reset" class="cancel">취소</button>
 						</div>
@@ -233,22 +233,71 @@ div.right {
 <!-- 여기까지 내용입력 -->
 </body>
 <script>
-
 function txInput(Obj, Str) {
 	document.getElementById(Obj).value = Str;
 }
 
 function charge() {
-		var radioVal = $('input[name="pay"]:checked').val();
-		radioVal += $('input[name="amount"]:checked').val();{
-			if(radioVal='카드'){
-		 	window.open("/views/charge/pay_card", "pay-load", "width=900, height=1000, left=1100, top=600"); 
+	var pay = document.getElementById("payArea");
+	var price = document.getElementById("priceArea");
+	
+			if(pay.value=="카드"){
+				var IMP = window.IMP;
+				IMP.init('imp92849282');
+				IMP.request_pay({
+				    pg : 'inicis', // version 1.1.0부터 지원.
+				    pay_method : 'card',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : '유저_시간충전',
+				    amount : price.value,
+				    buyer_email : 'iamport@siot.do',
+				    buyer_name : '사용자',
+				    buyer_tel : '010-1234-5678',
+				    m_redirect_url : 'https://www.ezenplay.com/payments/complete'
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				        var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
+				    }
+				    alert(msg);
+				});
 			}
-			else if(radioVal='휴대폰'){
-				window.open("/views/charge/pay_phone", "pay-load", "width=900, height=1000, left=1100, top=600"); 
+			else if(pay.value=="휴대폰"){
+
+				var IMP = window.IMP;
+				IMP.init('imp92849282');
+				IMP.request_pay({
+				    pg : 'inicis', // version 1.1.0부터 지원.
+				    pay_method : 'phone',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : '유저_시간충전',
+				    amount : price.value,
+				    buyer_email : 'iamport@siot.do',
+				    buyer_name : '사용자',
+				    buyer_tel : '010-1234-5678',
+				    m_redirect_url : 'https://www.ezenplay.com/views/charge/complet'
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				        var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
+				    }
+				    alert(msg);
+				});
 			}
 		}
-	};
+	
 </script>
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 <jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
