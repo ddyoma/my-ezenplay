@@ -9,6 +9,6 @@ import com.spboot.test.entity.ReservationInfo;
 public interface ReservationInfoRepository extends JpaRepository<ReservationInfo, Integer> {
 
 	List<ReservationInfo> findAllByOrderByResNumDesc();
-	List<ReservationInfo> findByUserInfoUserNumOrderByResNumDesc(Integer userNum);
+	List<ReservationInfo> findByUserInfoUserNumOrderByResNumDesc(Integer resNum);
 
 }

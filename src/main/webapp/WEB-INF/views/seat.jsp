@@ -45,11 +45,31 @@ display: flex;
 align-items: center;
 justify-content: center;
 background-color: #f45454;
-
+margin-bottom: 10px;
+color: #fff;
+transition: all ease-in-out 0.3s; 
+cursor: pointer;
+font-size: 15px;
+position: fixed;
+bottom: 40px;
+right: 30px;
+width: 190px;
+}
+#deletebt{
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #f45454;
+text-align: center;
 color: #fff;
  transition: all ease-in-out 0.3s; 
  cursor: pointer;
    font-size: 15px;
+   position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 190px;
+   
 }
 </style>
 <body>
@@ -133,8 +153,7 @@ color: #fff;
     </div></div>
 	</div><!-- 박스종료 -->
           <div class="col-lg-3 entries">
-				<div class="col-lg-4">
-
+			<div class="col-lg-4">
             <div class="sidebar">
 
               <h3 class="sidebar-title">SEAT</h3>
@@ -147,8 +166,9 @@ color: #fff;
               <br/><br/><br/><span id="seatview">상세설명</span>
               </div><br/><br/><br/><br/><br/><br/>
                	<div id="seatreserve" style="cursor:pointer" onclick="gores()">예약하러가기</div>
+ 
+               	<div id="deletebt" style="cursor:pointer; display:none;" onclick="cancelRes()">예약취소하기</div>
               </div><!-- End sidebar recent posts-->
-
             </div><!-- End sidebar -->
 
        
@@ -184,6 +204,10 @@ color: #fff;
 		var pcSeatNum = document.querySelector('.div2.clicked').innerHTML;
 		window.open( '/views/reservation?pcSeatNum='+pcSeatNum ,'reservation', 'width = 500, height = 300, top = 100, left = 200,status=no ');
 	}
+  function cancelRes(){
+	  var userNum=  ${UserInfo.userNum};
+		window.open('/views/res-cancel?userNum='+userNum,'res-cancel','width=600,height=700,top=100,align=center')
+	}
 
   var sidement = document.getElementById("sidement"); //골라줘
   var seatment = document.getElementById("seatment"); //시트정보
@@ -217,28 +241,41 @@ color: #fff;
   
   
   window.onload = function(){ //좌석list뽑아오기
-	
+	var usernumber=  ${UserInfo.userNum};
+	var listnumber = '';
 	  var i=0;
 	  var xhr = new XMLHttpRequest();
  		xhr.open('GET', '/pc-status/list');
 	  	xhr.onreadystatechange = function(){
 	   	if(xhr.readyState == 4 && xhr.status == 200){
 	    var res = JSON.parse(xhr.responseText);
+	    console.log(res);
 			    for(var pc of res){
-			    	 console.log(pc.pcSeatResult);
+			    	if(pc.userInfo){ //널아닐때
+			    		listnumber = pc.userInfo.userNum; 
+			    		if(usernumber == listnumber){ //버튼노출
+			    			deletebt.style.display = "block"; 
+			    			}
+			    		}
 					  $('#square'+i).text(pc.pcInfo.pcSeatNum);
+					  		
 							  if(pc.pcSeatResult == 2){
-								  alert("오류안남");
 								 
 									    $('#square'+i).css({
 									        "background-color": "#545454",//예약시 기본색변경
 									        "pointer-events": "none" //클릭금지
 									    });
 									
-								 // div2[i].style.backgroundColor = "#545454"; 
-								 // event.target.classList.add("seatused");
+							
 								 
+							  }else if(pc.pcSeatResult == 1){
+									 
+									$('#square'+i).css({
+										"background-color": "#F5D0A9", //사용중 색변경
+										 "pointer-events": "none" //클릭금지
+										 });
 							  }i++;
+							  
 							}
 						}
 				   	}

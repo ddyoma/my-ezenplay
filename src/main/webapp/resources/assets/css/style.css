@@ -1879,6 +1879,8 @@ section {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   transform:translate(0px,-220px);
   width : 250px;
+  min-height :400px;
+  max-width:250px;  
 }
 
 .blog .sidebar .sidebar-title {
@@ -1890,134 +1892,10 @@ section {
   position: relative;
 }
 
-.blog .sidebar .sidebar-item {
-  margin-bottom: 30px;
-}
 
-.blog .sidebar .search-form form {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 3px 10px;
-  position: relative;
-  border-radius: 50px;
-}
 
-.blog .sidebar .search-form form input[type="text"] {
-  border: 0;
-  padding: 4px;
-  width: calc(100% - 40px);
-}
 
-.blog .sidebar .search-form form button {
-  position: absolute;
-  top: 0;
-  right: -2px;
-  bottom: 0;
-  border: 0;
-  background: none;
-  font-size: 16px;
-  padding: 0 25px;
-  margin: -1px;
-  background: #545454;
-  color: #fff;
-  transition: 0.3s;
-  border-radius: 50px;
-}
 
-.blog .sidebar .search-form form button:hover {
-  background: #e96b56;
-}
-
-.blog .sidebar .categories ul {
-  list-style: none;
-  padding: 0;
-}
-
-.blog .sidebar .categories ul li + li {
-  padding-top: 10px;
-}
-
-.blog .sidebar .categories ul a {
-  color: #949494;
-}
-
-.blog .sidebar .categories ul a:hover {
-  color: #e96b56;
-}
-
-.blog .sidebar .categories ul a span {
-  padding-left: 5px;
-  color: #bababa;
-  font-size: 14px;
-}
-
-.blog .sidebar .recent-posts .post-item + .post-item {
-  margin-top: 15px;
-}
-
-.blog .sidebar .recent-posts img {
-  width: 80px;
-  float: left;
-}
-
-.blog .sidebar .recent-posts h4 {
-  font-size: 15px;
-  margin-left: 95px;
-  font-weight: bold;
-}
-
-.blog .sidebar .recent-posts h4 a {
-  color: #212121;
-  transition: 0.3s;
-}
-
-.blog .sidebar .recent-posts h4 a:hover {
-  color: #e96b56;
-}
-
-.blog .sidebar .recent-posts time {
-  display: block;
-  margin-left: 95px;
-  font-style: italic;
-  font-size: 14px;
-  color: #bababa;
-}
-
-.blog .sidebar .tags {
-  margin-bottom: -10px;
-}
-
-.blog .sidebar .tags ul {
-  list-style: none;
-  padding: 0;
-}
-
-.blog .sidebar .tags ul li {
-  display: inline-block;
-}
-
-.blog .sidebar .tags ul a {
-  color: #949494;
-  font-size: 14px;
-  padding: 6px 15px 8px 15px;
-  margin: 0 6px 8px 0;
-  border: 1px solid #ededed;
-  border-radius: 50px;
-  display: inline-block;
-  transition: 0.3s;
-}
-
-.blog .sidebar .tags ul a:hover {
-  color: #fff;
-  border-color: #e96b56;
-  background: #e96b56;
-}
-
-.blog .sidebar .tags ul a span {
-  padding-left: 5px;
-  color: #ededed;
-  font-size: 14px;
-}
 
 /*--------------------------------------------------------------
 # Footer

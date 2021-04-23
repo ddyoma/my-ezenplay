@@ -16,10 +16,10 @@ public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 	@Autowired
 	private PcCurrentStatusRepository PCRepo;
 	
-	@Override
-	public List<PcCurrentStatus> getPcStatusList() {
-		return PCRepo.findAllByOrderByPcStatusNumDesc();
-	}
+//	@Override
+//	public List<PcCurrentStatus> getPcStatusList() {
+//		return PCRepo.findAllByOrderByPcStatusNumDesc();
+//	}
 
 	@Override
 	public PcCurrentStatus getPcCurrentStatus(int pcStatusNum) {
@@ -39,6 +39,10 @@ public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 	public List<PcCurrentStatus> getPcInfos(){
 		return PCRepo.findAllByOrderByPcStatusNumDesc();
 	}
+//	@Override
+//	public List<PcCurrentStatus> getPcInfos(){
+//		return PCRepo.findPcInfoOrderByPcStatusNumDesc();
+//	}
 	@Override
 	public PcCurrentStatus updatePcCurrentStatus(PcCurrentStatus pcStatus) {
 		return PCRepo.save(pcStatus);
@@ -49,5 +53,6 @@ public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 		PCRepo.deleteById(pcStatusNum);
 		return 0;
 	}
+
 
 }

@@ -8,12 +8,13 @@ import com.spboot.test.entity.PcCurrentStatus;
 
 public interface PcCurrentStatusService {
 
-	List<PcCurrentStatus> getPcStatusList();
+	//List<PcCurrentStatus> getPcStatusList();
 	PcCurrentStatus getPcCurrentStatus(int pcStatusNum);
 	PcCurrentStatus insertPcCurrentStatus(PcCurrentStatus pcStatus);
 	PcCurrentStatus updatePcCurrentStatus(PcCurrentStatus pcStatus);
 	int deletePcCurrentStatus(int pcStatusNum);
 	List<PcCurrentStatus> getPcInfos();
 	PcCurrentStatus findOneByPcNum(Integer pcNum);
+
 	
 }
