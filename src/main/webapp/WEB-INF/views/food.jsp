@@ -24,7 +24,7 @@ display:none;
 <section id="breadcrumbs" class="breadcrumbs">
 <div class="container">
 <ol>
-<li><a href="index.html">Home</a></li>
+<li><a href="index.html" style="color:#e96b56;">Home</a></li>
 <li>Contact</li>
 </ol>
 <h2>Contact</h2>
@@ -318,6 +318,7 @@ function foodMotion(){
 	  }
 
 </script>
+
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 <jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
 </html>
