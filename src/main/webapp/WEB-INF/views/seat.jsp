@@ -200,10 +200,29 @@ color: #fff;
 		
   var div2 = document.getElementsByClassName("div2");
 
-  function gores(){
-		var pcSeatNum = document.querySelector('.div2.clicked').innerHTML;
-		window.open( '/views/reservation?pcSeatNum='+pcSeatNum ,'reservation', 'width = 500, height = 300, top = 100, left = 200,status=no ');
+function gores(){
+	var userNum = ${UserInfo.userNum};
+	if(userNum){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET','/time-compare/'+userNum);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				if(xhr.responseText==1){
+					var pcSeatNum = document.querySelector('.div2.clicked').innerHTML;
+					window.open( '/views/reservation?pcSeatNum='+pcSeatNum ,'reservation', 'width = 500, height = 300, top = 100, left = 200,status=no ');  
+				}else{
+					alert('소유하신 시간이 1시간 미만입니다. 시간충전 페이지로 넘어갑니다.');
+					location.href='/views/timecharge';
+				}
+			}
+		}
+		xhr.send();
+	}else{
+		alert('로그인이 필요합니다.');
+		return false;
 	}
+}
+  
   function cancelRes(){
 	  var userNum=  ${UserInfo.userNum};
 		window.open('/views/res-cancel?userNum='+userNum,'res-cancel','width=600,height=700,top=100,align=center')

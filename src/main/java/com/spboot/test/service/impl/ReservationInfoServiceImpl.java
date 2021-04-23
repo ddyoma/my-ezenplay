@@ -1,6 +1,6 @@
 package com.spboot.test.service.impl;
 
-import java.text.ParseException;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.spboot.test.entity.PcCurrentStatus;
 import com.spboot.test.entity.ReservationInfo;
+import com.spboot.test.entity.UserInfo;
 import com.spboot.test.repository.PcCurrentStatusRepository;
 import com.spboot.test.repository.ReservationInfoRepository;
+import com.spboot.test.repository.UserInfoRepository;
 import com.spboot.test.service.ReservationInfoService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +29,9 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 	
 	@Autowired
 	private PcCurrentStatusRepository PCRepo;
+	
+	@Autowired
+	private UserInfoRepository userRepo;
 	
 	@Override
 	public List<ReservationInfo> getList(ReservationInfo resNum) {
@@ -61,7 +66,6 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 				 pc.setPcSeatResult(2);
 				 pc.setReservationInfo(r);
 				 pc.setUserInfo(r.getUserInfo());
-				 log.info("pc=>{}",pc);
 				 if(r!=null) {
 				 PCRepo.save(pc);
 				 }
@@ -74,9 +78,9 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 		}
 	}else {
 		msg="예약가능한 시간이 아닙니다.";
-	}
-		return msg;
-	}
+	}	
+	return msg;
+}
 
 	@Override
 	public ReservationInfo update(ReservationInfo resNum) {
