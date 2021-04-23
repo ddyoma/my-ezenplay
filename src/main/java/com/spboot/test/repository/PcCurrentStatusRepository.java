@@ -9,11 +9,11 @@ import org.springframework.data.jpa.repository.Query;
 import com.spboot.test.entity.PcCurrentStatus;
 
 public interface PcCurrentStatusRepository extends JpaRepository<PcCurrentStatus, Integer> {
-	@EntityGraph(attributePaths = {"pcInfo","userInfo"})
-	@Query("select  pcs from PcCurrentStatus pcs")
+	@EntityGraph(attributePaths = {"pcInfo","userInfo","reservationInfo"})
 	List<PcCurrentStatus> findAllByOrderByPcStatusNumDesc();
+
 	PcCurrentStatus findByPcInfoPcSeatNum(Integer pcSeatNum);
 	PcCurrentStatus findByUserInfoUserNum(Integer userNum);
 	//PcCurrentStatus findAllByPcPcSeatNumOrderByPcStatusNumDesc(Integer pcSeatNum);
-	//PcCurrentStatus findAllByUserUserNumOrderByPcStatusNumDesc(Integer userNum);대ㅏ박
+	//PcCurrentStatus findAllByUserUserNumOrderByPcStatusNumDesc(Integer userNum);
 }

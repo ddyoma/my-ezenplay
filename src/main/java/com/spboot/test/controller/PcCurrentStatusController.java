@@ -4,6 +4,7 @@ import java.sql.Time;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spboot.test.entity.PcCurrentStatus;
+import com.spboot.test.entity.ReservationInfo;
 import com.spboot.test.entity.UserInfo;
 import com.spboot.test.service.PcCurrentStatusService;
 import com.spboot.test.service.UserInfoService;
@@ -46,8 +48,8 @@ public class PcCurrentStatusController {
 	
 	
 	@GetMapping("/pc-status/user/{userNum}")
-	public List<PcCurrentStatus> findAllByUiNum(@PathVariable Integer userNum){
-		return null;
+	public Integer findAllByUiNum(@PathVariable Integer userNum){
+		return pService.getUser(userNum);
 	}
 	
 	@GetMapping("/pc-status/pc/{pcSeatNum}")
@@ -65,5 +67,10 @@ public class PcCurrentStatusController {
 			cnt = 1;
 		}
 		return cnt;
+	}
+	
+	@GetMapping("/pc-status/power-off/{userNum}")
+	public Integer powerOff(@PathVariable Integer userNum) {
+		return pService.powerOff(userNum);
 	}
 }

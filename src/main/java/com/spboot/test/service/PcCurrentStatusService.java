@@ -15,6 +15,7 @@ public interface PcCurrentStatusService {
 	int deletePcCurrentStatus(int pcStatusNum);
 	List<PcCurrentStatus> getPcInfos();
 	PcCurrentStatus findOneByPcNum(Integer pcNum);
-
+	int powerOff(int userNum);
+	Integer getUser(Integer userNum);
 	
 }

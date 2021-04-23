@@ -30,9 +30,6 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 	@Autowired
 	private PcCurrentStatusRepository PCRepo;
 	
-	@Autowired
-	private UserInfoRepository userRepo;
-	
 	@Override
 	public List<ReservationInfo> getList(ReservationInfo resNum) {
 		return resRepo.findAllByOrderByResNumDesc();
