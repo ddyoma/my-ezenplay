@@ -6,8 +6,9 @@
 <head>
 <jsp:include page="/WEB-INF/views/home/maintemplethead.jsp"></jsp:include><!-- 상단바로고디자인 -->
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
 <title>ezen</title>
 </head>
 <!--리뷰작성 스타일-->
@@ -138,7 +139,8 @@ color: #fff;
 
               <h3 class="sidebar-title">SEAT</h3>
               <div id="sidement" style ="display:block" >
-              	<p >좌석을골라주세요</p>
+              	<p>좌석을 골라주세요</p>
+              	<p>당일 예약만 가능합니다(00시기준초기화)</p>
               </div>
               <div id="seatment" style ="display:none; float:left;" ><!-- 좌석상세 뜨게할부분 -->
                <h1><span id="numberseat"style ="float:left;" >좌석번호</span></h1><h5>번</h5>
@@ -204,7 +206,46 @@ color: #fff;
     }
   }
 
- $('.div2').click(function(){//사이드 뷰 전용
+
+ 
+  function init() {
+    for (var i = 0; i < div2.length; i++) {
+      div2[i].addEventListener("click", handleClick); //핸들클릭펑션을 클릭시 진행
+    }
+  }
+  init();
+  
+  
+  window.onload = function(){ //좌석list뽑아오기
+	
+	  var i=0;
+	  var xhr = new XMLHttpRequest();
+ 		xhr.open('GET', '/pc-status/list');
+	  	xhr.onreadystatechange = function(){
+	   	if(xhr.readyState == 4 && xhr.status == 200){
+	    var res = JSON.parse(xhr.responseText);
+			    for(var pc of res){
+			    	 console.log(pc.pcSeatResult);
+					  $('#square'+i).text(pc.pcInfo.pcSeatNum);
+							  if(pc.pcSeatResult == 2){
+								  alert("오류안남");
+								 
+									    $('#square'+i).css({
+									        "background-color": "#545454",//예약시 기본색변경
+									        "pointer-events": "none" //클릭금지
+									    });
+									
+								 // div2[i].style.backgroundColor = "#545454"; 
+								 // event.target.classList.add("seatused");
+								 
+							  }i++;
+							}
+						}
+				   	}
+					xhr.send();
+				}
+ 
+  $('.div2').click(function(){//사이드 뷰 전용
 		var pcNum = $(this).text();
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', '/pc-status/reserve?pcNum='+pcNum);
@@ -219,44 +260,6 @@ color: #fff;
 		xhr.send();
 	});
 	   
- 
-  function init() {
-    for (var i = 0; i < div2.length; i++) {
-      div2[i].addEventListener("click", handleClick); //핸들클릭펑션을 클릭시 진행
-    }
-  }
-  init();
-  
-  
-  
-  window.onload = function(){ //좌석list뽑아오기
-	
-	  var i=0;
-	  var xhr = new XMLHttpRequest();
- 		xhr.open('GET', '/pc-status/list');
-	  	xhr.onreadystatechange = function(){
-	   	if(xhr.readyState == 4 && xhr.status == 200){
-	    var res = JSON.parse(xhr.responseText);
-			    for(var pc of res){
-							  if(pc.pcSeatResult == 2){
-								  $(function() {
-									    $('.div2').css({
-									        "background-color": "#545454",//예약시 기본색변경
-									        "pointer-events": "none" //클릭금지
-									    });
-									});
-								  
-								 // div2[i].style.backgroundColor = "#545454"; 
-								 // event.target.classList.add("seatused");
-							  }
-								  $('#square'+i).text(pc.pcInfo.pcSeatNum);
-								  i++;
-			    			}
-					}
-			}
-	xhr.send();
-	}
-  
   
   
   

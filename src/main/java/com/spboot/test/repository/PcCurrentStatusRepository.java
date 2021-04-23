@@ -12,6 +12,6 @@ public interface PcCurrentStatusRepository extends JpaRepository<PcCurrentStatus
 	List<PcCurrentStatus> findAllByOrderByPcStatusNumDesc();
 	PcCurrentStatus findByPcInfoPcSeatNum(Integer pcSeatNum);
 	PcCurrentStatus findByUserInfoUserNum(Integer userNum);
-
-	
+	//PcCurrentStatus findAllByPcPcSeatNumOrderByPcStatusNumDesc(Integer pcSeatNum);
+	//PcCurrentStatus findAllByUserUserNumOrderByPcStatusNumDesc(Integer userNum);
 }

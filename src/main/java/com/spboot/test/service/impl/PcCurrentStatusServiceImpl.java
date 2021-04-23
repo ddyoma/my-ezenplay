@@ -27,12 +27,18 @@ public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 		if(opPc.isEmpty()) return null;
 		return opPc.get();
 	}
-
+	@Override
+	public PcCurrentStatus findOneByPcNum(Integer pcNum){
+		return PCRepo.findByPcInfoPcSeatNum(pcNum);
+	}
 	@Override
 	public PcCurrentStatus insertPcCurrentStatus(PcCurrentStatus pcStatus) {
 		return PCRepo.save(pcStatus);
 	}
-
+	@Override
+	public List<PcCurrentStatus> getPcInfos(){
+		return PCRepo.findAllByOrderByPcStatusNumDesc();
+	}
 	@Override
 	public PcCurrentStatus updatePcCurrentStatus(PcCurrentStatus pcStatus) {
 		return PCRepo.save(pcStatus);

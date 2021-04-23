@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="/resources/css/reservation.css">
 <style>
 html {overflow:hidden;status:hidden;}
+.absolute{
+	position :absolute;
+	left : 280px;
+	top :115px;
+}
 </style>
 </head>
 <body>
@@ -18,7 +23,7 @@ html {overflow:hidden;status:hidden;}
     
     <form class="form" method="Post" action="/res/insert">
         
-        <input type="text" value="현재시간+31분 이후부터 예약가능합니다." style="width:100%" disabled>
+        <input type="text" value="*현재시간+31분 이후부터 예약가능합니다." style="width:100%" disabled>
         <div>
         <div class="form__group">
         	<input type="text" value="좌석번호"  class="form__input" style="float: left;width:30%;color:#191919;" readonly/>
@@ -30,11 +35,13 @@ html {overflow:hidden;status:hidden;}
         
         <div>
         <div class="form__group">
-        	<input type="text" value="예약시간"  class="form__input" style="float: left;width:30%; color:#191919;" readonly/>
+        	<input type="text" value="예약시간"  class="form__input" style="float: left;width:30%;height:60px; color:#191919;" readonly/>
         </div>
         <div class="form__group">
             <input type="time" id="resTime" class="form__input" onchange="doFocus()" style="float:right;width:70%"/>
         </div>
+    
+        <div class="absolute"><button type="button" onclick="set()">시간설정</button></div>
         </div>
         <input type="hidden" id="userNum" value="${UserInfo.userNum}" />
         <button class="btn" type="button" onclick="resOk()" style="cursor:pointer">예약완료</button>
@@ -67,19 +74,27 @@ function resOk(){
 
 function doFocus(){
 	var r = document.querySelector('#resTime').value;
-	
+
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/time/'+r);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&& xhr.status==200){
-			var res = xhr.responseText;
-			if(res==0){
-				alert('예약할 수 없는 시간입니다!');
-				return;
+			if(xhr.responseText){
+				alert('예약할 수 없는 시간입니다! 아래시간이후로 예약가능합니다.');
+				document.querySelector('#resTime').value = xhr.responseText;
 			}
 		}
 	}
 	xhr.send();
+}
+
+function set(){
+	var thirtyM = new Date(Date.now()+1000*60*32);
+	var thirtyMm = thirtyM.getMinutes();
+	if(thirtyMm<10){
+		thirtyMm = "0" + thirtyMm;
+	}
+	document.querySelector('#resTime').value = thirtyM.getHours()+":"+thirtyMm;
 }
 </script>
 </body>

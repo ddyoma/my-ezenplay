@@ -1,13 +1,18 @@
 package com.spboot.test.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 
@@ -27,6 +32,11 @@ public class PcCurrentStatus {
 	 @JoinColumn(name="user_num")
 	 private UserInfo userInfo;
 	 
+//	 @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//		@JoinColumn(name = "pc_seat_num")
+//		@JsonBackReference
+//		private PcInfo pcInfo;
+//	 
 	 @ManyToOne
 	 @JoinColumn(name="pc_seat_num")
 	 private PcInfo pcInfo;

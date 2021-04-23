@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spboot.test.entity.PcCurrentStatus;
-import com.spboot.test.repository.PcCurrentStatusRepository;
+
 import com.spboot.test.service.PcCurrentStatusService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,36 +21,32 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PcCurrentStatusController {
 
-	@Autowired
-	private PcCurrentStatusRepository pcStatusRepo;
 	
 	@Autowired
 	private PcCurrentStatusService pService;
 	
 	@PostMapping("/pc-status")
 	public Integer insert(@RequestBody PcCurrentStatus pcStatus) {//정보를 저장하는 로직
-		
-		pcStatusRepo.save(pcStatus);
-		return pcStatus.getPcStatusNum();
+		PcCurrentStatus pc = pService.insertPcCurrentStatus(pcStatus);
+		return pc.getPcStatusNum();
 	}
 	@GetMapping("/pc-status/list")
 	public @ResponseBody List<PcCurrentStatus> getPcInfos(){
-		return pcStatusRepo.findAllByOrderByPcStatusNumDesc();
+		return pService.getPcInfos();
 	}
 	@GetMapping("/pc-status/reserve")
 	public @ResponseBody PcCurrentStatus findOneByPcNum(@RequestParam Integer pcNum){
-	
-		return pcStatusRepo.findByPcInfoPcSeatNum(pcNum);
+		return pService.findOneByPcNum(pcNum);
 	}
+	
+	
 	@GetMapping("/pc-status/user/{userNum}")
 	public List<PcCurrentStatus> findAllByUiNum(@PathVariable Integer userNum){
-	//	return pcStatusRepo.findAllByUserUserNumOrderByPcStatusNumDesc(userNum);
 		return null;
 	}
 	
 	@GetMapping("/pc-status/pc/{pcSeatNum}")
 	public List<PcCurrentStatus> findAllByPcSeatNum(@PathVariable Integer pcSeatNum){
-	//return pcStatusRepo.findAllByPcPcSeatNumOrderByPcStatusNumDesc(pcSeatNum);
 		return null;
 	}
 }

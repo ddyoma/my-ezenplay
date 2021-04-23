@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.spboot.test.controller.ReservationInfoController;
+import com.spboot.test.repository.ReservationInfoRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,12 +13,12 @@ import lombok.extern.slf4j.Slf4j;
 class AwsEzenplayApplicationTests {
 
 	@Autowired
-	private ReservationInfoController uRepo;
+	private ReservationInfoRepository uRepo;
 
 	
 	@Test
 	void contextLoads() {
-		log.info("uRepo=>{}",uRepo.getUserRes(1));
+		log.info("uRepo=>{}",uRepo.findByUserInfoUserNumOrderByResNumDesc(1));
 	}
 
 }
