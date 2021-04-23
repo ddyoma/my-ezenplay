@@ -9,5 +9,5 @@ public class AwsEzenplayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AwsEzenplayApplication.class, args);
 	}
-
+	
 }
