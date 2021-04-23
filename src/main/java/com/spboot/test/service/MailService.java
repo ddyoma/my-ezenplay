@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailService {
 
-//	@Autowired
-//	private JavaMailSender mailSender;
-	private static final String FROM_ADDRESS = "dbsdndwo0224@gmail.com";
+	@Autowired
+	private JavaMailSender mailSender;
+	private static final String FROM_ADDRESS = "sherlock2734@gmail.com";
 	
 	public void mailSend(SimpleMailMessage message) {
 		message.setFrom(MailService.FROM_ADDRESS);
-//		mailSender.send(message); 
+		mailSender.send(message); 
 	}
 }

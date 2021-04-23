@@ -41,7 +41,7 @@ background-color: #f45454;
 }
 #seatreserve{
 
-display: flex;
+display: flex; none;
 align-items: center;
 justify-content: center;
 background-color: #f45454;
@@ -165,13 +165,13 @@ color: #fff;
                <h1><span id="numberseat"style ="float:left;" >좌석번호</span></h1><h5>번</h5>
               <br/><br/><br/><span id="seatview">상세설명</span>
               </div><br/><br/><br/><br/><br/><br/>
-               	<div id="seatreserve" style="cursor:pointer" onclick="gores()">예약하러가기</div>
- 
-               	<div id="deletebt" style="cursor:pointer; display:none;" onclick="cancelRes()">예약취소하기</div>
+              <div id="seatf" style ="display:none;">
+               	<div id="seatreserve" style="cursor:pointer; " onclick="gores()">예약하러가기</div>
+ 				</div>
               </div><!-- End sidebar recent posts-->
             </div><!-- End sidebar -->
 
-       
+       <div id="testtime"></div>
 
           
         </div>
@@ -186,9 +186,6 @@ color: #fff;
 	
 </main><!-- End #main -->
 
-  
-
- 
 
 
 
@@ -228,6 +225,7 @@ function gores(){
 		window.open('/views/res-cancel?userNum='+userNum,'res-cancel','width=600,height=700,top=100,align=center')
 	}
 
+  var seatf = document.getElementById("seatf");
   var sidement = document.getElementById("sidement"); //골라줘
   var seatment = document.getElementById("seatment"); //시트정보
   function handleClick(event) {
@@ -237,10 +235,12 @@ function gores(){
     //console.log(event.target.classList);
     sidement.style.display = "none"; //클릭시 골라줘안보이기
     seatment.style.display = "block"; //선택시 시트정보보이기
+    seatf.style.display = "block";
     if (event.target.classList[1] === "clicked") { //1개선택
     	event.target.classList.remove("clicked"); //한번더누르면 선택해제
     	sidement.style.display = "block"; //선택해제후골라줘보이기
     	seatment.style.display = "none"; //선택해제후시트정보안보이기
+    	seatf.style.display = "none";
     } else {
       for (var i = 0; i < div2.length; i++) {
         div2[i].classList.remove("clicked"); //length넘어가면 기존선택지우기
@@ -248,7 +248,6 @@ function gores(){
       event.target.classList.add("clicked");//지우고 1개선택
     }
   }
-
 
  
   function init() {
