@@ -39,6 +39,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return userInfo;
 	}
 	@Override
+	public UserInfo match(UserInfo ui) {
+		log.info("tmp=>{}", ui);
+		UserInfo userInfo = uiRepo.findByUserNameAndUserDateOfBirthAndUserPhoneAndUserEmail(ui.getUserName(), ui.getUserDateOfBirth(), ui.getUserPhone(), ui.getUserEmail());
+		log.info("tmp=>{}", userInfo);  
+		return userInfo;
+	}
+	@Override
 	public UserInfo saveUserPwd(UserInfo userInfo) {
 		UserInfo uu = uiRepo.findByUserId(userInfo.getUserId());
 		uu.setUserPwd(userInfo.getUserPwd());
@@ -163,11 +170,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		}
 		return result;
 	}
-	@Override
-	public UserInfo testPay(UserInfo ui) {
-		UserInfo user = uiRepo.findByUserNum(ui.getUserNum());
-		user.setRestOfTime(ui.getRestOfTime());
-		return uiRepo.save(user);
-	}
+
 
 }

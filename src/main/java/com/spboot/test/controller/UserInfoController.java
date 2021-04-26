@@ -51,6 +51,17 @@ public class UserInfoController {
 		}
 		return userInfo;
 	}
+	@PostMapping("/matchemail")
+	public @ResponseBody UserInfo match(@RequestBody UserInfo ui) {
+		UserInfo userInfo = uService.match(ui);
+		log.info("ui=>{}",ui);
+		if (userInfo != null) {
+			
+		}
+
+			return userInfo;
+		
+	}
 
 	@PostMapping("/login")
 	public @ResponseBody UserInfo login(@RequestBody UserInfo ui, HttpServletRequest req) {
@@ -100,10 +111,5 @@ public class UserInfoController {
 		}
 		return uService.updateUserInfo(userInfo);
 	}
-	
-	@PostMapping("/testPay")
-	public UserInfo testPay(@ModelAttribute UserInfo ui){
-		log.info("ui=>{}",ui);
-		return uService.testPay(ui);
-	}
+
 }

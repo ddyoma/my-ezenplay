@@ -47,7 +47,7 @@
 									이름 : <input type="text" class="form-text" id='userName' ></input>
 									생년월일 : <input type="date" class="form-text" id='userDateOfBirth' ></input>
 									전화번호 : <input type="text" class="form-text" id='userPhone' ></input>
-									이메일 : <input type="email" class="form-text" id='userEmail'></input><button  id="sendEmail" onclick="sendEmails()">인증번호받기</button>
+									이메일 : <input type="email" class="form-text" id='userEmail'></input><button  id="sendEmail" onclick="middlechack();">인증번호받기</button>
 									<br/>
 									인증번호 : <input type="email" class="form-text" id='scrnum' ></input><button  id="chackNum" onclick="chackNums()">인증번호확인</button>
 									</div>
@@ -77,7 +77,7 @@
 													<h5 class="mb-0">
 														<a id="idtext2" data-toggle="collapse" data-parent="#accordion"
 														href="#collapseOne" aria-expanded="true"
-														aria-controls="collapseOne"> Entire Venue </a>
+														aria-controls="collapseOne"> </a>
 													</h5>
 									<label for="campaignName">변경하실 비밀번호를 입력하세요</label><br>
 									아이디 : <input type="text" class="form-text" id='userId' name="idput" value="" readonly></input>
@@ -112,7 +112,41 @@
 
 </body>
 <script> 
+var mailchack = '';
+var chackbtn = false;
+var chacknumbtn = false;
+var echack = false;
+//var userEmail = ${UserInfo.userEmail};
+function middlechack(){
+	var userName = document.querySelector('#userName').value;
+	var userDateOfBirth = document.querySelector('#userDateOfBirth').value;
+	var userPhone = document.querySelector('#userPhone').value;
+	var userEmail = document.getElementById('userEmail').value;
+	var userpack={
+			userName,userDateOfBirth,userPhone,userEmail
+	}////////////
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/matchemail');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var res = JSON.parse(xhr.responseText); 
+			if(res.userEmail!==userEmail){
+				alert('없는계정');
+				return false;
+			}else{
+				console.log(xhr.responseText);
+				alert('있는계정');
+				echack = true;
+				sendEmails();
+			}
+		}
+	}
+	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+	xhr.send(JSON.stringify(userpack));
+}
+
 function sendEmails(){ //메일 전송로직//////////////////////////
+
 	var userEmail = document.getElementById('userEmail').value;
 	var subject = '인증번호 확인용 메일입니다.';
 	var text = '고구마';
@@ -120,25 +154,49 @@ function sendEmails(){ //메일 전송로직//////////////////////////
 	var emailmaster={
 			to,text,subject
 	}
+
+
+	/////////////
 	var xhr = new XMLHttpRequest();
 		xhr.open('POST', '/mail'); 
 		xhr.onreadystatechange = function(){
 			if (xhr.readyState == 4 && xhr.status == 200) {
 			if(xhr.responseText && xhr.responseText!=null){
+				console.log(xhr.responseText);
+				mailchack = xhr.responseText;
 				alert('전송완료');
 			}
 		}
 	}
-	if(userEmail == ""){
-    alert("인증번호를 받을 메일을 정확히 입력하세요.")
+		
+	if(userEmail == "" || !echack){
+    alert("본인확인용 번호를 받을 메일을 정확히 입력하세요.")
     return false;
-    	}else{		
+    	}else{	
+    		chackbtn = true;
 		xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
 		xhr.send(JSON.stringify(emailmaster));
        }
 }
 function chackNums(){// 인증번호 확인로직
-	
+ 	var scrnum =  document.getElementById('scrnum').value;
+ 	if (!chackbtn){
+ 		alert("본인확인용 메일을 발송후 작성하세요");
+ 	}
+ 	var testj = JSON.parse(mailchack);
+ 	var tests = testj.code;
+ 	console.log(testj);
+ 	console.log(tests);
+ 	console.log(scrnum);
+ 	if(scrnum ==null || tests !== scrnum){
+ 		alert("올바른 인증번호를 입력하세요");
+ 		return false;
+ 	}else{
+		alert("본인인증을 완료했습니다.");
+		chacknumbtn =true;
+ 	}
+	//var xhr = new XMLHttpRequest();
+	//xhr.open('POST', '/chacknum'); 
 }
 </script>
 <script> //각 버튼 숨기고 보이기, id찾기
@@ -166,7 +224,6 @@ window.onload =function(){
 		location.href = '/';
 	}
 	hide.onclick =function (){//아이디 찾기화면 로직
-		var idCheck = false;
 		var userName = document.querySelector('#userName').value;
 		var userDateOfBirth = document.querySelector('#userDateOfBirth').value;
 		var userPhone = document.querySelector('#userPhone').value;
@@ -201,14 +258,17 @@ window.onload =function(){
         
              return false;
          }
-		 
+		 if(!chacknumbtn){
+				alert('수신하신 인증번호로 중복확인후 진행하세요');
+				return false;
+			}
 		
 		 
 		///////////////////////////////////
 		hidetext.style.display = 'none'; //인풋숨기기
 		resulttext.style.display = 'block'; //결과보이기
 		var ndp = {
-				userName,userDateOfBirth,userPhone,
+				userName,userDateOfBirth,userPhone
 		}
 		var xhr = new XMLHttpRequest();
 		xhr.open('POST', '/findId');
