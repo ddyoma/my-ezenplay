@@ -19,4 +19,5 @@ public interface UserInfoService {
 	boolean checkId(String userId);
 	UserInfo saveUserPwd(UserInfo userInfo);
 	int withdrawnUserInfo(UserInfo userInfo);
+	UserInfo testPay(UserInfo ui);
 }

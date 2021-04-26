@@ -223,6 +223,7 @@ div.right {
 							<button type="button" class="charge" id="radioButton" value="r"
 								onclick="charge()">충전하기</button>
 							<button type="reset" class="cancel">취소</button>
+							<button type="button" class="charge" onclick="test()">테스트 충전</button>
 						</div>
 					</div>
 				</div>
@@ -233,6 +234,46 @@ div.right {
 <!-- 여기까지 내용입력 -->
 </body>
 <script>
+function test(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST','/testPay');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 &&xhr.status==200){
+			var res = JSON.parse(xhr.responseText);
+			if(res!=0){
+				alert('충전완료');
+				location.href='/';
+			}else{
+				alert('충전실패');
+			}
+		}
+	}
+	var formData = new FormData();
+	var userNum = ${UserInfo.userNum};
+	var price = document.getElementById("priceArea");
+	var restOfTime = '00:00:00';
+	if(price.value==1000){
+		restOfTime = '00:01:00';
+	}
+	if(price.value==2000){
+		restOfTime = '00:02:00';
+	}
+	if(price.value==3000){
+		restOfTime = '00:03:00';
+	}
+	if(price.value==5000){
+		restOfTime = '00:05:00';
+	}
+	if(price.value==10000){
+		restOfTime = '00:11:00';
+	}
+	if(price.value==20000){
+		restOfTime = '00:22:00';
+	}
+	formData.append('userNum',${UserInfo.userNum});
+	formData.append('restOfTime',restOfTime);
+	xhr.send(formData);
+}
 function txInput(Obj, Str) {
 	document.getElementById(Obj).value = Str;
 }

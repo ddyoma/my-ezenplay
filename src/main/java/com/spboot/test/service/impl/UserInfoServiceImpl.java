@@ -163,6 +163,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 		}
 		return result;
 	}
-
+	@Override
+	public UserInfo testPay(UserInfo ui) {
+		UserInfo user = uiRepo.findByUserNum(ui.getUserNum());
+		user.setRestOfTime(ui.getRestOfTime());
+		return uiRepo.save(user);
+	}
 
 }
