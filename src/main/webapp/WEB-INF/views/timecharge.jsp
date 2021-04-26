@@ -242,7 +242,7 @@ function test(){
 			var res = JSON.parse(xhr.responseText);
 			if(res!=0){
 				alert('충전완료');
-				location.href='/';
+				//location.href='/';
 			}else{
 				alert('충전실패');
 			}
@@ -253,22 +253,22 @@ function test(){
 	var price = document.getElementById("priceArea");
 	var restOfTime = '00:00:00';
 	if(price.value==1000){
-		restOfTime = '00:01:00';
+		restOfTime = '+01:00:00';
 	}
 	if(price.value==2000){
-		restOfTime = '00:02:00';
+		restOfTime = '+02:00:00';
 	}
 	if(price.value==3000){
-		restOfTime = '00:03:00';
+		restOfTime = '+03:00:00';
 	}
 	if(price.value==5000){
-		restOfTime = '00:05:00';
+		restOfTime = '+05:00:00';
 	}
 	if(price.value==10000){
-		restOfTime = '00:11:00';
+		restOfTime = '+11:00:00';
 	}
 	if(price.value==20000){
-		restOfTime = '00:22:00';
+		restOfTime = '+22:00:00';
 	}
 	formData.append('userNum',${UserInfo.userNum});
 	formData.append('restOfTime',restOfTime);
