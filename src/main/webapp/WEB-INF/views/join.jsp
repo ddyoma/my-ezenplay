@@ -313,7 +313,7 @@ function checkVD() {
 		formData.append('userFile',userFile.files[0]);
 	}
 	formData.append('userName',userName.value);
-	formData.append('userDateOfBirth',yyyy.value+mm.value+dd.value);
+	formData.append('userDateOfBirth',yyyy.value+'-'+mm.value+'-'+dd.value);
 	formData.append('userGender',userGender.value);
 	formData.append('userPhone',userPhone.value);
 	formData.append('userAddr1',userAddr1.value);
