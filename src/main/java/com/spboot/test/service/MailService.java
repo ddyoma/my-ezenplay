@@ -14,6 +14,9 @@ public class MailService {
 	
 	public void mailSend(SimpleMailMessage message) {
 		message.setFrom(MailService.FROM_ADDRESS);
+//		message.setTo(message.getTo());
+//		message.setSubject(message.getSubject());
+//		message.setText(message.getText());
 		mailSender.send(message); 
 	}
 }
