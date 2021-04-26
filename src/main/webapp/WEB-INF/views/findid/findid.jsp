@@ -46,8 +46,10 @@
 									<label for="campaignName">회원정보를 입력하세요</label><br>
 									이름 : <input type="text" class="form-text" id='userName' ></input>
 									생년월일 : <input type="date" class="form-text" id='userDateOfBirth' ></input>
-									전화번호 : <input type="email" class="form-text" id='userEmail' ></input>
 									전화번호 : <input type="text" class="form-text" id='userPhone' ></input>
+									이메일 : <input type="email" class="form-text" id='userEmail'></input><button  id="sendEmail" onclick="sendEmails()">인증번호받기</button>
+									<br/>
+									인증번호 : <input type="email" class="form-text" id='scrnum' ></input><button  id="chackNum" onclick="chackNums()">인증번호확인</button>
 									</div>
 									<button class="btn btn-secondary" id="hidebtn">찾기</button>
 								</div>
@@ -109,9 +111,40 @@
 
 
 </body>
+<script> 
+function sendEmails(){ //메일 전송로직//////////////////////////
+	var userEmail = document.getElementById('userEmail').value;
+	var subject = '인증번호 확인용 메일입니다.';
+	var text = '고구마';
+	var to = userEmail;
+	var emailmaster={
+			to,text,subject
+	}
+	var xhr = new XMLHttpRequest();
+		xhr.open('POST', '/mail'); 
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState == 4 && xhr.status == 200) {
+			if(xhr.responseText && xhr.responseText!=null){
+				alert('전송완료');
+			}
+		}
+	}
+	if(userEmail == ""){
+    alert("인증번호를 받을 메일을 정확히 입력하세요.")
+    return false;
+    	}else{		
+		xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+		xhr.send(JSON.stringify(emailmaster));
+       }
+}
+function chackNums(){// 인증번호 확인로직
+	
+}
+</script>
 <script> //각 버튼 숨기고 보이기, id찾기
 window.onload =function(){
 	$("#pwdchange").css({ 'pointer-events': 'none' });
+	
 	var hide = document.getElementById('hidebtn');
 	var hide2 = document.getElementById('hidebtn2');
 	var open = document.getElementById('openbtn');
@@ -121,6 +154,7 @@ window.onload =function(){
 	var resulttext = document.getElementById("resulttext");
 	var hidetext2 = document.getElementById("hidetext2");
 	var resulttext2 = document.getElementById("resulttext2");
+	
 	findp.onclick =function(){//아이디를 찾은 후 비밀번호찾기로 탭이동
 		
 		$('#tabtest').click();
@@ -132,10 +166,14 @@ window.onload =function(){
 		location.href = '/';
 	}
 	hide.onclick =function (){//아이디 찾기화면 로직
-		
+		var idCheck = false;
 		var userName = document.querySelector('#userName').value;
 		var userDateOfBirth = document.querySelector('#userDateOfBirth').value;
 		var userPhone = document.querySelector('#userPhone').value;
+		var userEmail = document.querySelector('#userEmail').value;
+		var sendEmail = document.querySelector('#sendEmail').value;
+		var scrnum = document.querySelector('#scrnum').value;
+		
 		 if(userName == ""){
              alert("본인 이름을 입력하세요.")
              userName.value="";
@@ -153,6 +191,20 @@ window.onload =function(){
         
              return false;
          }
+		 if(userEmail == ""){
+             alert("인증번호를 받을 메일을 정확히 입력하세요.")
+        
+             return false;
+         }
+		 if(scrnum == ""){
+             alert("인증번호를 정확히 입력하세요.")
+        
+             return false;
+         }
+		 
+		
+		 
+		///////////////////////////////////
 		hidetext.style.display = 'none'; //인풋숨기기
 		resulttext.style.display = 'block'; //결과보이기
 		var ndp = {
