@@ -24,6 +24,7 @@ function load() {
 	xhr.onreadystatechange = function (){
 		if(xhr.readyState==4&&xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
+			console.log(res);
 			var html ='';
 			var idx = 0;
 			if(res.length>15){
