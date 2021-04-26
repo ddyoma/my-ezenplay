@@ -48,13 +48,13 @@ public class PcCurrentStatusController {
 	
 	
 	@GetMapping("/pc-status/user/{userNum}")
-	public Integer findAllByUiNum(@PathVariable Integer userNum){
+	public Integer findAllByUiNum(@PathVariable Integer userNum){ //seat.jsp에서 pc시작,종료버튼나오게하는 로직
 		return pService.getUser(userNum);
 	}
 	
-	@GetMapping("/pc-status/pc/{pcSeatNum}")
-	public List<PcCurrentStatus> findAllByPcSeatNum(@PathVariable Integer pcSeatNum){
-		return null;
+	@GetMapping("/pc-status/pc/{userNum}")
+	public Integer startPC(@PathVariable Integer userNum){
+		return pService.startPC(userNum);
 	}
 	
 	@GetMapping("/time-compare/{userNum}")

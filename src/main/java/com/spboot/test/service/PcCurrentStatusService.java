@@ -17,5 +17,5 @@ public interface PcCurrentStatusService {
 	PcCurrentStatus findOneByPcNum(Integer pcNum);
 	int powerOff(int userNum);
 	Integer getUser(Integer userNum);
-	
+	Integer startPC(Integer userNum);
 }

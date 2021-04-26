@@ -55,7 +55,7 @@ bottom: 40px;
 right: 30px;
 width: 190px;
 }
-#deletebt{
+.mybtn{
 display: flex;
 align-items: center;
 justify-content: center;
@@ -168,7 +168,8 @@ color: #fff;
               </div><br/><br/><br/><br/><br/><br/>
                	<div id="seatreserve" style="cursor:pointer" onclick="gores()">예약하러가기</div>
  
-               	<div id="deletebt" style="cursor:pointer; display:none;" onclick="powerOff()">PC사용종료</div> <!-- pc가 사용중이면 나와야함 -->
+               	<div class ="mybtn" id="logOff" style="cursor:pointer; display:none;" onclick="powerOff()">PC사용종료</div> <!-- pc가 사용중이면 나와야함 -->
+               	<div class ="mybtn" id="startPC" style="cursor:pointer; display:none;" onclick="startPC()">PC시작!</div>
               </div><!-- End sidebar recent posts-->
             </div><!-- End sidebar -->
 
@@ -196,6 +197,24 @@ color: #fff;
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   <script>
+function startPC(){
+	if(confirm('예약시간전입니다. pc를 시작하시겠습니까?')){
+
+	var userNum = ${UserInfo.userNum};
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/pc-status/pc/'+userNum);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4&&xhr.status==200){
+			if(xhr.responseText==1){
+				alert('pc사용시작!');
+				location.href = location.href;
+				}
+			}
+		}
+	xhr.send();
+	}
+}
+
 function button(){
 	var userNum = ${UserInfo.userNum};
 	var xhr = new XMLHttpRequest();
@@ -203,7 +222,9 @@ function button(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&&xhr.status==200){
 			if(xhr.responseText==1){
-				document.querySelector('#deletebt').style.display='';
+				document.querySelector('#logOff').style.display='';
+			}else if(xhr.responseText==2){
+				document.querySelector('#startPC').style.display='';
 			}
 		}
 	}

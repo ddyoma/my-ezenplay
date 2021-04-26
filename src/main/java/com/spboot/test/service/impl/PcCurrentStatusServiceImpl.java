@@ -99,10 +99,23 @@ public class PcCurrentStatusServiceImpl implements PcCurrentStatusService {
 			PcCurrentStatus pc = pcRepo.findByUserInfoUserNum(userNum);
 			if(pc.getPcSeatResult()==1) {
 				return 1;
+			}else if(pc.getPcSeatResult()==2) {
+				return 2;
 			}
 		}
 		return 0;
 	}
+	@Override
+	public Integer startPC(Integer userNum) {
+		PcCurrentStatus pc = pcRepo.findByUserInfoUserNum(userNum);
+		if(pc.getPcSeatResult()==2) {
+			pc.setPcSeatResult(1);
+			pcRepo.save(pc);
+			return 1;
+		}
+		return 0;
+	}
+	
 
 
 }
