@@ -116,7 +116,8 @@ var mailchack = '';
 var chackbtn = false;
 var chacknumbtn = false;
 var echack = false;
-//var userEmail = ${UserInfo.userEmail};
+var sendemail = document.getElementById('sendemail');
+var chackNum = document.getElementById('chackNum');
 function middlechack(){
 	var userName = document.querySelector('#userName').value;
 	var userDateOfBirth = document.querySelector('#userDateOfBirth').value;
@@ -129,15 +130,14 @@ function middlechack(){
 	xhr.open('POST', '/matchemail');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
 			if(xhr.responseText ==""){
 				alert('회원정보가 일치하지 않습니다.');
 				return false;
 			
 			}else{
-				console.log(xhr.responseText);
 				alert('이메일 수신에 몇 분 정도 소요될 수 있습니다.');
 				echack = true;
+				sendEmail.disabled = 'disabled';
 				sendEmails();
 			}
 		}
@@ -155,21 +155,17 @@ function sendEmails(){ //메일 전송로직//////////////////////////
 	var emailmaster={
 			to,text,subject
 	}
-
-
 	/////////////
 	var xhr = new XMLHttpRequest();
 		xhr.open('POST', '/mail'); 
 		xhr.onreadystatechange = function(){
 			if (xhr.readyState == 4 && xhr.status == 200) {
 			if(xhr.responseText && xhr.responseText!=null){
-				console.log(xhr.responseText);
 				mailchack = xhr.responseText;
 				alert('전송완료');
 			}
 		}
-	}
-		
+	}	
 	if(userEmail == "" || !echack){
     alert("본인확인용 번호를 받을 메일을 정확히 입력하세요.")
     return false;
@@ -186,15 +182,13 @@ function chackNums(){// 인증번호 확인로직
  	}
  	var testj = JSON.parse(mailchack);
  	var tests = testj.code;
- 	console.log(testj);
- 	console.log(tests);
- 	console.log(scrnum);
  	if(scrnum ==null || tests !== scrnum){
  		alert("올바른 인증번호를 입력하세요");
  		return false;
  	}else{
 		alert("본인인증을 완료했습니다.");
 		chacknumbtn =true;
+		chackNum.disabled = 'disabled';
  	}
 	//var xhr = new XMLHttpRequest();
 	//xhr.open('POST', '/chacknum'); 
@@ -278,9 +272,7 @@ window.onload =function(){
 				var html = '';
 				var html2 = '';
 				if (xhr.responseText) {
-					console.log(xhr.responseText);
 					var res = JSON.parse(xhr.responseText); 
-					console.log(res);
 					html += '<p class="form-text">찾으시는 ID는'+res.userId+'입니다.</p>';
 					html2 += '<p class="form-text">찾으셨던 ID는'+res.userId+'입니다.</p>';
 					var ui = res.userId;

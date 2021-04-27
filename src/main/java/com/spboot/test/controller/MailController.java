@@ -29,8 +29,7 @@ public class MailController {
 
 	@Autowired
 	private MailService mailService;
-	@Autowired
-	private UserInfoService uService;
+
 	@Autowired
 	private Emails email;
 	
@@ -40,7 +39,7 @@ public class MailController {
 		String code = CodeGenerator.getRandomCode();
 		String codetext = "인증번호는"+code+"입니다";
 		SimpleMailMessage smm2 = new SimpleMailMessage();
-		smm2.setText(codetext); // 해보실래용 되나여?ㅇㅋ념
+		smm2.setText(codetext); 
 		smm2.setTo(smm.getTo());
 		smm2.setSubject(smm.getSubject());
 		mailService.mailSend(smm2);
