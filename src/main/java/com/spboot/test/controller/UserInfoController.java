@@ -111,5 +111,10 @@ public class UserInfoController {
 		}
 		return uService.updateUserInfo(userInfo);
 	}
+	@PostMapping("/testPay")
+	public UserInfo testPay(@ModelAttribute UserInfo ui){
+		log.info("ui=>{}",ui);
+		return uService.testPay(ui);
+	}
 
 }

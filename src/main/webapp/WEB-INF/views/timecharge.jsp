@@ -279,6 +279,19 @@ function txInput(Obj, Str) {
 }
 
 function charge() {
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST','/testPay');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 &&xhr.status==200){
+			var res = JSON.parse(xhr.responseText);
+			if(res!=0){
+				alert('충전완료');
+				location.href='/';
+			}else{
+				alert('충전실패');
+			}
+		}
+	}
 	var pay = document.getElementById("payArea");
 	var price = document.getElementById("priceArea");
 	
