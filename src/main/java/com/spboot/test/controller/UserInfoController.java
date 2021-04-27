@@ -116,5 +116,10 @@ public class UserInfoController {
 		log.info("ui=>{}",ui);
 		return uService.testPay(ui);
 	}
+	@PostMapping("/mileage")
+	public UserInfo mileage(@ModelAttribute UserInfo userInfo) {
+		log.info("mi=>{}",userInfo);
+		return uService.mileage(userInfo);
+	}
 
 }

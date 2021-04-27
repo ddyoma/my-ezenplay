@@ -20,4 +20,9 @@ public class PayHistoryInfoServiceImpl implements PayHistoryInfoService {
 		return pRepo.findByUserInfoUserNum(userNum);
 	}
 
+	@Override
+	public Integer saveHistory(PayHistoryInfo pi) {
+		PayHistoryInfo ph = pRepo.save(pi);
+		return ph.getPhNum();
+	}
 }

@@ -161,19 +161,19 @@ div.right {
 							<div class="row-1">
 								<label class="icon-box" id="rad"> <input type="radio"
 									class="btn btn" name="Amt" id="jb-radio-1" value="1000"
-									onclick="txInput('priceArea',this.value)"> 1000원
+									onclick="txInput('priceArea',this.value)">1000원
 								</label>
 							</div>
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
 									class="btn btn" name="Amt" id="jb-radio-2" value="2000"
-									onclick="txInput('priceArea',this.value)"> 2000원
+									onclick="txInput('priceArea',this.value)">2000원
 								</label>
 							</div>
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
 									class="btn btn" name="Amt" id="jb-radio-3" value="3000"
-									onclick="txInput('priceArea',this.value)"> 3000원
+									onclick="txInput('priceArea',this.value)">3000원
 								</label>
 							</div>
 						</div>
@@ -181,19 +181,19 @@ div.right {
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
 									class="btn btn" name="Amt" id="jb-radio-4" value="5000"
-									onclick="txInput('priceArea',this.value)"> 5000원
+									onclick="txInput('priceArea',this.value)">5000원
 								</label>
 							</div>
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
 									class="btn btn" name="Amt" id="jb-radio-5" value="10000"
-									onclick="txInput('priceArea',this.value)"> 10000원
+									onclick="txInput('priceArea',this.value)">10000원
 								</label>
 							</div>
 							<div class="btn-group">
 								<label class="icon-box" id="rad"> <input type="radio"
 									class="btn btn" name="Amt" id="jb-radio-6" value="20000"
-									onclick="txInput('priceArea',this.value)"> 20000원
+									onclick="txInput('priceArea',this.value)">20000원
 								</label>
 							</div>
 						</div>
@@ -223,7 +223,7 @@ div.right {
 							<button type="button" class="charge" id="radioButton" value="r"
 								onclick="charge()">충전하기</button>
 							<button type="reset" class="cancel">취소</button>
-							<button type="button" class="charge" onclick="test()">테스트 충전</button>
+							<button type="button" class="charge" onclick="test()" >테스트 충전</button>
 						</div>
 					</div>
 				</div>
@@ -240,40 +240,88 @@ function test(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 &&xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
+		}
+	}
+	var formData = new FormData();
+	var price = document.getElementById("priceArea");
+	var userNum = ${UserInfo.userNum};
+
+	var restOfTime = '00:00:00';
+	if(price.value==1000){
+		restOfTime = '01:00:00';
+	}
+	if(price.value==2000){
+		restOfTime = '02:00:00';
+	}
+	if(price.value==3000){
+		restOfTime = '03:00:00';
+	}
+	if(price.value==5000){
+		restOfTime = '05:00:00';
+	}
+	if(price.value==10000){
+		restOfTime = '11:00:00';
+	}
+	if(price.value==20000){
+		restOfTime = '22:00:00';
+	}
+	formData.append('userNum',${UserInfo.userNum});
+	formData.append('restOfTime',restOfTime);
+	xhr.send(formData);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST','/mileage');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 &&xhr.status==200){
+			var res = JSON.parse(xhr.responseText);
+			if(res!=0){
+				alert('적립성공');
+				//location.href='/';
+			}else{
+				alert('적립실패');
+			}
+		}
+	}
+	var formData = new FormData();
+	var Mileage = ${UserInfo.userMileage}+price.value*0.01;
+	formData.append('userNum',${UserInfo.userNum});
+	formData.append('userMileage',Mileage);
+	xhr.send(formData); 
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST','/testHis');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 &&xhr.status==200){
+			var res = JSON.parse(xhr.responseText);
 			if(res!=0){
 				alert('충전완료');
-				//location.href='/';
+				location.href='/';
 			}else{
 				alert('충전실패');
 			}
 		}
 	}
 	var formData = new FormData();
-	var userNum = ${UserInfo.userNum};
+	var UserInfo = ${UserInfo.userNum};
+	var phType = '시간충전';
 	var price = document.getElementById("priceArea");
-	var restOfTime = '00:00:00';
-	if(price.value==1000){
-		restOfTime = '+01:00:00';
-	}
-	if(price.value==2000){
-		restOfTime = '+02:00:00';
-	}
-	if(price.value==3000){
-		restOfTime = '+03:00:00';
-	}
-	if(price.value==5000){
-		restOfTime = '+05:00:00';
-	}
-	if(price.value==10000){
-		restOfTime = '+11:00:00';
-	}
-	if(price.value==20000){
-		restOfTime = '+22:00:00';
-	}
-	formData.append('userNum',${UserInfo.userNum});
-	formData.append('restOfTime',restOfTime);
+	var phPrice = price.value;
+	var pay = document.getElementById("payArea");
+	var phMethod = pay.value;
+	var phDetails = '시간충전시간';
+	var phSave = price.value*0.01;
+	formData.append('UserInfo',UserInfo);
+	formData.append('phType',phType);
+	formData.append('phPrice',phPrice);
+	formData.append('phMethod',phMethod);
+	formData.append('phDetails',phDetails);
+	formData.append('phSave',phSave);
 	xhr.send(formData);
+	
+	
+	
 }
+
 function txInput(Obj, Str) {
 	document.getElementById(Obj).value = Str;
 }

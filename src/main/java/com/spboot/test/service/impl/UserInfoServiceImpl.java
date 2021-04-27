@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spboot.test.entity.GradeInfo;
 import com.spboot.test.entity.UserInfo;
 import com.spboot.test.repository.GradeInfoRepository;
 import com.spboot.test.repository.UserInfoRepository;
@@ -189,6 +190,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 		int addTime = addCal.get(Calendar.HOUR_OF_DAY);
 		orgCal.add(Calendar.HOUR_OF_DAY, addTime);
 		return new Time(orgCal.getTimeInMillis());
+	}
+
+	@Override
+	public UserInfo mileage(UserInfo userInfo) {
+		UserInfo user = uiRepo.findByUserNum(userInfo.getUserNum());
+		log.info("userInfo=>{}", userInfo);
+		return uiRepo.save(user);
 	}
 
 }

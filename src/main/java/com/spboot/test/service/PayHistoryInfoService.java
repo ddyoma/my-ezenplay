@@ -7,4 +7,5 @@ import com.spboot.test.entity.PayHistoryInfo;
 public interface PayHistoryInfoService {
 
 	List<PayHistoryInfo> getHistory(int userNum);
+	Integer saveHistory(PayHistoryInfo pi);
 }

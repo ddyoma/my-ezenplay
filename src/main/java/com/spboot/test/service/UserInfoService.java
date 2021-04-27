@@ -21,5 +21,6 @@ public interface UserInfoService {
 	UserInfo saveUserPwd(UserInfo userInfo);
 	int withdrawnUserInfo(UserInfo userInfo);
 	UserInfo testPay(UserInfo ui);
+	UserInfo mileage(UserInfo userInfo);
 
 }
