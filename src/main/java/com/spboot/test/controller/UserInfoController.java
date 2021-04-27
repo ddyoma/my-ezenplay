@@ -54,9 +54,9 @@ public class UserInfoController {
 	@PostMapping("/matchemail")
 	public @ResponseBody UserInfo match(@RequestBody UserInfo ui) {
 		UserInfo userInfo = uService.match(ui);
-		log.info("ui=>{}",ui);
-		if (userInfo != null) {
-			
+		log.info("atoservice=>{}",userInfo);
+		if (userInfo == null) {
+			return null;
 		}
 
 			return userInfo;

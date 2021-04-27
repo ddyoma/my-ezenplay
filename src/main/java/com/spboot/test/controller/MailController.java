@@ -38,8 +38,9 @@ public class MailController {
 	@PostMapping("/mail")
 	public Emails sendMail(@RequestBody SimpleMailMessage smm) {
 		String code = CodeGenerator.getRandomCode();
+		String codetext = "인증번호는"+code+"입니다";
 		SimpleMailMessage smm2 = new SimpleMailMessage();
-		smm2.setText(code); // 해보실래용 되나여?ㅇㅋ념
+		smm2.setText(codetext); // 해보실래용 되나여?ㅇㅋ념
 		smm2.setTo(smm.getTo());
 		smm2.setSubject(smm.getSubject());
 		mailService.mailSend(smm2);

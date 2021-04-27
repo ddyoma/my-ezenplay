@@ -129,13 +129,14 @@ function middlechack(){
 	xhr.open('POST', '/matchemail');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			var res = JSON.parse(xhr.responseText); 
-			if(res.userEmail!==userEmail){
-				alert('없는계정');
+			console.log(xhr.responseText);
+			if(xhr.responseText ==""){
+				alert('회원정보가 일치하지 않습니다.');
 				return false;
+			
 			}else{
 				console.log(xhr.responseText);
-				alert('있는계정');
+				alert('이메일 수신에 몇 분 정도 소요될 수 있습니다.');
 				echack = true;
 				sendEmails();
 			}
