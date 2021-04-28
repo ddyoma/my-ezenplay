@@ -10,8 +10,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <jsp:include page="/WEB-INF/views/home/maintemplethead.jsp"></jsp:include><!-- 상단바로고디자인 -->
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
 
@@ -121,19 +120,9 @@ div.right {
 	background-color: white !important;
 }
 
-.user_card {
-	background-color: #e96b55;
-	width: 332px;
-	height: 368px;
-}
 
-.insertCard {
-	content: url(/resources/images/pay/card.jpg);
-}
 
-.insertPhone {
-	content: url(/resources/images/pay/phone.jpg);
-}
+
 </style>
 </body>
 <!-- ======= Breadcrumbs ======= -->
@@ -210,20 +199,6 @@ div.right {
 									value="휴대폰" onclick="txInput('payArea',this.value)">
 								<div class="insertPhone"></div>
 							</div>
-							<table>
-								<tr>
-									<th>결제수단 :</th>
-									<td><input type="text" class="box" id="payArea" name="payArea" readOnly></td>
-								</tr>
-								<tr>
-									<th>걸제금액 :</th>
-									<td><input type="text" class="box" id="priceArea" name="priceArea" readOnly></td>
-								</tr>
-							</table>
-							<button type="button" class="charge" id="radioButton" value="r"
-								onclick="charge()">충전하기</button>
-							<button type="reset" class="cancel">취소</button>
-							<button type="button" class="charge" onclick="test()" >테스트 충전</button>
 						</div>
 					</div>
 				</div>

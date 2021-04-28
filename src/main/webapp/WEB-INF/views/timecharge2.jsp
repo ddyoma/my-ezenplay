@@ -11,10 +11,31 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/resources/css/timecharge.css">
 </head>
+<style>
+
+</style>
 <body>
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+	<div class="container">
 
+		<ol>
+			<li><a href="index.html">Home</a></li>
+			<li>Contact</li>
+		</ol>
+		<h2>Contact</h2>
+
+	</div>
+</section>
+<!-- End Breadcrumbs -->
+
+<!-- ======= Contact Section ======= -->
+<main>
+	<section id="featured" class="featured">
+		<div class="container">
 <div>
-
+<br/><br/>
+<br/>
   <div class="container group">
     <div id="divOne" onclick="clicks(this)" data-col="div1">
     <div class="grid-1-5">
@@ -102,6 +123,7 @@
           
           <div class="back">
             <div class="box2" style="float:right">
+
               <input type="text" class="box" id="payArea" name="payArea" placeholder="결제수단" readOnly><br>
               <input type="text" class="box" id="priceArea" name="priceArea"  placeholder="결제금액"readOnly><br>
                <button type="reset" onclick="reset()" style="bottom:0;position: relative; float:right;margin-top: 40px;">취소</button>
@@ -111,13 +133,9 @@
           </div>
         </div>
     </div>
-
-   	 
     </div> 
- 
-   
    </div>
-    
+    </div></section></main>
     
     
     <script>
@@ -151,5 +169,10 @@
  	   $('.hover').removeClass('flip');
     }
     </script>
+    
 </body>
+<br/>
+<br/>
+<jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
+<jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
 </html>
