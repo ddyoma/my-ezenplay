@@ -47,6 +47,7 @@ p { color: #ffffff;  }
   position: relative;
   -webkit-perspective: 600px;
   -moz-perspective: 600px;
+    transform:translate(0px,-40px);
 }
 
 .panel .front,
@@ -101,19 +102,21 @@ p { color: #ffffff;  }
   -moz-transform: rotateX(0deg) rotateY(0deg);
 }
 .box1{
-  background-color: #935532;
+  background-color: white;
   width: 250px;
-  height: 150px;
+  height: 180px;
   margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   padding: 20px;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
 .box2{
-  background-color: #ff7e70;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  background-color: white;
   width: 250px;
-  height: 150px;
+  height: 180px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 10px;
@@ -130,19 +133,79 @@ padding: .8em .5em;
 border: 1px solid #999;
 font-family: inherit;
 background: url('arrow.jpg') no-repeat 95% 50%;
-border-radius: 0px;
+border-radius: 10px;
 -webkit-appearance: none;
 -moz-appearance: none;
 appearance: none;
 }
+.box2 input {
+width: 200px;
+padding: .3em .5em;
+border: 1px solid #999;
+font-family: inherit;
+background: url('arrow.jpg') no-repeat 95% 50%;
+border-radius: 10px;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+.box1 button {
+    width:100px;
 
+    background-color: #f8585b;
+
+    border: none;
+
+    color:#fff;
+
+
+    text-align: center;
+
+    text-decoration: none;
+
+    display: inline-block;
+
+    font-size: 15px;
+
+    margin: 4px;
+
+    cursor: pointer;
+
+
+
+  
+}
+.box2 button {
+    width:80px;
+
+    background-color: #f8585b;
+
+    border: none;
+
+    color:#fff;
+
+
+    text-align: center;
+
+    text-decoration: none;
+
+    display: inline-block;
+
+    font-size: 15px;
+
+    margin: 4px;
+
+    cursor: pointer;
+
+
+}
 .box1select::-ms-expand {
     display: none;
 }
 .line{
 	width:100%;
-	height:7px;
-	background-color: #FFC19E;
+	height:2px;
+	background-color: #E96B56;
 }
 /* 여기부터*/
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,900);

@@ -124,7 +124,7 @@
           <div class="back">
             <div class="box2" style="float:right">
 
-              <input type="text" class="box" id="payArea" name="payArea" placeholder="결제수단" readOnly><br>
+              <input type="text" class="box" id="payArea" name="payArea" style="margin-bottom:4px;"placeholder="결제수단" readOnly><br>
               <input type="text" class="box" id="priceArea" name="priceArea"  placeholder="결제금액"readOnly><br>
                <button type="reset" onclick="reset()" style="bottom:0;position: relative; float:right;margin-top: 40px;">취소</button>
                <button type="button" class="charge" id="radioButton" value="r" onclick="charge()" style="bottom:0;position: relative; float:right;margin-top: 40px;">충전</button>
