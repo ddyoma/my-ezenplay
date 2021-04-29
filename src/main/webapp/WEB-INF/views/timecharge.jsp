@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${UserInfo eq null }">
 	<script>
@@ -7,208 +7,156 @@
 		location.href = '/';
 	</script>
 </c:if>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<meta charset="UTF-8">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <jsp:include page="/WEB-INF/views/home/maintemplethead.jsp"></jsp:include><!-- 상단바로고디자인 -->
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/resources/css/timecharge.css">
 </head>
-<style>
-div.main {
-	width: 100%;
-	height: 600px;
-	background: #ededed;
-}
+<body>
 
-div.left {
-	margin-top: 100px;
-	width: 70%;
-	float: left;
-	background: #ededed;
-}
+<div>
 
-div.right {
-	margin-top: 100px;
-	width: 30%;
-	float: right;
-}
-
-.btn:hover {
-	color: black;
-	background-color: #e96b56 !important;
-}
-
-.btn:focus {
-	color: white;
-	background-color: #e96b56 !important;
-}
-
-.btn:active {
-	color: white;
-	background-color: #e96b56 !important;
-}
-
-.icon-box:hover {
-	color: red;
-	background-color: #e96b56 !important;
-}
-
-.icon-box:focus {
-	color: white;
-	background-color: #e96b56 !important;
-}
-
-.icon-box:active {
-	color: #e96b56;
-	background-color: #e96b56 !important;
-}
-
-.btn {
-	margin-left: 30px;
-	margin-right: 30px;
-}
-
-.icon-box {
-	margin-left: 20px;
-	margin-right: 20px;
-	margin-bottom: 40px;
-	margin-top: 40px;
-}
-
-.charge {
-	margin-left: 80px;
-}
-
-.send:hover {
-	color: black;
-	background-color: green !important;
-}
-
-.send:focus {
-	color: white;
-	background-color: green !important;
-}
-
-.send:active {
-	color: white;
-	background-color: white !important;
-}
-
-.cancel {
-	margin-left: 40px;
-}
-
-.cancel:hover {
-	color: black;
-	background-color: red !important;
-}
-
-.cancel:focus {
-	color: white;
-	background-color: red !important;
-}
-
-.cancel:active {
-	color: white;
-	background-color: white !important;
-}
+  <div class="container group">
+    <div id="divOne" onclick="clicks(this)" data-col="div1">
+    <div class="grid-1-5">
+   	 <span class="button">✓</span><br>
+      <span style="font-size: 0.5em; font-weight: 700; text-align: center; font-size: x-large;">charge</span><br><br>
+      <strong style="font-size: 1.5em;">1000<span class="small">원</span></strong><br>
+      <small>01:00</small><br>
+      <sub>마일리지 10p+</sub><br>
+      <input type="radio" name="Amt" id="radio-1" style="float:left; display:none" value="1000" ><br>
+    </div>
+   	 </div>
+     
+     <div id="divTwo" onclick="clicks(this)" data-col="div2">
+    <div class="grid-1-5">
+   	 <span class="button">✓</span><br>
+      <span style="font-size: 0.5em; font-weight: 700; text-align: center; font-size: x-large;">charge</span><br><br>
+      <strong style="font-size: 1.5em;">2000<span class="small">원</span></strong><br>
+      <small>02:00</small><br>
+      <sub>마일리지 20p+</sub><br>
+      <input type="radio" name="Amt" id="radio-2" style="float:left; display:none" value="2000" ><br>
+    </div>
+   	 </div>
+   	 
+       <div id="divThree" onclick="clicks(this)" data-col="div3">
+    <div class="grid-1-5">
+   	 <span class="button">✓</span><br>
+      <span style="font-size: 0.5em; font-weight: 700; text-align: center; font-size: x-large;">charge</span><br><br>
+      <strong style="font-size: 1.5em;">3000<span class="small">원</span></strong><br>
+      <small>03:00</small><br>
+      <sub>마일리지 30p+</sub><br>
+      <input type="radio" name="Amt" id="radio-3" style="float:left; display:none" value="3000" ><br>
+    </div>
+   	 </div>
+  </div>
+  <br><br>
+  <div class="container group">
+  
+	<div id="divFour" onclick="clicks(this)" data-col="div4">
+    <div class="grid-1-5">
+   	 <span class="button">✓</span><br>
+      <span style="font-size: 0.5em; font-weight: 700; text-align: center; font-size: x-large;">charge</span><br><br>
+      <strong style="font-size: 1.5em;">5000<span class="small">원</span></strong><br>
+      <small>05:00</small><br>
+      <sub>마일리지 50p+</sub><br>
+      <input type="radio" name="Amt" id="radio-4" style="float:left; display:none" value="5000" ><br>
+    </div>
+   	 </div>  
 
 
+	<div id="divFive" onclick="clicks(this)" data-col="div5">
+    <div class="grid-1-5">
+   	 <span class="button">✓</span><br>
+      <span style="font-size: 0.5em; font-weight: 700; text-align: center; font-size: x-large;">charge</span><br><br>
+      <strong style="font-size: 1.5em;">10000<span class="small">원</span></strong><br>
+      <small>11:00</small><br>
+      <sub>마일리지 100p+</sub><br>
+      <input type="radio" name="Amt" id="radio-5" style="float:left; display:none" value="10000" ><br>
+    </div>
+   	 </div>
+     
+     <div id="divSix" onclick="clicks(this)" data-col="div6">
+    <div class="grid-1-5">
+   	 <span class="button">✓</span><br>
+      <span style="font-size: 0.5em; font-weight: 700; text-align: center; font-size: x-large;">charge</span><br><br>
+      <strong style="font-size: 1.5em;">20000<span class="small">원</span></strong><br>
+      <small>22:00</small><br>
+      <sub>마일리지 200p+</sub><br>
+      <input type="radio" name="Amt" id="radio-6" style="float:left; display:none" value="20000" ><br>
+    </div>
+   	 </div>
+ 
+      <div class="col_third" style="float:right;margin-top:85px;">
+        <div class="hover panel">
+          <div class="front">
+            <div class="box1">
+            	<select name="pay" class="payC" onclick="textInput('payArea',this.value)">
+            		<option value="">선택하세요</option>
+            		<option value="카드">카드</option>
+            		<option value="휴대폰">휴대폰</option>
+            	</select><br><br>
+            	<div class="line"></div>
+              <button type="button" onclick="goPay()" style="bottom:0;position: relative; float:right;margin-top: 25px;">다음</button>
+            </div><br>
+          </div>
+          
+          <div class="back">
+            <div class="box2" style="float:right">
+              <input type="text" class="box" id="payArea" name="payArea" placeholder="결제수단" readOnly><br>
+              <input type="text" class="box" id="priceArea" name="priceArea" placeholder="결제금액" readOnly><br>
+               <button type="reset" onclick="reset()" style="bottom:0;position: relative; float:right;margin-top: 40px;">취소</button>
+               <button type="button" class="charge" id="radioButton" onclick="charge()" style="bottom:0;position: relative; float:right;margin-top: 40px;">충전</button>
+            <button type="button" class="charge" onclick="test()" style="bottom:0;position: relative;margin-top: 40px;">테스트 충전</button>
+            </div>
+          </div>
+        </div>
+    </div>
 
-
-</style>
-</body>
-<!-- ======= Breadcrumbs ======= -->
-<section id="breadcrumbs" class="breadcrumbs">
-	<div class="container">
-
-		<ol>
-			<li><a href="index.html">Home</a></li>
-			<li>Contact</li>
-		</ol>
-		<h2>Contact</h2>
-
-	</div>
-</section>
-<!-- End Breadcrumbs -->
-
-<!-- ======= Contact Section ======= -->
-<main>
-	<section id="featured" class="featured">
-		<div class="container">
-			<form method="post" >
-				<div class="main">
-					<div class="left">
-						<div class="btn-group">
-							<div class="row-1">
-								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="Amt" id="jb-radio-1" value="1000"
-									onclick="txInput('priceArea',this.value)">1000원
-								</label>
-							</div>
-							<div class="btn-group">
-								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="Amt" id="jb-radio-2" value="2000"
-									onclick="txInput('priceArea',this.value)">2000원
-								</label>
-							</div>
-							<div class="btn-group">
-								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="Amt" id="jb-radio-3" value="3000"
-									onclick="txInput('priceArea',this.value)">3000원
-								</label>
-							</div>
-						</div>
-						<div class="row-2">
-							<div class="btn-group">
-								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="Amt" id="jb-radio-4" value="5000"
-									onclick="txInput('priceArea',this.value)">5000원
-								</label>
-							</div>
-							<div class="btn-group">
-								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="Amt" id="jb-radio-5" value="10000"
-									onclick="txInput('priceArea',this.value)">10000원
-								</label>
-							</div>
-							<div class="btn-group">
-								<label class="icon-box" id="rad"> <input type="radio"
-									class="btn btn" name="Amt" id="jb-radio-6" value="20000"
-									onclick="txInput('priceArea',this.value)">20000원
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="right">
-						<div class="user_card">
-							<div class="btn-group">
-								<input type="radio" class="btn btn" name="pay" id="radio-1"
-									value="카드" onclick="txInput('payArea',this.value)">
-								<div class="insertCard"></div>
-							</div>
-							<div class="btn-group">
-								<input type="radio" class="btn btn" name="pay" id="radio-2"
-									value="휴대폰" onclick="txInput('payArea',this.value)">
-								<div class="insertPhone"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</section>
-</main>
-<!-- 여기까지 내용입력 -->
-</body>
+    </div> 
+ 
+   </div>
+    
+    
 <script>
+function textInput(Obj, Str) {
+	document.getElementById(Obj).value = Str;
+}
+function clicks(obj){
+	var listDataCol = document.querySelectorAll('[data-col]');
+	var objCol = obj.getAttribute('data-col');
+	for(var d of listDataCol){
+		var dataCol = d.getAttribute('data-col');
+		if(objCol==dataCol){
+		var da = document.querySelector('[data-col='+dataCol+']');
+		document.querySelector('#'+da.id+'>div>span').setAttribute('class','my');
+		var input = document.querySelector('#'+obj.id+'>div>input');
+		$(input).prop('checked', 'checked');
+		}else{
+			var els = d.getAttribute('id');
+			document.querySelector('#'+els+'>div>span').setAttribute('class','button');
+			var out = document.querySelector('#'+els+'>div>input');
+			$(out).prop('checked', '');
+		}
+	}
+	var Str = document.querySelector('[name=Amt]:checked').value;
+	document.getElementById("priceArea").value = Str;
+}
+function goPay(){
+  if(document.querySelector('[name=pay]').value==''){
+alert('수단을 선택해주세요');
+return false;
+  }
+     $('.hover').addClass('flip');
+ }
+function reset(){
+  $('.hover').removeClass('flip');
+ }
 function test(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST','/testPay');
@@ -243,7 +191,7 @@ function test(){
 	formData.append('userNum',${UserInfo.userNum});
 	formData.append('restOfTime',restOfTime);
 	xhr.send(formData);
-	
+
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST','/mileage');
 	xhr.onreadystatechange = function(){
@@ -257,11 +205,10 @@ function test(){
 			}
 		}
 	}
-	var formData = new FormData();
 	var Mileage = ${UserInfo.userMileage}+price.value*0.01;
 	formData.append('userNum',${UserInfo.userNum});
 	formData.append('userMileage',Mileage);
-	xhr.send(formData); 
+	xhr.send(formData);
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST','/testHis');
@@ -292,14 +239,8 @@ function test(){
 	formData.append('phDetails',phDetails);
 	formData.append('phSave',phSave);
 	xhr.send(formData);
-	
-	
-	
 }
 
-function txInput(Obj, Str) {
-	document.getElementById(Obj).value = Str;
-}
 
 function charge() {
 	var xhr = new XMLHttpRequest();
@@ -317,65 +258,64 @@ function charge() {
 	}
 	var pay = document.getElementById("payArea");
 	var price = document.getElementById("priceArea");
-	
-			if(pay.value=="카드"){
-				var IMP = window.IMP;
-				IMP.init('imp92849282');
-				IMP.request_pay({
-				    pg : 'inicis', // version 1.1.0부터 지원.
-				    pay_method : 'card',
-				    merchant_uid : 'merchant_' + new Date().getTime(),
-				    name : '유저_시간충전',
-				    amount : price.value,
-				    buyer_email : 'iamport@siot.do',
-				    buyer_name : '사용자',
-				    buyer_tel : '010-1234-5678',
-				    m_redirect_url : 'https://www.ezenplay.com/payments/complete'
-				}, function(rsp) {
-				    if ( rsp.success ) {
-				        var msg = '결제가 완료되었습니다.';
-				        msg += '고유ID : ' + rsp.imp_uid;
-				        msg += '상점 거래ID : ' + rsp.merchant_uid;
-				        msg += '결제 금액 : ' + rsp.paid_amount;
-				        msg += '카드 승인번호 : ' + rsp.apply_num;
-				    } else {
-				        var msg = '결제에 실패하였습니다.';
-				        msg += '에러내용 : ' + rsp.error_msg;
-				    }
-				    alert(msg);
-				});
-			}
-			else if(pay.value=="휴대폰"){
+	if(pay.value=="카드"){
+		var IMP = window.IMP;
+		IMP.init('imp92849282');
+		IMP.request_pay({
+		    pg : 'inicis', // version 1.1.0부터 지원.
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '유저_시간충전',
+		    amount : price.value,
+		    buyer_email : 'iamport@siot.do',
+		    buyer_name : '사용자',
+		    buyer_tel : '010-1234-5678',
+		    m_redirect_url : 'https://www.ezenplay.com/payments/complete'
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
+	}
+	else if(pay.value=="휴대폰"){
 
-				var IMP = window.IMP;
-				IMP.init('imp92849282');
-				IMP.request_pay({
-				    pg : 'inicis', // version 1.1.0부터 지원.
-				    pay_method : 'phone',
-				    merchant_uid : 'merchant_' + new Date().getTime(),
-				    name : '유저_시간충전',
-				    amount : price.value,
-				    buyer_email : 'iamport@siot.do',
-				    buyer_name : '사용자',
-				    buyer_tel : '010-1234-5678',
-				    m_redirect_url : 'https://www.ezenplay.com/views/charge/complet'
-				}, function(rsp) {
-				    if ( rsp.success ) {
-				        var msg = '결제가 완료되었습니다.';
-				        msg += '고유ID : ' + rsp.imp_uid;
-				        msg += '상점 거래ID : ' + rsp.merchant_uid;
-				        msg += '결제 금액 : ' + rsp.paid_amount;
-				        msg += '카드 승인번호 : ' + rsp.apply_num;
-				    } else {
-				        var msg = '결제에 실패하였습니다.';
-				        msg += '에러내용 : ' + rsp.error_msg;
-				    }
-				    alert(msg);
-				});
-			}
-		}
-		
+		var IMP = window.IMP;
+		IMP.init('imp92849282');
+		IMP.request_pay({
+		    pg : 'inicis', // version 1.1.0부터 지원.
+		    pay_method : 'phone',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '유저_시간충전',
+		    amount : price.value,
+		    buyer_email : 'iamport@siot.do',
+		    buyer_name : '사용자',
+		    buyer_tel : '010-1234-5678',
+		    m_redirect_url : 'https://www.ezenplay.com/views/charge/complet'
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
+	}
+} 
 </script>
 <jsp:include page="/WEB-INF/views/home/maintempletfooter.jsp"></jsp:include><!-- footer형태-->
 <jsp:include page="/WEB-INF/views/home/maintempletfooterjs.jsp"></jsp:include><!-- 템플릿전체움직임-->
+</body>
 </html>

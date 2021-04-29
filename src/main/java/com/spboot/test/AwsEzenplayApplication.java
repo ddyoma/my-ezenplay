@@ -10,4 +10,5 @@ public class AwsEzenplayApplication {
 		SpringApplication.run(AwsEzenplayApplication.class, args);
 	}
 	
+	
 }
