@@ -23,13 +23,11 @@ function logout() {
 				var html = '';
 				if (xhr.responseText) {
 					var res = JSON.parse(xhr.responseText);
-		
-					//alert(res.userId + '반갑습니다.');
-					//alert(res.userNum + '반갑습니다.');
 					location.href = '/';
-					return;
+				}else{
+				console.log(xhr.responseText);
+					alert('탈퇴했거나 없는 아이디입니다.');
 				}
-			
 			}
 		}
 		xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');

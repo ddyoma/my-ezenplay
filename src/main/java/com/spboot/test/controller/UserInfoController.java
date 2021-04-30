@@ -66,11 +66,12 @@ public class UserInfoController {
 	@PostMapping("/login")
 	public @ResponseBody UserInfo login(@RequestBody UserInfo ui, HttpServletRequest req) {
 		UserInfo userInfo = uService.login(ui);
-		if (userInfo != null) {
+		if (userInfo != null && userInfo.getAction().equals("1")) {
 			HttpSession session = req.getSession();
 			session.setAttribute("UserInfo", userInfo);
+			return userInfo;
 		}
-		return userInfo;
+		return null;
 	}
 
 	@PostMapping("/logout")
