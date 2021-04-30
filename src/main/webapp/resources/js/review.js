@@ -7,7 +7,7 @@ window.onload = function(){
          console.log(xhr.responseText);
          var res = JSON.parse(xhr.responseText);
 
-         for(var i = 0;i<=res.length;i++){
+         for(var i = 0;i<res.length;i++){
 
          var r = res[i];
          var h2 = '';

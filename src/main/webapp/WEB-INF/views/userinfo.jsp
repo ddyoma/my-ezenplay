@@ -14,6 +14,12 @@
 <jsp:include page="/WEB-INF/views/home/maintempletbar.jsp"></jsp:include><!-- 상단바와 로고 -->
 </head>
 <body>
+<c:if test="${UserInfo eq null }">
+	<script>
+		alert('권한없음');
+		location.href = '/';
+	</script>
+</c:if>
 <div class="container emp-profile">
             <form method="post" enctype="multipart/form-data" action="/update">
                 <div class="row">
