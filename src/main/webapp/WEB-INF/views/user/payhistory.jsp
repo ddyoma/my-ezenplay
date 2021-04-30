@@ -28,6 +28,15 @@
   </table>
   <input type="hidden" id="userNum" value="${UserInfo.userNum}">
 <script>
+function getFormatDate(date){
+    var year = date.getFullYear();              //yyyy
+    var month = (1 + date.getMonth());          //M
+    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+    var day = date.getDate();                   //d
+    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+    return  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+}
+
 window.onload = function(){
 	var userNum = document.querySelector('#userNum').value;
 var xhr = new XMLHttpRequest();
@@ -39,7 +48,9 @@ xhr.onreadystatechange = function(){
 		for(var r of res){
 			html += '<tr class="table-active">';
 			html += '<td>'+r.phType+'</td>';
-			html += '<td>'+r.phDateTime+'</td>';
+			var dt = new Date(r.phDateTime);
+			dt = getFormatDate(dt);
+			html += '<td>'+dt+'</td>';
 			html += '<td>'+r.phMethod+'</td>';
 			html += '<td>'+r.phPrice+'</td>';
 			html += '<td>'+r.phDetails+'</td>';

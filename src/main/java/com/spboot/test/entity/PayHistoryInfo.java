@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Entity
@@ -24,6 +26,7 @@ public class PayHistoryInfo {
 	 private Integer phNum;
 	 @Column(name="ph_type",updatable = false)
 	 private String phType ;
+	 @DateTimeFormat(pattern = "yyyy-MM-dd")
 	 @Column(name="ph_date_time",insertable = false,updatable = false)
 	 private LocalDateTime phDateTime ;
 	 @Column(name="ph_method",updatable = false)

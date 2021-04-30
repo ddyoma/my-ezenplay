@@ -147,6 +147,7 @@ function clicks(obj){
 	var Str = document.querySelector('[name=Amt]:checked').value;
 	document.getElementById("priceArea").value = Str;
 }
+
 function goPay(){
   if(document.querySelector('[name=pay]').value==''){
 alert('수단을 선택해주세요');
@@ -170,23 +171,30 @@ function test(){
 	var userNum = ${UserInfo.userNum};
 
 	var restOfTime = '00:00:00';
+	var details;
 	if(price.value==1000){
 		restOfTime = '01:00:00';
+		details = '1';
 	}
 	if(price.value==2000){
 		restOfTime = '02:00:00';
+		details = '2';
 	}
 	if(price.value==3000){
 		restOfTime = '03:00:00';
+		details = '3';
 	}
 	if(price.value==5000){
 		restOfTime = '05:00:00';
+		details = '5';
 	}
 	if(price.value==10000){
 		restOfTime = '11:00:00';
+		details = '11';
 	}
 	if(price.value==20000){
 		restOfTime = '22:00:00';
+		details = '22';
 	}
 	formData.append('userNum',${UserInfo.userNum});
 	formData.append('restOfTime',restOfTime);
@@ -230,7 +238,7 @@ function test(){
 	var phPrice = price.value;
 	var pay = document.getElementById("payArea");
 	var phMethod = pay.value;
-	var phDetails = '시간충전시간';
+	var phDetails = '시간충전'+details+'시간';
 	var phSave = price.value*0.01;
 	formData.append('UserInfo',UserInfo);
 	formData.append('phType',phType);
