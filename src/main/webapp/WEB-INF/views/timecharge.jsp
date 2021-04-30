@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<div>
+<div style="margin:30px auto;">
 
   <div class="container group">
     <div id="divOne" onclick="clicks(this)" data-col="div1">
