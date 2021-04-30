@@ -110,9 +110,11 @@
             <div class="box2" style="float:right">
               <input type="text" class="box" id="payArea" name="payArea" placeholder="결제수단" readOnly><br>
               <input type="text" class="box" id="priceArea" name="priceArea" placeholder="결제금액" readOnly><br>
-               <button type="reset" onclick="reset()" style="bottom:0;position: relative; float:right;margin-top: 40px;">취소</button>
-               <button type="button" class="charge" id="radioButton" onclick="charge()" style="bottom:0;position: relative; float:right;margin-top: 40px;">충전</button>
-            <button type="button" class="charge" onclick="test()" style="bottom:0;position: relative;margin-top: 40px;">테스트 충전</button>
+              <input type="number" class="box" id="mileageArea" name="mileageArea" placeholder="마일리지 사용 금액" value="this">
+              보유 마일리지 : ${UserInfo.userMileage}
+               <button type="reset" onclick="reset()" style="bottom:0;position: relative; float:right;">취소</button>
+               <button type="button" class="charge" id="radioButton" onclick="charge()" style="bottom:0;position: relative; float:right;">충전</button>
+            <button type="button" class="charge" onclick="test()" style="bottom:0;position: relative;">테스트 충전</button>
             </div>
           </div>
         </div>
@@ -169,7 +171,11 @@ function test(){
 	var formData = new FormData();
 	var price = document.getElementById("priceArea");
 	var userNum = ${UserInfo.userNum};
-
+	var TextMileage = document.getElementById("mileageArea").value;
+	var UsingMileage = ${UserInfo.userMileage}-TextMileage;
+	var Mileage = ${UserInfo.userMileage}+price.value*0.01;
+	var totalMileage = UsingMileage+Mileage;
+	
 	var restOfTime = '00:00:00';
 	var details;
 	if(price.value==1000){
@@ -213,9 +219,9 @@ function test(){
 			}
 		}
 	}
-	var Mileage = ${UserInfo.userMileage}+price.value*0.01;
+	
 	formData.append('userNum',${UserInfo.userNum});
-	formData.append('userMileage',Mileage);
+	formData.append('userMileage',totalMileage);
 	xhr.send(formData);
 	
 	var xhr = new XMLHttpRequest();
@@ -235,7 +241,8 @@ function test(){
 	var UserInfo = ${UserInfo.userNum};
 	var phType = '시간충전';
 	var price = document.getElementById("priceArea");
-	var phPrice = price.value;
+	var haveMile = document.getElementById("mileageArea");
+	var phPrice = price.value-haveMile.value;
 	var pay = document.getElementById("payArea");
 	var phMethod = pay.value;
 	var phDetails = '시간충전'+details+'시간';

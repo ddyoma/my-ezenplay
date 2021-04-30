@@ -1,9 +1,7 @@
 package com.spboot.test.service;
 
 import java.util.List;
-
-
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import com.spboot.test.entity.UserInfo;
 
@@ -22,5 +20,7 @@ public interface UserInfoService {
 	int withdrawnUserInfo(UserInfo userInfo);
 	UserInfo testPay(UserInfo ui);
 	UserInfo mileage(UserInfo userInfo);
-
+	UserInfo uploadAmount(UserInfo userInfo);
+	UserInfo uploadMileage(UserInfo userInfo);
+	Optional<UserInfo> getMileage(Integer userMileage);
 }

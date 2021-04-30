@@ -54,7 +54,7 @@
                      <img src="/resources/images/user/${UserInfo.profilePath }" onerror="this.src='/resources/images/user/basic.png';" class="brand_logo" alt="Logo" style="border-radius: 20px; width: 20px; height: 20px;">
                      ${UserInfo.userName }님 반갑습니다</a>
             <ul>
-              <li><a href="/views/userinfo">내 정보보기</a></li>
+              <li><a href="/views/userinfo" onclick="update()">내 정보보기</a></li>
               <li><a href="/views/index" onclick="logout()">로그아웃</a></li>
             </ul>
           </li>
@@ -64,5 +64,20 @@
       </nav><!-- .nav-menu -->
     </div>
   </header><!-- End Header -->
+  <script>
+  function update(){
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST','/loads');
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				var res = JSON.parse(xhr.responseText);
+			}
+		}
+		var formData = new FormData();
+		var UserInfo = ${UserInfo.userNum};
+		formData.append('UserInfo',UserInfo);
+		xhr.send(formData);
+	}
+  </script>
   <script src="/resources/js/logindi.js"></script><!-- 로그인로그아웃로직 -->
 

@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spboot.test.entity.GradeInfo;
 import com.spboot.test.entity.UserInfo;
 import com.spboot.test.repository.GradeInfoRepository;
 import com.spboot.test.repository.UserInfoRepository;
@@ -197,6 +197,21 @@ public class UserInfoServiceImpl implements UserInfoService {
 		UserInfo user = uiRepo.findByUserNum(userInfo.getUserNum());
 		log.info("userInfo=>{}", userInfo);
 		return uiRepo.save(user);
+	}
+
+	@Override
+	public Optional<UserInfo> getMileage(Integer userMileage) {
+		return uiRepo.findById(userMileage);
+	}
+
+	@Override
+	public UserInfo uploadAmount(UserInfo userInfo) {
+		return uiRepo.updateTotalAmount(userInfo);
+	}
+
+	@Override
+	public UserInfo uploadMileage(UserInfo userInfo) {
+		return uiRepo.updateUserMileage(userInfo);
 	}
 
 }
