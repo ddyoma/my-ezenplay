@@ -98,10 +98,11 @@
 	<repository>
 	    <id>jitpack.io</id>
 	    <url>https://jitpack.io</url>
-	</repository>
+	</repository> 
 </repositories>
 
 	<build>
+	<finalName>ROOT</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
