@@ -24,7 +24,7 @@ import lombok.Data;
 @Entity
 @Table(name="user_info")
 @Data
-@DynamicUpdate
+@DynamicUpdate 
 public class UserInfo {
 	
    @Id
