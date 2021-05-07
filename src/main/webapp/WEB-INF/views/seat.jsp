@@ -343,7 +343,6 @@ function load(){ //좌석list뽑아오기
 	  	xhr.onreadystatechange = function(){
 	   	if(xhr.readyState == 4 && xhr.status == 200){
 	    var res = JSON.parse(xhr.responseText);
-	    console.log(res);
 
 			    for(var pc of res){
 			    	
