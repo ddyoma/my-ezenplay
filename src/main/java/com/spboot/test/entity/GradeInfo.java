@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 public class GradeInfo {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="grade_num",unique = true)
 	private Integer gradeNum;
 	@Column(name="grade_name")
@@ -28,7 +28,5 @@ public class GradeInfo {
 	private Integer gradePrice;
 	@Column(name="file_path")
 	private String filePath;
-	
-	@Transient
-	private MultipartFile gradeFile;
+
 }
