@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-  <!-- =======================================================문제시 쓸 링크
-  * Template Name: Eterna - v2.2.1
-  * Template URL: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 <head>
 <!-- Favicons -->
   <link href="/resources/assets/img/favicon.png" rel="icon">
