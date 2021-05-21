@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-lg-6">
             <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <p>회원님들의 즐거운 게임생활을 위해 할인쿠폰부터 게임쿠폰까지 준비했습니다.</p>
           </div>
           <div class="col-lg-6">
             <form action="" method="post">

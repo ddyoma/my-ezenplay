@@ -9,15 +9,14 @@
   <section id="topbar" class="d-none d-lg-block">
     <div class="container d-flex">
       <div class="contact-info mr-auto">
-        <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
-        <i class="icofont-phone"></i> +1 5589 55488 55
+        <i class="icofont-envelope"></i><a href="mailto:doma1854@naver.com">doma1854@naver.com</a>
+        <i class="icofont-phone"></i> 010 0000 0000
       </div>
       <div class="social-links">
-        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-        <a href="#" class="skype"><i class="icofont-skype"></i></a>
-        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+        <a href="https://twitter.com/?lang=ko" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="https://facebook.com/?locale2=ko_KR" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="https://www.instagram.com/" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="https://skype.daesung.com/main.asp" class="skype"><i class="icofont-skype"></i></a>
       </div>
     </div>
   </section>
